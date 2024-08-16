@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_slugcat)
 	default = "Standard"
 
 /datum/mutant_spritecat/slugcat_snout/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/slugcat, GLOB.snouts_list_slugcat)
+		GLOB.snouts_list_slugcat = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/slugcat)
 		world.log << "CELEBRATE: FOR THE SCUGS HAVE SNOOTS"
 		return ..()
 
@@ -62,19 +62,19 @@ GLOBAL_LIST_EMPTY(bodymarks_list_slugcat)
 /datum/mutant_spritecat/slugcat_bodymarks
 	name = "Slugcat Bodymarks"
 	id = "bodymarks_scug"
-	sprite_acc = /datum/sprite_accessory/body_markings/slugcat
+	sprite_acc = /datum/sprite_accessory/lizard_markings/slugcat
 	default = "None"
 
 /datum/mutant_spritecat/slugcat_bodymarks/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings/slugcat, GLOB.bodymarks_list_slugcat)
+		GLOB.bodymarks_list_slugcat = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/slugcat)
 		world.log << "CELEBRATE: FOR THE SCUGS HAVE BODY MARKINGS"
 		return ..()
 
-/datum/sprite_accessory/body_markings/slugcat
+/datum/sprite_accessory/lizard_markings/slugcat
 	icon = 'modular_skyraptor/modules/species_slugcat/icons/slugcat_external.dmi'
 	color_src = SPRITE_ACC_SCRIPTED_COLOR
 
-/datum/sprite_accessory/body_markings/slugcat/color_override(mob/living/carbon/human/target)
+/datum/sprite_accessory/lizard_markings/slugcat/color_override(mob/living/carbon/human/target)
 	if(!isnull(target))
 		var/col = target.dna.features["tricolor-a1"]
 		if(!isnull(col))
@@ -84,11 +84,11 @@ GLOBAL_LIST_EMPTY(bodymarks_list_slugcat)
 	else
 		return COLOR_WHITE
 
-/datum/sprite_accessory/body_markings/slugcat/none
+/datum/sprite_accessory/lizard_markings/slugcat/none
 	name = "None"
 	icon_state = "none"
 
-/datum/sprite_accessory/body_markings/slugcat/lbelly
+/datum/sprite_accessory/lizard_markings/slugcat/lbelly
 	name = "Debug Light Belly"
 	icon_state = "lbelly"
 	gender_specific = 1
@@ -134,7 +134,7 @@ GLOBAL_LIST_EMPTY(horns_list_slugcat)
 	default = "Standard"
 
 /datum/mutant_spritecat/slugcat_horns/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/slugcat, GLOB.horns_list_slugcat)
+		GLOB.horns_list_slugcat = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/slugcat)
 		world.log << "CELEBRATE: FOR THE SCUGS HAVE HORN-EARS"
 		return ..()
 
@@ -196,7 +196,7 @@ GLOBAL_LIST_EMPTY(tails_list_slugcat)
 	default = "Standard"
 
 /datum/mutant_spritecat/slugcat_tails/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/slugcat, GLOB.tails_list_slugcat)
+		GLOB.tails_list_slugcat = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/slugcat)
 		world.log << "CELEBRATE: FOR THE SCUGS HAVE TAILS"
 		return ..()
 
@@ -242,7 +242,7 @@ GLOBAL_LIST_EMPTY(frills_list_slugcat)
 	default = "None"
 
 /datum/mutant_spritecat/slugcat_frills/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/frills/slugcat, GLOB.frills_list_slugcat)
+		GLOB.frills_list_slugcat = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/frills/slugcat)
 		world.log << "CELEBRATE: FOR THE SCUGS HAVE SNOOTS"
 		return ..()
 

@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_teshvali)
 	default = "Standard"
 
 /datum/mutant_spritecat/teshvali_snout/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/teshvali, GLOB.snouts_list_teshvali)
+		GLOB.snouts_list_teshvali = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/teshvali)
 		world.log << "CELEBRATE: FOR THE TESHIS HAVE SNOOTS"
 		return ..()
 
@@ -58,21 +58,21 @@ GLOBAL_LIST_EMPTY(bodymarks_list_teshvali)
 /datum/mutant_spritecat/teshvali_bodymarks
 	name = "Teshari Bodymarks"
 	id = "bodymarks_teshvali"
-	sprite_acc = /datum/sprite_accessory/body_markings/teshvali
+	sprite_acc = /datum/sprite_accessory/lizard_markings/teshvali
 	default = "None"
 
 /datum/mutant_spritecat/teshvali_bodymarks/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings/teshvali, GLOB.bodymarks_list_teshvali)
+		GLOB.bodymarks_list_teshvali = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/teshvali)
 		world.log << "CELEBRATE: FOR THE TESHIS HAVE BODY MARKINGS"
 		return ..()
 
-/datum/sprite_accessory/body_markings/teshvali
+/datum/sprite_accessory/lizard_markings/teshvali
 	icon = 'modular_skyraptor/modules/species_teshvali/icons/teshvali_external.dmi'
 	color_src = SPRITE_ACC_SCRIPTED_COLOR
 	hasinner = TRUE
 	inner_color_src = SPRITE_ACC_SCRIPTED_COLOR
 
-/datum/sprite_accessory/body_markings/teshvali/color_override(mob/living/carbon/human/target)
+/datum/sprite_accessory/lizard_markings/teshvali/color_override(mob/living/carbon/human/target)
 	if(!isnull(target))
 		var/col = target.dna.features["tricolor-a1"]
 		if(!isnull(col))
@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(bodymarks_list_teshvali)
 	else
 		return COLOR_WHITE
 
-/datum/sprite_accessory/body_markings/teshvali/innercolor_override(mob/living/carbon/human/target)
+/datum/sprite_accessory/lizard_markings/teshvali/innercolor_override(mob/living/carbon/human/target)
 	if(!isnull(target))
 		var/col = target.dna.features["tricolor-a3"]
 		if(!isnull(col))
@@ -92,21 +92,21 @@ GLOBAL_LIST_EMPTY(bodymarks_list_teshvali)
 	else
 		return COLOR_WHITE
 
-/datum/sprite_accessory/body_markings/teshvali/none
+/datum/sprite_accessory/lizard_markings/teshvali/none
 	name = "None"
 	icon_state = "none"
 
-/datum/sprite_accessory/body_markings/teshvali/lbelly
+/datum/sprite_accessory/lizard_markings/teshvali/lbelly
 	name = "Light Belly"
 	icon_state = "lbelly"
 	gender_specific = 1
 
-/datum/sprite_accessory/body_markings/teshvali/lbelly_striped
+/datum/sprite_accessory/lizard_markings/teshvali/lbelly_striped
 	name = "Striped Light Belly"
 	icon_state = "lbelly_striped"
 	gender_specific = 1
 
-/datum/sprite_accessory/body_markings/teshvali/belly_striped
+/datum/sprite_accessory/lizard_markings/teshvali/belly_striped
 	name = "Striped Belly"
 	icon_state = "belly_striped"
 	gender_specific = 1
@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(horns_list_teshvali)
 	default = "Fluffy"
 
 /datum/mutant_spritecat/teshvali_horns/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/teshvali, GLOB.horns_list_teshvali)
+		GLOB.horns_list_teshvali = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/teshvali)
 		world.log << "CELEBRATE: FOR THE TESHIS HAVE HORN-EARS"
 		return ..()
 
@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(tails_list_teshvali)
 	default = "Standard"
 
 /datum/mutant_spritecat/teshvali_tails/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/teshvali, GLOB.tails_list_teshvali)
+		GLOB.tails_list_teshvali = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/teshvali)
 		world.log << "CELEBRATE: FOR THE TESHIS HAVE TAILS"
 		return ..()
 

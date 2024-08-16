@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_akula)
 	default = "Full Snout"
 
 /datum/mutant_spritecat/akula_snout/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/akula, GLOB.snouts_list_akula)
+		GLOB.snouts_list_akula = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/akula)
 		world.log << "CELEBRATE: FOR THE AKULA HAVE SNOOTS"
 		return ..()
 
@@ -56,19 +56,19 @@ GLOBAL_LIST_EMPTY(bodymarks_list_akula)
 /datum/mutant_spritecat/akula_bodymarks
 	name = "Akula Bodymarks"
 	id = "bodymarks_akula"
-	sprite_acc = /datum/sprite_accessory/body_markings/akula
+	sprite_acc = /datum/sprite_accessory/lizard_markings/akula
 	default = "Light belly"
 
 /datum/mutant_spritecat/akula_bodymarks/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings/akula, GLOB.bodymarks_list_akula)
+		GLOB.bodymarks_list_akula = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/akula)
 		world.log << "CELEBRATE: FOR THE AKULA HAVE BODY MARKINGS"
 		return ..()
 
-/datum/sprite_accessory/body_markings/akula
+/datum/sprite_accessory/lizard_markings/akula
 	icon = 'modular_skyraptor/modules/species_akula/icons/akula_external.dmi'
 	color_src = SPRITE_ACC_SCRIPTED_COLOR
 
-/datum/sprite_accessory/body_markings/akula/color_override(mob/living/carbon/human/target)
+/datum/sprite_accessory/lizard_markings/akula/color_override(mob/living/carbon/human/target)
 	if(!isnull(target))
 		var/col = target.dna.features["tricolor-a1"]
 		if(!isnull(col))
@@ -78,11 +78,11 @@ GLOBAL_LIST_EMPTY(bodymarks_list_akula)
 	else
 		return COLOR_WHITE
 
-/datum/sprite_accessory/body_markings/akula/none
+/datum/sprite_accessory/lizard_markings/akula/none
 	name = "None"
 	icon_state = "none"
 
-/datum/sprite_accessory/body_markings/akula/lbelly
+/datum/sprite_accessory/lizard_markings/akula/lbelly
 	name = "Light Belly"
 	icon_state = "lbelly"
 	gender_specific = 1
@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(horns_list_akula)
 	default = "Standard"
 
 /datum/mutant_spritecat/akula_horns/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/akula, GLOB.horns_list_akula)
+		GLOB.horns_list_akula = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/akula)
 		world.log << "CELEBRATE: FOR THE AKULA HAVE HORN-EARS"
 		return ..()
 
@@ -183,7 +183,7 @@ GLOBAL_LIST_EMPTY(tails_list_akula)
 	default = "Standard"
 
 /datum/mutant_spritecat/akula_tails/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/akula, GLOB.tails_list_akula)
+		GLOB.tails_list_akula = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/akula)
 		world.log << "CELEBRATE: FOR THE AKULA HAVE TAILS"
 		return ..()
 

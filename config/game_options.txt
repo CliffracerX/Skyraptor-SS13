@@ -380,6 +380,14 @@ ROUNDSTART_RACES ethereal
 #ROUNDSTART_RACES android
 #ROUNDSTART_RACES golem
 
+## Skyraptor species
+ROUNDSTART_RACES slugcat
+ROUNDSTART_RACES akula
+ROUNDSTART_RACES talonmoth
+ROUNDSTART_RACES teshvali
+ROUNDSTART_RACES avalari
+ROUNDSTART_RACES vox
+
 ##-------------------------------------------------------------------------------------------
 
 ## Roundstart no-reset races

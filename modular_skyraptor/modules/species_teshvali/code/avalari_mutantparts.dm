@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_avalari)
 	default = "Standard"
 
 /datum/mutant_spritecat/avalari_snout/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/avalari, GLOB.snouts_list_avalari)
+		GLOB.snouts_list_avalari = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/avalari)
 		world.log << "CELEBRATE: FOR THE AVALI HAVE SNOOTS"
 		return ..()
 
@@ -58,21 +58,21 @@ GLOBAL_LIST_EMPTY(bodymarks_list_avalari)
 /datum/mutant_spritecat/avalari_bodymarks
 	name = "Avali Bodymarks"
 	id = "bodymarks_avalari"
-	sprite_acc = /datum/sprite_accessory/body_markings/avalari
+	sprite_acc = /datum/sprite_accessory/lizard_markings/avalari
 	default = "None"
 
 /datum/mutant_spritecat/avalari_bodymarks/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings/avalari, GLOB.bodymarks_list_avalari)
+		GLOB.bodymarks_list_avalari = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/avalari)
 		world.log << "CELEBRATE: FOR THE AVALI HAVE BODY MARKINGS"
 		return ..()
 
-/datum/sprite_accessory/body_markings/avalari
+/datum/sprite_accessory/lizard_markings/avalari
 	icon = 'modular_skyraptor/modules/species_teshvali/icons/avalari_external.dmi'
 	color_src = SPRITE_ACC_SCRIPTED_COLOR
 	hasinner = TRUE
 	inner_color_src = SPRITE_ACC_SCRIPTED_COLOR
 
-/datum/sprite_accessory/body_markings/avalari/color_override(mob/living/carbon/human/target)
+/datum/sprite_accessory/lizard_markings/avalari/color_override(mob/living/carbon/human/target)
 	if(!isnull(target))
 		var/col = target.dna.features["tricolor-a1"]
 		if(!isnull(col))
@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(bodymarks_list_avalari)
 	else
 		return COLOR_WHITE
 
-/datum/sprite_accessory/body_markings/avalari/innercolor_override(mob/living/carbon/human/target)
+/datum/sprite_accessory/lizard_markings/avalari/innercolor_override(mob/living/carbon/human/target)
 	if(!isnull(target))
 		var/col = target.dna.features["tricolor-a3"]
 		if(!isnull(col))
@@ -92,21 +92,21 @@ GLOBAL_LIST_EMPTY(bodymarks_list_avalari)
 	else
 		return COLOR_WHITE
 
-/datum/sprite_accessory/body_markings/avalari/none
+/datum/sprite_accessory/lizard_markings/avalari/none
 	name = "None"
 	icon_state = "none"
 
-/datum/sprite_accessory/body_markings/avalari/lbelly
+/datum/sprite_accessory/lizard_markings/avalari/lbelly
 	name = "Light Belly"
 	icon_state = "lbelly"
 	gender_specific = 1
 
-/datum/sprite_accessory/body_markings/avalari/lbelly_striped
+/datum/sprite_accessory/lizard_markings/avalari/lbelly_striped
 	name = "Striped Light Belly"
 	icon_state = "lbelly_striped"
 	gender_specific = 1
 
-/datum/sprite_accessory/body_markings/avalari/belly_striped
+/datum/sprite_accessory/lizard_markings/avalari/belly_striped
 	name = "Striped Belly"
 	icon_state = "belly_striped"
 	gender_specific = 1
@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(horns_list_avalari)
 	default = "Fluffy"
 
 /datum/mutant_spritecat/avalari_horns/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/avalari, GLOB.horns_list_avalari)
+		GLOB.horns_list_avalari = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/avalari)
 		world.log << "CELEBRATE: FOR THE AVALI HAVE HORN-EARS"
 		return ..()
 
@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(tails_list_avalari)
 	default = "Standard"
 
 /datum/mutant_spritecat/avalari_tails/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/avalari, GLOB.tails_list_avalari)
+		GLOB.tails_list_avalari = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/avalari)
 		world.log << "CELEBRATE: FOR THE AVALI HAVE TAILS"
 		return ..()
 

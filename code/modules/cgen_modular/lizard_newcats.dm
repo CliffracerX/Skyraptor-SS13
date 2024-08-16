@@ -3,17 +3,17 @@ GLOBAL_LIST_EMPTY(snouts_list_lizard)
 
 /datum/mutant_spritecat/lizard_snout
 	name = "Lizard Snouts"
-	id = "snout_lizard"
+	id = "snout"
 	sprite_acc = /datum/sprite_accessory/snouts/lizard
 	default = "Sharp + Light"
 
 /datum/mutant_spritecat/lizard_snout/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/lizard, GLOB.snouts_list_lizard)
+		GLOB.snouts_list_lizard = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/lizard)
 		world.log << "CELEBRATE: FOR THE LIZERBS HAVE SNOOTS"
 		return ..()
 
 /datum/sprite_accessory/snouts/lizard
-	icon = 'icons/mob/human/species/lizard/lizard_misc.dmi'
+	icon = 'modular_skyraptor/master_files/icons/mob/human/species/lizard/lizard_misc.dmi'
 	em_block = TRUE
 	hasinner = TRUE
 	inner_color_src = SPRITE_ACC_SCRIPTED_COLOR
@@ -51,22 +51,22 @@ GLOBAL_LIST_EMPTY(bodymarks_list_lizard)
 
 /datum/mutant_spritecat/lizard_bodymarks
 	name = "Lizard Bodymarks"
-	id = "bodymarks_lizard"
-	sprite_acc = /datum/sprite_accessory/body_markings/lizard
+	id = "lizard_markings"
+	sprite_acc = /datum/sprite_accessory/lizard_markings/lizard
 	default = "Light Belly"
 
 /datum/mutant_spritecat/lizard_bodymarks/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings/lizard, GLOB.bodymarks_list_lizard)
+		GLOB.bodymarks_list_lizard = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/lizard)
 		world.log << "CELEBRATE: FOR THE LIZERBS HAVE BODY MARKINGS"
 		return ..()
 
-/datum/sprite_accessory/body_markings/lizard
-	icon = 'icons/mob/human/species/lizard/lizard_misc.dmi'
+/datum/sprite_accessory/lizard_markings/lizard
+	icon = 'modular_skyraptor/master_files/icons/mob/human/species/lizard/lizard_misc.dmi'
 	color_src = SPRITE_ACC_SCRIPTED_COLOR
 	hasinner = TRUE
 	inner_color_src = SPRITE_ACC_SCRIPTED_COLOR
 
-/datum/sprite_accessory/body_markings/lizard/color_override(mob/living/carbon/human/target)
+/datum/sprite_accessory/lizard_markings/lizard/color_override(mob/living/carbon/human/target)
 	if(!isnull(target))
 		var/col = target.dna.features["tricolor-a1"]
 		if(!isnull(col))
@@ -76,7 +76,7 @@ GLOBAL_LIST_EMPTY(bodymarks_list_lizard)
 	else
 		return COLOR_WHITE
 
-/datum/sprite_accessory/body_markings/lizard/innercolor_override(mob/living/carbon/human/target)
+/datum/sprite_accessory/lizard_markings/lizard/innercolor_override(mob/living/carbon/human/target)
 	if(!isnull(target))
 		var/col = target.dna.features["tricolor-a2"]
 		if(!isnull(col))
@@ -86,21 +86,21 @@ GLOBAL_LIST_EMPTY(bodymarks_list_lizard)
 	else
 		return COLOR_WHITE
 
-/datum/sprite_accessory/body_markings/lizard/none
+/datum/sprite_accessory/lizard_markings/lizard/none
 	name = "None"
 	icon_state = "none"
 
-/datum/sprite_accessory/body_markings/lizard/dtiger
+/datum/sprite_accessory/lizard_markings/lizard/dtiger
 	name = "Dark Tiger Body"
 	icon_state = "dtiger"
 	gender_specific = 1
 
-/datum/sprite_accessory/body_markings/lizard/ltiger
+/datum/sprite_accessory/lizard_markings/lizard/ltiger
 	name = "Light Tiger Body"
 	icon_state = "ltiger"
 	gender_specific = 1
 
-/datum/sprite_accessory/body_markings/lizard/lbelly
+/datum/sprite_accessory/lizard_markings/lizard/lbelly
 	name = "Light Belly"
 	icon_state = "lbelly"
 	gender_specific = 1
@@ -110,12 +110,12 @@ GLOBAL_LIST_EMPTY(bodymarks_list_lizard)
 // == SECTION 2.1: LIZARD BODYMARKING PART==
 /datum/mutant_newmutantpart/bodymarks_lizard
 	name = "Lizard body markings"
-	id = "bodymarks_lizard"
+	id = "lizard_markings"
 
 /datum/mutant_newmutantpart/bodymarks_lizard/get_accessory(var/bodypart, var/features)
 	..()
-	if(bodypart == "bodymarks_lizard")
-		return GLOB.bodymarks_list_lizard[features["bodymarks_lizard"]]
+	if(bodypart == "lizard_markings")
+		return GLOB.bodymarks_list_lizard[features["lizard_markings"]]
 	else
 		return FALSE
 
@@ -124,12 +124,12 @@ GLOBAL_LIST_EMPTY(bodymarks_list_lizard)
 // == SECTION X.1: BODY_MARKINGS AS A MODULE THING JUST TO SEE ==
 /datum/mutant_newmutantpart/body_markings
 	name = "Body markings"
-	id = "bodymarks_lizard"
+	id = "lizard_markings"
 
 /datum/mutant_newmutantpart/body_markings/get_accessory(var/bodypart, var/features)
 	..()
-	if(bodypart == "bodymarks_lizard")
-		return GLOB.body_markings_list[features["bodymarks_lizard"]]
+	if(bodypart == "lizard_markings")
+		return GLOB.body_markings_list[features["lizard_markings"]]
 	else
 		return FALSE*/
 
@@ -139,17 +139,17 @@ GLOBAL_LIST_EMPTY(horns_list_lizard)
 
 /datum/mutant_spritecat/lizard_horns
 	name = "Lizard Horns"
-	id = "horns_lizard"
+	id = "horns"
 	sprite_acc = /datum/sprite_accessory/horns/lizard
 	default = "Ram"
 
 /datum/mutant_spritecat/lizard_horns/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/lizard, GLOB.horns_list_lizard)
+		GLOB.horns_list_lizard = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/lizard)
 		world.log << "CELEBRATE: FOR THE LIZERBS HAVE HORNS"
 		return ..()
 
 /datum/sprite_accessory/horns/lizard
-	icon = 'icons/mob/human/species/lizard/lizard_misc.dmi'
+	icon = 'modular_skyraptor/master_files/icons/mob/human/species/lizard/lizard_misc.dmi'
 	em_block = TRUE
 
 /datum/sprite_accessory/horns/lizard/none
@@ -183,17 +183,17 @@ GLOBAL_LIST_EMPTY(frills_list_lizard)
 
 /datum/mutant_spritecat/lizard_frills
 	name = "Lizard Frills"
-	id = "frills_lizard"
+	id = "frills"
 	sprite_acc = /datum/sprite_accessory/frills/lizard
 	default = "Aquatic"
 
 /datum/mutant_spritecat/lizard_frills/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/frills/lizard, GLOB.frills_list_lizard)
+		GLOB.frills_list_lizard = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/frills/lizard)
 		world.log << "CELEBRATE: FOR THE LIZERBS HAVE FRILLS"
 		return ..()
 
 /datum/sprite_accessory/frills/lizard
-	icon = 'icons/mob/human/species/lizard/lizard_misc.dmi'
+	icon = 'modular_skyraptor/master_files/icons/mob/human/species/lizard/lizard_misc.dmi'
 	em_block = TRUE
 
 /datum/sprite_accessory/frills/lizard/none

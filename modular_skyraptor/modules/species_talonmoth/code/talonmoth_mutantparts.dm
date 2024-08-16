@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_talonmoth)
 	default = "Long"
 
 /datum/mutant_spritecat/talonmoth_snout/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/talonmoth, GLOB.snouts_list_talonmoth)
+		GLOB.snouts_list_talonmoth = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/talonmoth)
 		world.log << "CELEBRATE: FOR THE MOFFS HAVE SNOOTS"
 		return ..()
 
@@ -62,19 +62,19 @@ GLOBAL_LIST_EMPTY(bodymarks_list_talonmoth)
 /datum/mutant_spritecat/talonmoth_bodymarks
 	name = "Talon Moth Bodymarks"
 	id = "bodymarks_talonmoth"
-	sprite_acc = /datum/sprite_accessory/body_markings/talonmoth
+	sprite_acc = /datum/sprite_accessory/lizard_markings/talonmoth
 	default = "None"
 
 /datum/mutant_spritecat/talonmoth_bodymarks/init_jank()
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings/talonmoth, GLOB.bodymarks_list_talonmoth)
+		GLOB.bodymarks_list_talonmoth = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/talonmoth)
 		world.log << "CELEBRATE: FOR THE MOFFS HAVE BODY MARKINGS"
 		return ..()
 
-/datum/sprite_accessory/body_markings/talonmoth
+/datum/sprite_accessory/lizard_markings/talonmoth
 	icon = 'modular_skyraptor/modules/species_talonmoth/icons/talonmoth_external.dmi'
 	color_src = SPRITE_ACC_SCRIPTED_COLOR
 
-/datum/sprite_accessory/body_markings/talonmoth/color_override(mob/living/carbon/human/target)
+/datum/sprite_accessory/lizard_markings/talonmoth/color_override(mob/living/carbon/human/target)
 	if(!isnull(target))
 		var/col = target.dna.features["tricolor-a1"]
 		if(!isnull(col))
@@ -84,11 +84,11 @@ GLOBAL_LIST_EMPTY(bodymarks_list_talonmoth)
 	else
 		return COLOR_WHITE
 
-/datum/sprite_accessory/body_markings/talonmoth/none
+/datum/sprite_accessory/lizard_markings/talonmoth/none
 	name = "None"
 	icon_state = "none"
 
-/datum/sprite_accessory/body_markings/talonmoth/lbelly
+/datum/sprite_accessory/lizard_markings/talonmoth/lbelly
 	name = "Light Belly"
 	icon_state = "lbelly"
 	gender_specific = 1

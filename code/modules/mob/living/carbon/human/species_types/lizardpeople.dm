@@ -10,13 +10,15 @@
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_REPTILE
 	mutant_bodyparts = list("legs" = "Normal Legs")
 	body_markings = list(/datum/bodypart_overlay/simple/body_marking/lizard = "None")
+	/// SKYRAPTOR EDIT BEGIN
 	external_organs = list(
-		/obj/item/organ/external/horns = "None",
-		/obj/item/organ/external/frills = "None",
-		/obj/item/organ/external/snout = "Round",
+		/obj/item/organ/external/horns/lizard = "None",
+		/obj/item/organ/external/frills/lizard = "None",
+		/obj/item/organ/external/snout/lizard = "Round",
 		/obj/item/organ/external/spines = "None",
 		/obj/item/organ/external/tail/lizard = "Smooth",
 	)
+	/// SKYRAPTOR EDIT END
 	mutanttongue = /obj/item/organ/internal/tongue/lizard
 	coldmod = 1.5
 	heatmod = 0.67
