@@ -107,11 +107,21 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	pod_hair_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair)[DEFAULT_SPRITE_LIST]
 
 	/// SKYRAPTOR ADDITION BEGIN: modular_chargen
+	world.log << "STEPPER: Trying to perform initialization"
+	var/list/paths = subtypesof(/datum/mutant_spritecat)
+	world.log << "There are [length(paths)] subtypes to draw from"
 	/// Custom sprite accessory subtype categorization
-	for(var/spath in subtypesof(/datum/mutant_spritecat))
+	var/counter_sky = 0
+	for(var/spath in paths)
+		world.log << "Trying to do init on [spath]"
 		var/datum/mutant_spritecat/S = new spath()
-		GLOB.mutant_spritecat_list[S.id] = spath
+		world.log << "Instance [S] has been made with ID [S.id]"
+		//GLOB.mutant_spritecat_list[S.id] = spath
+		//world.log << "Path filled in GLOB: [GLOB.mutant_spritecat_list[S.id]]"
 		S.init_jank()
+		world.log << "Initialization function has been run"
+		counter_sky += 1
+	world.log << "Completed all initialization, was total of [counter_sky] subtypes"
 	/// SKYRAPTOR ADDITION END: modular_chargen
 
 /// This proc just intializes all /datum/sprite_accessory/hair_gradient into an list indexed by gradient-style name
