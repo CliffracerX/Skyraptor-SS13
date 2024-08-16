@@ -14,6 +14,11 @@
 	///The light mask used in the icon file for emissive layer
 	var/light_mask = "button-light-mask"
 
+/obj/machinery/button/delam_scram
+	icon = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/buttons/icons/scram.dmi'
+	base_icon_state = "button"
+	icon_state = "button"
+
 /obj/machinery/button/update_icon_state()
 	. = ..()
 	if(panel_open)
@@ -117,6 +122,14 @@
 	light_color = "#FFFF00"
 
 /obj/machinery/button/tram
+	base_icon_state = "tramctrl"
+	icon_state = "tramctrl"
+	skin_raptsys = "tramctrl"
+	light_mask = "tram-light-mask"
+	skin = ""
+	light_color = "#FFFF00"
+
+/obj/machinery/button/transport/tram
 	base_icon_state = "tramctrl"
 	icon_state = "tramctrl"
 	skin_raptsys = "tramctrl"

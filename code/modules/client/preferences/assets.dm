@@ -27,8 +27,7 @@
 			else if (isicon(create_icon_of))
 				icon = create_icon_of
 			else
-				world.log << "SKYRAPTOR ALERT: got a null (probably) - [create_icon_of] - from pref value [preference_key] in prefs list [preference_value].  Skipping to avoid crashing icon generation."
-				//CRASH("[create_icon_of] is an invalid preference value (from [preference_key]:[preference_value]).")
+				CRASH("[create_icon_of] is an invalid preference value (from [preference_key]:[preference_value]).")
 
 			to_insert[preference.get_spritesheet_key(preference.serialize(preference_value))] = list(icon, icon_state)
 

@@ -1,0 +1,4 @@
+{"ts":"1721268485.900027","round-id":null,"secret":0,"cat-list":["transport"],"cat":"transport"}
+{"ts":"2024-07-17 22:08:20.548","cat":"transport","msg":"uZarZ: MULEbot failed to set home at 73, 167, 2","data":null,"w-state":{"tick_usage":92.8694,"tick_lag":0.5,"time":52,"timestamp":"1721268500.549667"},"s-store":null,"id":131,"s-ver":"1.0.0"}
+{"ts":"2024-07-17 22:08:20.556","cat":"transport","msg":"rRPL2: MULEbot successfuly set home location to ID QM #1 at 77, 152, 2","data":null,"w-state":{"tick_usage":108.334,"tick_lag":0.5,"time":52,"timestamp":"1721268500.557399"},"s-store":null,"id":135,"s-ver":"1.0.0"}
+{"ts":"2024-07-17 22:08:20.561","cat":"transport","msg":"wW6Cl: MULEbot successfuly set home location to ID QM #2 at 77, 151, 2","data":null,"w-state":{"tick_usage":117.792,"tick_lag":0.5,"time":52,"timestamp":"1721268500.562129"},"s-store":null,"id":137,"s-ver":"1.0.0"}

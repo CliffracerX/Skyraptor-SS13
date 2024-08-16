@@ -52,6 +52,17 @@
 ///The maximum additional stun chance based on missing stamina
 #define STAMINA_SCALING_STUN_SCALER 60
 
+///Disoriented trait, pulled away from the traits list to reduce conflicts.
+#define TRAIT_DISORIENTED "disoriented"
+///User's stamina is over the STAMINA_EXHAUSTION_THRESHOLD
+#define TRAIT_EXHAUSTED "exhausted"
+///User is sprinting, full speed ahead
+#define TRAIT_SPRINTING "sprinting"
+///User cannot sprint
+#define TRAIT_NO_SPRINT "no_sprint"
+///User is in soft critical condition.
+#define TRAIT_SOFT_CRITICAL_CONDITION "soft-critical-condition"
+
 ////
 /// DISARM
 ////

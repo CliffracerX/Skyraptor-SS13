@@ -1,0 +1,410 @@
+{
+	"brief_outfit": "/datum/outfit/centcom/commander", 
+	"ghost_accs": "Full accessories", 
+	"ghost_form": "ghost", 
+	"ghost_orbit": "circle", 
+	"ghost_others": "Their sprites", 
+	"ghost_lighting": "Darker", 
+	"joblessrole": 1, 
+	"mod_select": "middle", 
+	"parallax": "High", 
+	"preferred_map": "", 
+	"scaling_method": "distort", 
+	"screentip_pref": "Enabled", 
+	"sound_tts": "Enabled", 
+	"sound_achievement": "Success Ping", 
+	"UI_style": "Midnight", 
+	"asaycolor": "#ff3300", 
+	"ooccolor": "#c43b23", 
+	"screentip_color": "#deefff", 
+	"clientfps": -1, 
+	"multiz_performance": -1, 
+	"pixel_size": 0, 
+	"max_chat_length": 110, 
+	"sound_tts_volume": 100, 
+	"tip_delay": 500, 
+	"bypass_deadmin_in_centcom": 1, 
+	"ghost_roles_as_admin": 1, 
+	"comms_notification": 1, 
+	"ambientocclusion": 1, 
+	"auto_fit_viewport": 1, 
+	"broadcast_login_logout": 1, 
+	"darkened_flash": 0, 
+	"frill_transparent_pref": 0, 
+	"ghost_hud": 1, 
+	"inquisitive_ghost": 1, 
+	"ghost_roles": 1, 
+	"hotkeys": 1, 
+	"itemoutline_pref": 1, 
+	"multiz_parallax": 1, 
+	"chat_on_map": 1, 
+	"see_chat_non_mob": 1, 
+	"see_rc_emotes": 1, 
+	"screentip_images": 1, 
+	"sound_ambience": 1, 
+	"sound_breathing": 1, 
+	"sound_announcements": 1, 
+	"sound_combatmode": 1, 
+	"sound_endofround": 1, 
+	"sound_instruments": 1, 
+	"sound_jukebox": 1, 
+	"sound_lobby": 1, 
+	"sound_midi": 1, 
+	"sound_ship_ambience": 1, 
+	"sound_elevator": 1, 
+	"sound_radio_noise": 1, 
+	"fast_mc_refresh": 0, 
+	"tgui_fancy": 1, 
+	"tgui_input": 1, 
+	"tgui_input_large": 0, 
+	"tgui_input_swapped": 1, 
+	"tgui_lock": 0, 
+	"tgui_say_light_mode": 0, 
+	"enable_tips": 1, 
+	"widescreenpref": 1, 
+	"windowflashing": 1, 
+	"typingIndicator": 1, 
+	"version": 45, 
+	"lastchangelog": "", 
+	"be_special": [], 
+	"default_slot": 1, 
+	"toggles": 529, 
+	"chat_toggles": 8019, 
+	"ignoring": [], 
+	"key_bindings": {
+		"Admin": [
+			"F3"
+		], 
+		"admin_ghost": [
+			"F5"
+		], 
+		"player_panel_new": [
+			"F6"
+		], 
+		"toggle_buildmode_self": [
+			"F7"
+		], 
+		"stealth_mode": [
+			"CtrlF8"
+		], 
+		"invisimin": [
+			"F8"
+		], 
+		"dsay": [
+			"F10"
+		], 
+		"deadmin": [], 
+		"readmin": [], 
+		"view_tags": [
+			"F9"
+		], 
+		"reconnect": [
+			"-"
+		], 
+		"toggle_throw_mode": [
+			"R", 
+			"Southwest"
+		], 
+		"hold_throw_mode": [
+			"Space"
+		], 
+		"Give_Item": [
+			"G"
+		], 
+		"admin_help": [
+			"F1"
+		], 
+		"screenshot": [
+			"F2"
+		], 
+		"toggle_fullscreen": [
+			"F11"
+		], 
+		"minimal_hud": [
+			"F12"
+		], 
+		"Say": [
+			"T"
+		], 
+		"Radio": [
+			"Y"
+		], 
+		"OOC": [
+			"O"
+		], 
+		"Me": [
+			"M"
+		], 
+		"quick_equip": [
+			"E"
+		], 
+		"quick_equip_belt": [
+			"ShiftE"
+		], 
+		"quick_equip_bag": [
+			"ShiftB"
+		], 
+		"quick_equip_suit_storage": [
+			"ShiftQ"
+		], 
+		"quick_equip_lpocket": [
+			"Ctrl1"
+		], 
+		"quick_equip_rpocket": [
+			"Ctrl2"
+		], 
+		"resist": [
+			"B"
+		], 
+		"look up": [
+			"L"
+		], 
+		"look down": [
+			";"
+		], 
+		"rest": [
+			"U"
+		], 
+		"toggle_combat_mode": [
+			"F"
+		], 
+		"enable_combat_mode": [
+			"4"
+		], 
+		"disable_combat_mode": [
+			"1"
+		], 
+		"toggle_move_intent": [
+			"C"
+		], 
+		"toggle_move_intent_alt": [], 
+		"toggle_examine_balloons": [
+			"Shift"
+		], 
+		"stop_pulling": [
+			"H", 
+			"Delete"
+		], 
+		"swap_hands": [
+			"X"
+		], 
+		"activate_inhand": [
+			"Z"
+		], 
+		"drop_item": [
+			"Q"
+		], 
+		"target_head_cycle": [
+			"Numpad8"
+		], 
+		"target_head": [], 
+		"target_eyes": [
+			"Numpad7"
+		], 
+		"target_mouths": [
+			"Numpad9"
+		], 
+		"target_r_arm": [
+			"Numpad4"
+		], 
+		"target_body_chest": [
+			"Numpad5"
+		], 
+		"target_left_arm": [
+			"Numpad6"
+		], 
+		"target_right_leg": [
+			"Numpad1"
+		], 
+		"target_body_groin": [
+			"Numpad2"
+		], 
+		"target_left_leg": [
+			"Numpad3"
+		], 
+		"block_movement": [
+			"Alt"
+		], 
+		"North": [
+			"W", 
+			"North"
+		], 
+		"South": [
+			"S", 
+			"South"
+		], 
+		"West": [
+			"A", 
+			"West"
+		], 
+		"East": [
+			"D", 
+			"East"
+		], 
+		"Upwards": [
+			"Northeast"
+		], 
+		"Downwards": [
+			"Southeast"
+		], 
+		"module_one": [
+			"1"
+		], 
+		"module_two": [
+			"2"
+		], 
+		"module_three": [
+			"3"
+		], 
+		"unequip_module": [
+			"Q"
+		], 
+		"undeploy": [
+			"="
+		], 
+		"point": [], 
+		"me": [], 
+		"help": [], 
+		"flip": [], 
+		"spin": [], 
+		"blush": [], 
+		"tunesing": [], 
+		"bow": [], 
+		"burp": [], 
+		"choke": [], 
+		"cross": [], 
+		"chuckle": [], 
+		"collapse": [], 
+		"dance": [], 
+		"deathgasp": [], 
+		"drool": [], 
+		"faint": [], 
+		"flap": [], 
+		"aflap": [], 
+		"frown": [], 
+		"gag": [], 
+		"gasp": [], 
+		"gaspshock": [], 
+		"giggle": [], 
+		"glare": [], 
+		"grin": [], 
+		"groan": [], 
+		"grimace": [], 
+		"jump": [], 
+		"kiss": [], 
+		"laugh": [], 
+		"look": [], 
+		"nod": [], 
+		"sneeze": [], 
+		"cough": [], 
+		"pout": [], 
+		"scream": [], 
+		"scowl": [], 
+		"shake": [], 
+		"shiver": [], 
+		"sigh": [], 
+		"sit": [], 
+		"smile": [], 
+		"smug": [], 
+		"sniff": [], 
+		"snore": [], 
+		"stare": [], 
+		"stretch": [], 
+		"sulk": [], 
+		"surrender": [], 
+		"sway": [], 
+		"tilt": [], 
+		"tremble": [], 
+		"twitch": [], 
+		"twitch_s": [], 
+		"wave": [], 
+		"whimper": [], 
+		"wsmile": [], 
+		"yawn": [], 
+		"gurgle": [], 
+		"inhale": [], 
+		"exhale": [], 
+		"swear": [], 
+		"whistle": [], 
+		"airguitar": [], 
+		"blink": [], 
+		"blink_r": [], 
+		"clap": [], 
+		"crack": [], 
+		"cry": [], 
+		"circle": [], 
+		"moan": [], 
+		"noogie": [], 
+		"roll": [], 
+		"scratch": [], 
+		"sign": [], 
+		"signal": [], 
+		"slap": [], 
+		"hand": [], 
+		"snap": [], 
+		"shoesteal": [], 
+		"tail": [], 
+		"wink": [], 
+		"dap": [], 
+		"eyebrow": [], 
+		"glasses": [], 
+		"grumble": [], 
+		"handshake": [], 
+		"hug": [], 
+		"mumble": [], 
+		"screech": [], 
+		"pale": [], 
+		"raise": [], 
+		"salute": [], 
+		"shrug": [], 
+		"wag": [], 
+		"wing": [], 
+		"clear": [], 
+		"gnarl": [], 
+		"roar": [], 
+		"hiss": [], 
+		"ooga": [], 
+		"bounce": [], 
+		"jiggle": [], 
+		"light": [], 
+		"vibrate": [], 
+		"moodnone": [], 
+		"moodsneaky": [], 
+		"moodsmile": [], 
+		"moodcat": [], 
+		"moodpout": [], 
+		"moodsad": [], 
+		"moodangry": [], 
+		"alarm": [], 
+		"alert": [], 
+		"flash": [], 
+		"notice": [], 
+		"blank": [], 
+		"veryhappy": [], 
+		"happy": [], 
+		"neutral": [], 
+		"unsure": [], 
+		"confused": [], 
+		"sad": [], 
+		"bsod": [], 
+		"trollface": [], 
+		"awesome": [], 
+		"dorfy": [], 
+		"thinking": [], 
+		"facepalm": [], 
+		"friendcomputer": [], 
+		"blueglow": [], 
+		"redglow": [], 
+		"boop": [], 
+		"beep": [], 
+		"buzz": [], 
+		"buzz2": [], 
+		"chime": [], 
+		"honk": [], 
+		"ping": [], 
+		"warn": [], 
+		"slowclap": []
+	}, 
+	"hearted_until": null, 
+	"favorite_outfits": []
+}

@@ -68,10 +68,6 @@
 		return TRUE
 	return !mover.density || body_position == LYING_DOWN
 
-/mob/living/toggle_move_intent()
-	. = ..()
-	update_move_intent_slowdown()
-
 /// SKYRAPTOR ADDITION BEGIN
 /mob/living/set_move_intent(new_state)
 	. = ..()

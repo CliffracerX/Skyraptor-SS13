@@ -31,8 +31,6 @@
 	//liked_food = GORE | MEAT
 	//normal digilegs vs. non-digilegs do not apply here since teshis have completely unique legs
 
-	ass_image = 'icons/ass/asslizard.png' //not even bothering to change this, fuck you
-
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/teshvali,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/teshvali,
@@ -41,9 +39,6 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/teshvali,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/teshvali,
 	)
-
-/datum/species/teshvali/random_name(gender,unique,lastname)
-	return "The Undefined"
 
 /datum/species/teshvali/randomize_features(mob/living/carbon/human/human_mob)
 	/*human_mob.undershirt = random_undershirt(human_mob.gender)

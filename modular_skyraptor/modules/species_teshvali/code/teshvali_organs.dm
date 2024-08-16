@@ -1,7 +1,6 @@
 /obj/item/organ/internal/eyes/teshvali
 	name = "teshvali eyes"
 	desc = "All-seeing eyes built to survey from the skies."
-	eye_icon_file = 'modular_skyraptor/modules/species_teshvali/icons/teshvali_external.dmi'
 	eye_icon_state = "teshvalieyes"
 	icon_state = "eyeballs-moth"
 

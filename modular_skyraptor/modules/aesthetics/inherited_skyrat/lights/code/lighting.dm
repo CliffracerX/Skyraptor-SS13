@@ -29,6 +29,10 @@
 	var/flicker_timer = null
 	var/roundstart_flicker = FALSE
 
+	///Because colored lighting is complicated :(
+	var/mutable_appearance/light_overlay
+	var/mutable_appearance/lightmask_overlay
+
 /obj/machinery/light/floor
 	icon = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/lights/icons/lighting.dmi'
 	overlay_icon = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/lights/icons/lighting_overlay.dmi'
@@ -86,13 +90,13 @@
 /obj/machinery/light/multitool_act(mob/living/user, obj/item/multitool)
 	if(!constant_flickering)
 		balloon_alert(user, "ballast is already working!")
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return ITEM_INTERACT_SUCCESS
 
 	balloon_alert(user, "repairing the ballast...")
 	if(do_after(user, 2 SECONDS, src))
 		stop_flickering()
 		balloon_alert(user, "ballast repaired!")
-		return TOOL_ACT_TOOLTYPE_SUCCESS
+		return ITEM_INTERACT_SUCCESS
 	return ..()
 
 
@@ -117,6 +121,38 @@
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 	return return_valu
+
+//completely overriding THIS is ill-advised TOO but here we are
+/obj/machinery/light/update_overlays()
+	. = ..()
+	cut_overlays()
+	//kill normal overlays and then run the normal check
+	if(light_range < 1) /// this is a weird check but it should capture edge-cases
+		return
+	//make sure our light_overlay appearance is setup
+	if(light_overlay == null)
+		light_overlay = new()
+	if(lightmask_overlay == null)
+		lightmask_overlay = new()
+	//set its icon state and color then add it
+	var/area/local_area = get_room_area()
+	light_overlay.icon_state = "[base_state]"
+	light_overlay.icon = overlay_icon
+	if(low_power_mode || major_emergency || (local_area?.fire))
+		light_overlay.icon_state = "[base_state]_emergency"
+	if(nightshift_enabled)
+		light_overlay.icon_state = "[base_state]_nightshift"
+	light_overlay.color = light_color
+	lightmask_overlay.icon_state = light_overlay.icon_state
+	lightmask_overlay.color = GLOB.emissive_color
+	//SET_PLANE_EXPLICIT(light_overlay, ABOVE_LIGHTING_PLANE, src) //gloooooooow
+	SET_PLANE_EXPLICIT(lightmask_overlay, EMISSIVE_PLANE, src) //gloooooooow
+	add_overlay(light_overlay)
+	add_overlay(lightmask_overlay)
+
+/obj/machinery/light/update(trigger = TRUE)
+	. = ..()
+	update_overlays()
 
 #undef NIGHTSHIFT_LIGHT_MODIFIER
 #undef NIGHTSHIFT_COLOR_MODIFIER

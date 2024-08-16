@@ -35,9 +35,67 @@
 /obj/item/wrench
 	icon = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/tools.dmi'
 	belt_icon_file = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/tools_onbelt.dmi'
+	greyscale_config = /datum/greyscale_config/wrench
+	greyscale_config_belt = /datum/greyscale_config/wrench_belt_overlay
+	greyscale_config_inhand_left = /datum/greyscale_config/wrench_inhand_left
+	greyscale_config_inhand_right = /datum/greyscale_config/wrench_inhand_right
+	var/static/list/wrench_colors = list("#AAFF00", "#FF6600", "#6600FF", "#0066FF", "#FFFF00", "#FF0000")
+	var/random_color = TRUE
+
+/obj/item/wrench/Initialize(mapload)
+	. = ..()
+	if(random_color)
+		set_greyscale(colors = list(pick(wrench_colors)))
 
 /obj/item/wrench/caravan
 	icon = 'icons/obj/tools.dmi'
+	random_color = FALSE
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+
+/obj/item/wrench/power
+	random_color = FALSE
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+
+/obj/item/wrench/combat
+	random_color = FALSE
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+
+/obj/item/wrench/brass
+	random_color = FALSE
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+
+/obj/item/wrench/bolter
+	random_color = FALSE
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+
+/obj/item/wrench/medical
+	random_color = FALSE
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
+
+/obj/item/wrench/abductor
+	random_color = FALSE
+	greyscale_config = null
+	greyscale_config_belt = null
+	greyscale_config_inhand_left = null
+	greyscale_config_inhand_right = null
 
 /obj/item/screwdriver/power
 	icon = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/tools.dmi'
@@ -139,5 +197,25 @@
 
 /datum/greyscale_config/crowbar_inhand_right
 	name = "Held Crowbar, Right"
+	icon_file = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/tools_righthand.dmi'
+	json_config = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/greyscale/crowbar_worn.json'
+
+/datum/greyscale_config/wrench
+	name = "Wrench"
+	icon_file = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/tools.dmi'
+	json_config = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/greyscale/crowbar.json'
+
+/datum/greyscale_config/wrench_belt_overlay
+	name = "Wrench Belt Worn Icon"
+	icon_file = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/tools_onbelt.dmi'
+	json_config = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/greyscale/crowbar.json'
+
+/datum/greyscale_config/wrench_inhand_left
+	name = "Held Wrench, Left"
+	icon_file = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/tools_lefthand.dmi'
+	json_config = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/greyscale/crowbar_worn.json'
+
+/datum/greyscale_config/wrench_inhand_right
+	name = "Held Wrench, Right"
 	icon_file = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/tools_righthand.dmi'
 	json_config = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/tools/greyscale/crowbar_worn.json'

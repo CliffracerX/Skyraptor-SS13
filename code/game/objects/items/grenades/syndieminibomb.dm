@@ -59,7 +59,7 @@
 	var/freeze_range = 4
 	var/rad_range = 4
 	var/rad_threshold = RAD_EXTREME_INSULATION
-	var/rad_stamina_damage = 50 /// SYKRAPTOR EDIT: buffs stamloss to account for higher default, makes it not conflicted name
+	var/rad_stamina_damage = 50 /// SKYRAPTOR EDIT: buffs stamloss to account for higher default, makes it not conflicted name
 	var/temp_adjust = -230
 
 /obj/item/grenade/gluon/detonate(mob/living/lanced_by)
@@ -73,6 +73,6 @@
 	for (var/turf/open/floor/floor in view(freeze_range, loc))
 		floor.MakeSlippery(TURF_WET_PERMAFROST, 6 MINUTES)
 		for(var/mob/living/carbon/victim in floor)
-			victim.adjustStaminaLoss(rad_stamina_damage) // SKYRAPTOR EDIT: see above
+			victim.adjustStaminaLoss(rad_stamina_damage)
 			victim.adjust_bodytemperature(temp_adjust)
 	qdel(src)

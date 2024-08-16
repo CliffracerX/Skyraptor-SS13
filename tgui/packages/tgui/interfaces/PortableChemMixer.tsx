@@ -12,18 +12,23 @@ type DispensableReagent = {
   pH: number;
 };
 
+type TransferableBeaker = Beaker & {
+  transferAmounts: number[];
+};
+
 type Data = {
   amount: number;
   chemicals: DispensableReagent[];
-  beaker: Beaker;
+  beaker: TransferableBeaker;
 };
 
 export const PortableChemMixer = (props) => {
   const { act, data } = useBackend<Data>();
   const { beaker } = data;
   const beakerTransferAmounts = beaker ? beaker.transferAmounts : [];
-  const chemicals = sortBy((chem: DispensableReagent) => chem.id)(
+  const chemicals = sortBy(
     data.chemicals,
+    (chem: DispensableReagent) => chem.id,
   );
   return (
     <Window width={500} height={500}>

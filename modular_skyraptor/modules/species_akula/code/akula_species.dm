@@ -47,8 +47,6 @@
 	//scugs have forced digi thru custom legs, this is necessary until we rework the digi_customization setting to allow for other digileg types
 	//digitigrade_customization = DIGITIGRADE_FORCED
 
-	ass_image = 'icons/ass/asslizard.png' //one day this system gets deleted.  one day...
-
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/akula,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/akula,
@@ -57,9 +55,6 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/digitigrade/akula,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/digitigrade/akula,
 	)
-
-/datum/species/akula/random_name(gender,unique,lastname)
-	return "Pick your own name!"
 
 /datum/species/akula/randomize_features(mob/living/carbon/human/human_mob)
 	human_mob.undershirt = random_undershirt(human_mob.gender)

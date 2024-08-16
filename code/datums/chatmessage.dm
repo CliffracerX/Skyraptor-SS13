@@ -121,37 +121,6 @@
 	if (length_char(text) > maxlen)
 		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
-<<<<<<< HEAD
-	// Calculate target color if not already present
-	if (!target.chat_color || target.chat_color_name != target.name)
-		target.chat_color = colorize_string(target.name)
-		target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
-		target.chat_color_name = target.name
-		
-	/// SKYRAPTOR ADDITION BEGIN
-	var/mob/target_mob = target
-	if(istype(target_mob))
-		var/client/target_cli = target_mob.client
-		if(istype(target_cli))
-			var/ccolor = target_cli.prefs.read_preference(/datum/preference/color/runechat_color)
-			if(ccolor)
-				if(ccolor != COLOR_BLACK)
-					target.chat_color = ccolor
-					target.chat_color_darkened = ccolor
-					var/r = hex2num(copytext(ccolor, 2, 4))
-					var/g = hex2num(copytext(ccolor, 4, 6))
-					var/b = hex2num(copytext(ccolor, 6, 8))
-					r = r * 0.85
-					g = g * 0.85
-					b = b * 0.85
-					r = round(r, 1)
-					g = round(g, 1)
-					b = round(b, 1)
-					target.chat_color_darkened = "#[num2hex(r, 2)][num2hex(g, 2)][num2hex(b, 2)]"
-	/// SKYRAPTOR ADDITION END
-
-=======
->>>>>>> 568c5119b3b (Runechat color now goes by voice rather than name (#80812))
 	// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag
 	var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g")
 	text = replacetext(text, url_scheme, "")
@@ -175,10 +144,10 @@
 
 	// Append radio icon if from a virtual speaker
 	if (extra_classes.Find("virtual-speaker"))
-		var/image/r_icon = image('icons/ui_icons/chat/chat_icons.dmi', icon_state = "radio")
+		var/image/r_icon = image('icons/ui/chat/chat_icons.dmi', icon_state = "radio")
 		LAZYADD(prefixes, "\icon[r_icon]")
 	else if (extra_classes.Find("emote"))
-		var/image/r_icon = image('icons/ui_icons/chat/chat_icons.dmi', icon_state = "emote")
+		var/image/r_icon = image('icons/ui/chat/chat_icons.dmi', icon_state = "emote")
 		LAZYADD(prefixes, "\icon[r_icon]")
 		chat_color_name_to_use = target.get_visible_name(add_id_name = FALSE) // use face name for nonverbal messages
 
@@ -193,6 +162,28 @@
 		target.chat_color = colorize_string(chat_color_name_to_use)
 		target.chat_color_darkened = colorize_string(chat_color_name_to_use, 0.85, 0.85)
 		target.chat_color_name = chat_color_name_to_use
+
+	/// SKYRAPTOR ADDITION BEGIN
+	var/mob/target_mob = target
+	if(istype(target_mob))
+		var/client/target_cli = target_mob.client
+		if(istype(target_cli))
+			var/ccolor = target_cli.prefs.read_preference(/datum/preference/color/runechat_color)
+			if(ccolor)
+				if(ccolor != COLOR_BLACK)
+					target.chat_color = ccolor
+					target.chat_color_darkened = ccolor
+					var/r = hex2num(copytext(ccolor, 2, 4))
+					var/g = hex2num(copytext(ccolor, 4, 6))
+					var/b = hex2num(copytext(ccolor, 6, 8))
+					r = r * 0.85
+					g = g * 0.85
+					b = b * 0.85
+					r = round(r, 1)
+					g = round(g, 1)
+					b = round(b, 1)
+					target.chat_color_darkened = "#[num2hex(r, 2)][num2hex(g, 2)][num2hex(b, 2)]"
+	/// SKYRAPTOR ADDITION END
 
 	// Append language icon if the language uses one
 	var/datum/language/language_instance = GLOB.language_datum_instances[language]
@@ -355,59 +346,6 @@
 	else
 		new /datum/chatmessage(raw_message, speaker, src, message_language, spans)
 
-// Tweak these defines to change the available color ranges
-#define CM_COLOR_SAT_MIN 0.6
-#define CM_COLOR_SAT_MAX 0.7
-#define CM_COLOR_LUM_MIN 0.65
-#define CM_COLOR_LUM_MAX 0.75
-
-/**
- * Gets a color for a name, will return the same color for a given string consistently within a round.atom
- *
- * Note that this proc aims to produce pastel-ish colors using the HSL colorspace. These seem to be favorable for displaying on the map.
- *
- * Arguments:
- * * name - The name to generate a color for
- * * sat_shift - A value between 0 and 1 that will be multiplied against the saturation
- * * lum_shift - A value between 0 and 1 that will be multiplied against the luminescence
- */
-/datum/chatmessage/proc/colorize_string(name, sat_shift = 1, lum_shift = 1)
-	// seed to help randomness
-	var/static/rseed = rand(1,26)
-
-	// get hsl using the selected 6 characters of the md5 hash
-	var/hash = copytext(md5(name + GLOB.round_id), rseed, rseed + 6)
-	var/h = hex2num(copytext(hash, 1, 3)) * (360 / 255)
-	var/s = (hex2num(copytext(hash, 3, 5)) >> 2) * ((CM_COLOR_SAT_MAX - CM_COLOR_SAT_MIN) / 63) + CM_COLOR_SAT_MIN
-	var/l = (hex2num(copytext(hash, 5, 7)) >> 2) * ((CM_COLOR_LUM_MAX - CM_COLOR_LUM_MIN) / 63) + CM_COLOR_LUM_MIN
-
-	// adjust for shifts
-	s *= clamp(sat_shift, 0, 1)
-	l *= clamp(lum_shift, 0, 1)
-
-	// convert to rgb
-	var/h_int = round(h/60) // mapping each section of H to 60 degree sections
-	var/c = (1 - abs(2 * l - 1)) * s
-	var/x = c * (1 - abs((h / 60) % 2 - 1))
-	var/m = l - c * 0.5
-	x = (x + m) * 255
-	c = (c + m) * 255
-	m *= 255
-	switch(h_int)
-		if(0)
-			return "#[num2hex(c, 2)][num2hex(x, 2)][num2hex(m, 2)]"
-		if(1)
-			return "#[num2hex(x, 2)][num2hex(c, 2)][num2hex(m, 2)]"
-		if(2)
-			return "#[num2hex(m, 2)][num2hex(c, 2)][num2hex(x, 2)]"
-		if(3)
-			return "#[num2hex(m, 2)][num2hex(x, 2)][num2hex(c, 2)]"
-		if(4)
-			return "#[num2hex(x, 2)][num2hex(m, 2)][num2hex(c, 2)]"
-		if(5)
-			return "#[num2hex(c, 2)][num2hex(m, 2)][num2hex(x, 2)]"
-
-
 #undef CHAT_LAYER_MAX_Z
 #undef CHAT_LAYER_Z_STEP
 #undef CHAT_MESSAGE_APPROX_LHEIGHT
@@ -419,7 +357,3 @@
 #undef CHAT_MESSAGE_LIFESPAN
 #undef CHAT_MESSAGE_SPAWN_TIME
 #undef CHAT_MESSAGE_WIDTH
-#undef CM_COLOR_LUM_MAX
-#undef CM_COLOR_LUM_MIN
-#undef CM_COLOR_SAT_MAX
-#undef CM_COLOR_SAT_MIN

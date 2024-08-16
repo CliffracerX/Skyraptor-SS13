@@ -1,37 +1,37 @@
 /obj/item/clothing/shoes
 	worn_icon = 'modular_skyraptor/modules/aesthetics/digiclothes/skyrat_inherited/feet.dmi'
-	supported_bodytypes = list(BODYTYPE_HUMANOID, BODYTYPE_DIGITIGRADE, BODYTYPE_TESHVALI, BODYTYPE_AVALARI)
-	bodytype_icon_files = list("4" = 'modular_skyraptor/modules/aesthetics/digiclothes/skyrat_inherited/feet.dmi',
-		"16" = 'modular_skyraptor/modules/aesthetics/digiclothes/skyrat_inherited/feet_digi.dmi',
-		"1024" = 'modular_skyraptor/modules/species_teshvali/icons/clothing/teshvali_feet.dmi',
-		"2048" = 'modular_skyraptor/modules/species_teshvali/icons/clothing/avalari_feet.dmi')
+	supported_bodytypes = list(BODYSHAPE_HUMANOID, BODYSHAPE_DIGITIGRADE, BODYSHAPE_TESHVALI, BODYSHAPE_AVALARI)
+	bodytype_icon_files = list("1" = 'modular_skyraptor/modules/aesthetics/digiclothes/skyrat_inherited/feet.dmi',
+		"4" = 'modular_skyraptor/modules/aesthetics/digiclothes/skyrat_inherited/feet_digi.dmi',
+		"16" = 'modular_skyraptor/modules/species_teshvali/icons/clothing/teshvali_feet.dmi',
+		"32" = 'modular_skyraptor/modules/species_teshvali/icons/clothing/avalari_feet.dmi')
 
 
 
 /obj/item/clothing/shoes/sneakers
-	supported_bodytypes = list(BODYTYPE_HUMANOID, BODYTYPE_DIGITIGRADE, BODYTYPE_TESHVALI, BODYTYPE_AVALARI)
+	supported_bodytypes = list(BODYSHAPE_HUMANOID, BODYSHAPE_DIGITIGRADE, BODYSHAPE_TESHVALI, BODYSHAPE_AVALARI)
 
 /obj/item/clothing/shoes/sneakers/Initialize(mapload)
 	. = ..()
 	greyscale_config_worn_bodytypes = list()
-	greyscale_config_worn_bodytypes["[BODYTYPE_HUMANOID]"] = /datum/greyscale_config/sneakers/worn
-	greyscale_config_worn_bodytypes["[BODYTYPE_DIGITIGRADE]"] = /datum/greyscale_config/sneakers/worn/digi
-	greyscale_config_worn_bodytypes["[BODYTYPE_TESHVALI]"] = /datum/greyscale_config/sneakers/worn/teshvali
-	greyscale_config_worn_bodytypes["[BODYTYPE_AVALARI]"] = /datum/greyscale_config/sneakers/worn/avalari
+	greyscale_config_worn_bodytypes["[BODYSHAPE_HUMANOID]"] = /datum/greyscale_config/sneakers/worn
+	greyscale_config_worn_bodytypes["[BODYSHAPE_DIGITIGRADE]"] = /datum/greyscale_config/sneakers/worn/digi
+	greyscale_config_worn_bodytypes["[BODYSHAPE_TESHVALI]"] = /datum/greyscale_config/sneakers/worn/teshvali
+	greyscale_config_worn_bodytypes["[BODYSHAPE_AVALARI]"] = /datum/greyscale_config/sneakers/worn/avalari
 
 /obj/item/clothing/shoes/sneakers/orange/Initialize(mapload)
 	. = ..()
-	greyscale_config_worn_bodytypes["[BODYTYPE_HUMANOID]"] = /datum/greyscale_config/sneakers_orange/worn
-	greyscale_config_worn_bodytypes["[BODYTYPE_DIGITIGRADE]"] = /datum/greyscale_config/sneakers_orange/worn/digi
-	greyscale_config_worn_bodytypes["[BODYTYPE_TESHVALI]"] = /datum/greyscale_config/sneakers_orange/worn/teshvali
-	greyscale_config_worn_bodytypes["[BODYTYPE_AVALARI]"] = /datum/greyscale_config/sneakers_orange/worn/avalari
+	greyscale_config_worn_bodytypes["[BODYSHAPE_HUMANOID]"] = /datum/greyscale_config/sneakers_orange/worn
+	greyscale_config_worn_bodytypes["[BODYSHAPE_DIGITIGRADE]"] = /datum/greyscale_config/sneakers_orange/worn/digi
+	greyscale_config_worn_bodytypes["[BODYSHAPE_TESHVALI]"] = /datum/greyscale_config/sneakers_orange/worn/teshvali
+	greyscale_config_worn_bodytypes["[BODYSHAPE_AVALARI]"] = /datum/greyscale_config/sneakers_orange/worn/avalari
 
 /obj/item/clothing/shoes/sneakers/marisa/Initialize(mapload)
 	. = ..()
-	greyscale_config_worn_bodytypes["[BODYTYPE_HUMANOID]"] = /datum/greyscale_config/sneakers_marisa/worn
-	greyscale_config_worn_bodytypes["[BODYTYPE_DIGITIGRADE]"] = /datum/greyscale_config/sneakers_marisa/worn/digi
-	greyscale_config_worn_bodytypes["[BODYTYPE_TESHVALI]"] = /datum/greyscale_config/sneakers_marisa/worn/teshvali
-	greyscale_config_worn_bodytypes["[BODYTYPE_AVALARI]"] = /datum/greyscale_config/sneakers_marisa/worn/avalari
+	greyscale_config_worn_bodytypes["[BODYSHAPE_HUMANOID]"] = /datum/greyscale_config/sneakers_marisa/worn
+	greyscale_config_worn_bodytypes["[BODYSHAPE_DIGITIGRADE]"] = /datum/greyscale_config/sneakers_marisa/worn/digi
+	greyscale_config_worn_bodytypes["[BODYSHAPE_TESHVALI]"] = /datum/greyscale_config/sneakers_marisa/worn/teshvali
+	greyscale_config_worn_bodytypes["[BODYSHAPE_AVALARI]"] = /datum/greyscale_config/sneakers_marisa/worn/avalari
 
 
 

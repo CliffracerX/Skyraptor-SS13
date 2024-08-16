@@ -14,18 +14,37 @@
 	var/gauge_overlay = "fullsize"
 
 /obj/item/tank/internals/update_overlays()
-	. = ..()
-	if(air_contents != null)
-		if(air_contents.return_pressure() <= AIRTANK_MAX_SAFE_PRESSURE * 0.1)
-			. += "[gauge_overlay]_10"
-		else if(air_contents.return_pressure() <= AIRTANK_MAX_SAFE_PRESSURE * 0.3)
-			. += "[gauge_overlay]_30"
-		else if(air_contents.return_pressure() <= AIRTANK_MAX_SAFE_PRESSURE * 0.5)
-			. += "[gauge_overlay]_50"
-		else if(air_contents.return_pressure() <= AIRTANK_MAX_SAFE_PRESSURE * 0.7)
-			. += "[gauge_overlay]_70"
+	var/list/overlays = ..()
+	var/datum/gas_mixture/air = return_air()
+	var/mutable_appearance/gaugestate = mutable_appearance(icon, "[gauge_overlay]_10")
+	if(air != null)
+		//to_chat(world, span_notice("Airtank updating with overlays, pressure is [air.return_pressure()] out of [AIRTANK_MAX_SAFE_PRESSURE]"))
+		if(air.return_pressure() <= AIRTANK_MAX_SAFE_PRESSURE * 0.1)
+			gaugestate.icon_state = "[gauge_overlay]_10"
+		else if(air.return_pressure() <= AIRTANK_MAX_SAFE_PRESSURE * 0.3)
+			gaugestate.icon_state = "[gauge_overlay]_30"
+		else if(air.return_pressure() <= AIRTANK_MAX_SAFE_PRESSURE * 0.5)
+			gaugestate.icon_state = "[gauge_overlay]_50"
+		else if(air.return_pressure() <= AIRTANK_MAX_SAFE_PRESSURE * 0.7)
+			gaugestate.icon_state = "[gauge_overlay]_70"
 		else
-			. += "[gauge_overlay]_90"
+			gaugestate.icon_state = "[gauge_overlay]_90"
+		//to_chat(world, span_notice("Gauge state is [gaugestate.icon_state]"))
+	overlays += gaugestate
+	. = overlays
+	/*if(gaugestate in overlays)
+		to_chat(world, span_nicegreen("It's in the fucking list"))
+		if(gaugestate in .)
+			to_chat(world, span_boldnicegreen("Double-checked and confirmed it's IN THE FUCKING LIST"))
+		else
+			to_chat(world, span_bolddanger("IT'S BEING HAUNTED THOUGH, NOT IN THE ACTUAL LIST"))
+	else
+		to_chat(world, span_danger("It's not in the overlays list despite being explicitly added to it"))*/
+	return overlays
+
+/obj/item/tank/internals/get_status_tab_item(mob/living/source, list/items)
+	. = ..()
+	update_appearance()
 
 /obj/item/tank/internals/emergency_oxygen
 	worn_icon = 'modular_skyraptor/modules/aesthetics/moremospherics/icons/atmosia_items_suit.dmi'
@@ -38,6 +57,8 @@
 /obj/item/tank/internals/emergency_oxygen/double
 	worn_icon = 'modular_skyraptor/modules/aesthetics/moremospherics/icons/atmosia_items_suit.dmi'
 	gauge_overlay = "double"
+	worn_icon_state = "emergency_double"
+	inhand_icon_state = "emergency_tst_tank"
 
 /obj/item/tank/internals/generic/greyscale
 	name = "generic gas tank"
@@ -48,6 +69,10 @@
 	greyscale_config_worn = /datum/greyscale_config/handheld_atmos_tank/worn
 	greyscale_config_inhand_left = /datum/greyscale_config/handheld_atmos_tank/worn/held_l
 	greyscale_config_inhand_right = /datum/greyscale_config/handheld_atmos_tank/worn/held_r
+
+	icon_state = "generic"
+	worn_icon_state = "generic"
+	inhand_icon_state = "generic"
 
 /obj/item/tank/internals/generic/greyscale/populate_gas()
 	return
@@ -62,6 +87,10 @@
 	greyscale_config_inhand_left = /datum/greyscale_config/handheld_atmos_tank/worn/held_l
 	greyscale_config_inhand_right = /datum/greyscale_config/handheld_atmos_tank/worn/held_r
 
+	icon_state = "plasma"
+	worn_icon_state = "plasma"
+	inhand_icon_state = "plasma"
+
 /obj/item/tank/internals/plasma/greyscale/populate_gas()
 	return
 
@@ -74,6 +103,10 @@
 	greyscale_config_worn = /datum/greyscale_config/handheld_atmos_tank/worn
 	greyscale_config_inhand_left = /datum/greyscale_config/handheld_atmos_tank/worn/held_l
 	greyscale_config_inhand_right = /datum/greyscale_config/handheld_atmos_tank/worn/held_r
+
+	icon_state = "emergency"
+	worn_icon_state = "emergency"
+	inhand_icon_state = "emergency"
 
 /obj/item/tank/internals/emergency_oxygen/greyscale/populate_gas()
 	return
@@ -88,6 +121,10 @@
 	greyscale_config_inhand_left = /datum/greyscale_config/handheld_atmos_tank/worn/held_l
 	greyscale_config_inhand_right = /datum/greyscale_config/handheld_atmos_tank/worn/held_r
 
+	icon_state = "emergency_engi"
+	worn_icon_state = "emergency_engi"
+	inhand_icon_state = "emergency_engi"
+
 /obj/item/tank/internals/emergency_oxygen/engi/greyscale/populate_gas()
 	return
 
@@ -101,6 +138,10 @@
 	greyscale_config_inhand_left = /datum/greyscale_config/handheld_atmos_tank/worn/held_l
 	greyscale_config_inhand_right = /datum/greyscale_config/handheld_atmos_tank/worn/held_r
 
+	icon_state = "emergency_double"
+	worn_icon_state = "emergency_double"
+	inhand_icon_state = "emergency_double"
+
 /obj/item/tank/internals/emergency_oxygen/double/greyscale/populate_gas()
 	return
 
@@ -110,6 +151,43 @@
 	worn_icon = 'icons/mob/clothing/back.dmi'
 	lefthand_file = 'icons/mob/inhands/equipment/tanks_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tanks_righthand.dmi'
+
+// nova bespoke tanks
+/obj/item/tank/internals/nitrogen
+	icon = 'modular_skyraptor/modules/aesthetics/moremospherics/icons/atmosia_items.dmi'
+	worn_icon = 'modular_skyraptor/modules/aesthetics/moremospherics/icons/atmosia_items_suit.dmi'
+	lefthand_file = 'modular_skyraptor/modules/aesthetics/moremospherics/icons/atmosia_items_lh.dmi'
+	righthand_file = 'modular_skyraptor/modules/aesthetics/moremospherics/icons/atmosia_items_rh.dmi'
+	gauge_overlay = "fullsize"
+	icon_state = "nitrogen_big"
+	inhand_icon_state = "nitrogen_big"
+	worn_icon_state = "nitrogen_big"
+	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE * (10.0/16.0) //nitro lungs don't need as much
+
+/obj/item/tank/internals/nitrogen/belt
+	icon = 'modular_skyraptor/modules/aesthetics/moremospherics/icons/atmosia_items.dmi'
+	worn_icon = 'modular_skyraptor/modules/aesthetics/moremospherics/icons/atmosia_items_suit.dmi'
+	lefthand_file = 'modular_skyraptor/modules/aesthetics/moremospherics/icons/atmosia_items_lh.dmi'
+	righthand_file = 'modular_skyraptor/modules/aesthetics/moremospherics/icons/atmosia_items_rh.dmi'
+	gauge_overlay = "engi"
+	icon_state = "nitrogen_extended"
+	inhand_icon_state = "nitrogen_extended"
+	worn_icon_state = "nitrogen_extended"
+	volume = 6 //nudging to be in line with standard-size internals tanks, but buffing the included air to max pressure
+
+/obj/item/tank/internals/nitrogen/belt/full/populate_gas()
+	air_contents.assert_gas(/datum/gas/nitrogen)
+	air_contents.gases[/datum/gas/nitrogen][MOLES] = AIRTANK_MAX_SAFE_PRESSURE*volume/(R_IDEAL_GAS_EQUATION*T20C)
+
+/obj/item/tank/internals/nitrogen/belt/emergency
+	gauge_overlay = "emergency"
+	icon_state = "nitrogen"
+	inhand_icon_state = "nitrogen"
+	worn_icon_state = "nitrogen"
+
+/obj/item/tank/internals/nitrogen/belt/emergency/populate_gas()
+	air_contents.assert_gas(/datum/gas/nitrogen)
+	air_contents.gases[/datum/gas/nitrogen][MOLES] = AIRTANK_MAX_SAFE_PRESSURE*volume/(R_IDEAL_GAS_EQUATION*T20C)
 
 
 
@@ -224,7 +302,7 @@
 
 /obj/item/repainting_kit/Initialize(mapload)
 	. = ..()
-	current_color = color_matrix_identity()
+	current_color = COLOR_MATRIX_IDENTITY
 
 /obj/item/repainting_kit/examine(mob/user)
 	. = ..()
@@ -232,7 +310,8 @@
 	. += span_notice("<b>Right-click</b> any item to apply a COLOR MATRIX to it.")
 
 /obj/item/repainting_kit/pre_attack(atom/attacked_atom, mob/living/user, params)
-	var/rval = ..()
+	repainting_item = null //force it to null if needed
+	regreyscale_item = null
 	if(!istype(attacked_atom, /obj/item/))
 		return ..()
 	if(istype(attacked_atom, /obj/item/mod/control))
@@ -254,7 +333,10 @@
 			starting_colors=initial(fake_atom.greyscale_colors)
 		)
 		menu.ui_interact(user)
-	return rval
+		return TRUE
+	else
+		return ..()
+	return ..()
 
 /obj/item/repainting_kit/proc/recolor_gags(datum/greyscale_modify_menu/menu)
 	regreyscale_item.set_greyscale(menu.split_colors)
@@ -266,7 +348,7 @@
 		return ..()
 	var/obj/item/smacked_item = attacked_atom
 	if(repainting_item)
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		repainting_item = null
 	repainting_item = smacked_item
 
 	proxy_view = new()
@@ -297,7 +379,7 @@
 	. = ..()
 	repainting_item = null
 	QDEL_NULL(proxy_view)
-	current_color = color_matrix_identity()
+	current_color = COLOR_MATRIX_IDENTITY
 
 /obj/item/repainting_kit/ui_status(mob/user)
 	if(repainting_item)
@@ -374,6 +456,7 @@
 
 /obj/item/repainting_kit/proc/check_menu(obj/item/goodie, mob/user)
 	if(user.incapacitated() || !user.is_holding(src) || !goodie)
+		repainting_item = null
 		return FALSE
 	return TRUE
 
@@ -384,3 +467,59 @@
 #undef MODPAINT_MIN_SECTION_COLORS
 #undef MODPAINT_MAX_OVERALL_COLORS
 #undef MODPAINT_MIN_OVERALL_COLORS
+
+
+
+/// Dirty fix until TG gets the fucking attack chains in order
+/obj/item/repainting_kit/melee_attack_chain(mob/user, atom/target, params)
+	//Proxy replaces src cause it returns an atom that will attack the target on our behalf
+	var/obj/item/source_atom = get_proxy_attacker_for(target, user)
+	if(source_atom != src) //if we are someone else then call that attack chain else we can proceed with the usual stuff
+		return source_atom.melee_attack_chain(user, target, params)
+
+	var/list/modifiers = params2list(params)
+	var/is_right_clicking = LAZYACCESS(modifiers, RIGHT_CLICK)
+
+	// At this point it means we're not doing a non-combat interaction so let's just try to bash it
+
+	var/pre_attack_result
+	if (is_right_clicking)
+		switch (pre_attack_secondary(target, user, params))
+			if (SECONDARY_ATTACK_CALL_NORMAL)
+				pre_attack_result = pre_attack(target, user, params)
+			if (SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+				return TRUE
+			if (SECONDARY_ATTACK_CONTINUE_CHAIN)
+				EMPTY_BLOCK_GUARD // Normal behavior
+			else
+				CRASH("pre_attack_secondary must return an SECONDARY_ATTACK_* define, please consult code/__DEFINES/combat.dm")
+	else
+		pre_attack_result = pre_attack(target, user, params)
+
+	if(pre_attack_result)
+		return TRUE
+
+	// At this point the attack is really about to happen
+
+	var/attackby_result
+	if (is_right_clicking)
+		switch (target.attackby_secondary(src, user, params))
+			if (SECONDARY_ATTACK_CALL_NORMAL)
+				attackby_result = target.attackby(src, user, params)
+			if (SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+				return TRUE
+			if (SECONDARY_ATTACK_CONTINUE_CHAIN)
+				EMPTY_BLOCK_GUARD // Normal behavior
+			else
+				CRASH("attackby_secondary must return an SECONDARY_ATTACK_* define, please consult code/__DEFINES/combat.dm")
+	else
+		attackby_result = target.attackby(src, user, params)
+
+	if (attackby_result)
+		// This means the attack failed or was handled for whatever reason
+		return TRUE
+
+	// At this point it means the attack was "successful", or at least unhandled, in some way
+	// This can mean nothing happened, this can mean the target took damage, etc.
+
+	return TRUE

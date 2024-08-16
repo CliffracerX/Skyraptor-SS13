@@ -6,7 +6,7 @@ MODULE ID: ICSPAWNING
 
 ### Description:
 
-Adds a control click function to ghosts which allows an admin to spawn the player in via a supply pod or teleportation with effects, also adds a bluespace tech loadout and some bluespace tech items.  Shamelessly ported from Skyrat-SS13/Skyrat-TG with some additional improvements like quirk support.
+Adds a control click function to ghosts which allows an admin to spawn the player in via a supply pod or teleportation with effects, also adds a bluespace tech loadout and some bluespace tech items.  Shamelessly ported from NovaSector with some additional improvements like quirk support.
 
 ### TG Proc Changes:
 
@@ -25,6 +25,7 @@ N/A
 
 ### Credits:
 
-Skyrat-TG - shamelessly ported from
+CliffracerX - BST's RPED, handful of fixes
+NovaSector - shamelessly ported from
 Gandalf2k15 - Porting
 BunBun - Creation

@@ -22,9 +22,10 @@
 		set_light(light_on_range)
 		return TRUE
 
-	if(update_state & UPSTATE_BLUESCREEN)
+	//TODO: this needs to be fixed as of the new bluescreen mode, but i'm lazy
+	/*if(update_state & UPSTATE_BLUESCREEN)
 		set_light_color("#0066FF")
 		set_light(light_on_range)
-		return TRUE
+		return TRUE*/
 
 	set_light(0)

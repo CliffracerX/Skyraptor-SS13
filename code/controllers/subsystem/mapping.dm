@@ -255,22 +255,18 @@ SUBSYSTEM_DEF(mapping)
 	var/list/ice_ruins = levels_by_trait(ZTRAIT_ICE_RUINS)
 	if (ice_ruins.len)
 		// needs to be whitelisted for underground too so place_below ruins work
-<<<<<<< HEAD
-		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/surface/outdoors/unexplored, /area/icemoon/underground/unexplored), themed_ruins[ZTRAIT_ICE_RUINS], clear_below = TRUE)
-=======
 		seedRuins(ice_ruins, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/surface/outdoors/unexplored, /area/icemoon/underground/unexplored), themed_ruins[ZTRAIT_ICE_RUINS], clear_below = TRUE, mineral_budget = 4, mineral_budget_update = OREGEN_PRESET_TRIPLE_Z)
->>>>>>> ed31397cc46 (Fixes ore vents spawning without ores on icebox, sets up map specific ore configurations (#81103))
 
 	var/list/ice_ruins_underground = levels_by_trait(ZTRAIT_ICE_RUINS_UNDERGROUND)
 	if (ice_ruins_underground.len)
-		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/underground/unexplored), themed_ruins[ZTRAIT_ICE_RUINS_UNDERGROUND], clear_below = TRUE)
+		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/underground/unexplored), themed_ruins[ZTRAIT_ICE_RUINS_UNDERGROUND], clear_below = TRUE, mineral_budget = 21)
 	
 	/// SKYRAPTOR ADDITION BEGIN
 	for(var/spath in subtypesof(/datum/mapping_newruins))
 		var/datum/mapping_newruins/S = new spath()
 		var/list/new_ruins = levels_by_trait(S.ztrait)
 		if(new_ruins.len)
-			seedRuins(new_ruins, S.get_budget(), S.area_list, themed_ruins[S.ztrait], clear_below = S.clear_below)
+			seedRuins(new_ruins, S.get_budget(), S.area_list, themed_ruins[S.ztrait], clear_below = S.clear_below, mineral_budget = 10) /// SKYRAPTOR WARNING: we need custom ruin mineral budgets
 	/// SKYRAPTOR ADDITION END
 
 	// Generate deep space ruins
@@ -278,7 +274,7 @@ SUBSYSTEM_DEF(mapping)
 	if (space_ruins.len)
 		// Create a proportional budget by multiplying the amount of space ruin levels in the current map over the default amount
 		var/proportional_budget = round(CONFIG_GET(number/space_budget) * (space_ruins.len / DEFAULT_SPACE_RUIN_LEVELS))
-		seedRuins(space_ruins, proportional_budget, list(/area/space), themed_ruins[ZTRAIT_SPACE_RUINS])
+		seedRuins(space_ruins, proportional_budget, list(/area/space), themed_ruins[ZTRAIT_SPACE_RUINS], mineral_budget = 0)
 
 /// Sets up rivers, and things that behave like rivers. So lava/plasma rivers, and chasms
 /// It is important that this happens AFTER generating mineral walls and such, since we rely on them for river logic
@@ -463,7 +459,7 @@ Used by the AI doomsday and the self-destruct nuke.
 
 #ifndef LOWMEMORYMODE
 
-	/// SKYRAPTOR EDITS BEGIN HERE
+	/// SKYRAPTOR ADDITION BEGIN
 	var/found_mine = FALSE
 	if(config.minetype == "none")
 		planet_parallax = /atom/movable/screen/parallax_layer/planet/asteroids
@@ -484,7 +480,7 @@ Used by the AI doomsday and the self-destruct nuke.
 	if (!isnull(config.minetype) && config.minetype != "none" && found_mine == FALSE)
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 		planet_parallax = /atom/movable/screen/parallax_layer/planet/asteroids
-	/// SKYRAPTOR ENDS END HERE
+	/// SKYRAPTOR ADDITION END
 #endif
 
 	if(LAZYLEN(FailedZs)) //but seriously, unless the server's filesystem is messed up this will never happen
@@ -630,11 +626,13 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/list/banned = generateMapList("spaceruinblacklist.txt")
 	if(config.minetype == "lavaland")
 		banned += generateMapList("lavaruinblacklist.txt")
-	for(var/spath in subtypesof(/datum/mapping_mining_z)) /// SKYRAPTOR ADDITION BEGIN
+	/// SKYRAPTOR ADDITION BEGIN
+	for(var/spath in subtypesof(/datum/mapping_mining_z))
 		var/datum/mapping_mining_z/S = new spath()
 		if(S.id == config.minetype)
 			banned += generateMapList(S.blacklist)
-			break /// SKYRAPTOR ADDITION END
+			break
+	/// SKYRAPTOR ADDITION END
 	if(config.blacklist_file) /// SKYRAPTOR EDIT: blacklist file should still be used even if there's a mining Z
 		banned += generateMapList(config.blacklist_file)
 
@@ -689,46 +687,38 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 		holodeck_templates[holo_template.template_id] = holo_template
 
-//Manual loading of away missions.
-/client/proc/admin_away()
-	set name = "Load Away Mission"
-	set category = "Admin.Events"
-
-	if(!holder || !check_rights(R_FUN))
-		return
-
-
+ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away mission for the station.", ADMIN_CATEGORY_EVENTS)
 	if(!GLOB.the_gateway)
-		if(tgui_alert(usr, "There's no home gateway on the station. You sure you want to continue ?", "Uh oh", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "There's no home gateway on the station. You sure you want to continue ?", "Uh oh", list("Yes", "No")) != "Yes")
 			return
 
 	var/list/possible_options = GLOB.potentialRandomZlevels + "Custom"
 	var/away_name
 	var/datum/space_level/away_level
 	var/secret = FALSE
-	if(tgui_alert(usr, "Do you want your mission secret? (This will prevent ghosts from looking at your map in any way other than through a living player's eyes.)", "Are you $$$ekret?", list("Yes", "No")) == "Yes")
+	if(tgui_alert(user, "Do you want your mission secret? (This will prevent ghosts from looking at your map in any way other than through a living player's eyes.)", "Are you $$$ekret?", list("Yes", "No")) == "Yes")
 		secret = TRUE
-	var/answer = input("What kind?","Away") as null|anything in possible_options
+	var/answer = input(user, "What kind?","Away") as null|anything in possible_options
 	switch(answer)
 		if("Custom")
-			var/mapfile = input("Pick file:", "File") as null|file
+			var/mapfile = input(user, "Pick file:", "File") as null|file
 			if(!mapfile)
 				return
 			away_name = "[mapfile] custom"
-			to_chat(usr,span_notice("Loading [away_name]..."))
+			to_chat(user,span_notice("Loading [away_name]..."))
 			var/datum/map_template/template = new(mapfile, "Away Mission")
 			away_level = template.load_new_z(secret)
 		else
 			if(answer in GLOB.potentialRandomZlevels)
 				away_name = answer
-				to_chat(usr,span_notice("Loading [away_name]..."))
+				to_chat(user,span_notice("Loading [away_name]..."))
 				var/datum/map_template/template = new(away_name, "Away Mission")
 				away_level = template.load_new_z(secret)
 			else
 				return
 
-	message_admins("Admin [key_name_admin(usr)] has loaded [away_name] away mission.")
-	log_admin("Admin [key_name(usr)] has loaded [away_name] away mission.")
+	message_admins("Admin [key_name_admin(user)] has loaded [away_name] away mission.")
+	log_admin("Admin [key_name(user)] has loaded [away_name] away mission.")
 	if(!away_level)
 		message_admins("Loading [away_name] failed!")
 		return
@@ -944,7 +934,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			var/offset_plane = GET_NEW_PLANE(plane_to_use, plane_offset)
 			var/string_plane = "[offset_plane]"
 
-			if(!initial(master_type.allows_offsetting))
+			if(initial(master_type.offsetting_flags) & BLOCKS_PLANE_OFFSETTING)
 				plane_offset_blacklist[string_plane] = TRUE
 				var/render_target = initial(master_type.render_target)
 				if(!render_target)

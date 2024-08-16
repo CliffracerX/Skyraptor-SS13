@@ -1,51 +1,57 @@
 2023-07-01:
-  CliffracerX:
-  - rscadd: meme emotes (the *agony series)
-  - rscadd: some familiar generalist emotes (*clap1, etc)
-  - rscadd: some familiar species noises (*wurble, *peep, *msqueak, etc)
-  - sound: sound for the new emotes
-  - image: reworks medkit sprites to match the rugged aesthetic of tools
-  - image: reworks medkit inhands to better match their inventory sprites
-  - image: reworks surgical tools
-  - image: airlock lights now consistent
-  - image: fixed extinguisher inhands
-  - image: green main menu, HUDs, and cyborg view
-  - image: unfucked gimmick map buttons
-  - image: stock parts (including cells) fit better
-  - image: lots more tools fit now
-  - image: ruggedized atmos devices
-  - rscadd: ICSpawning module
-  - admin: ctrl-click a ghost to ICspawn them
-  - rscadd: beakers and bottles come with caps to prevent spills
-  - image: significant aesthetics tweaks!
-  - rscadd: slugcat species, ft. many style options
-  - refactor: huge reworks under the hood to speciesprefs
-  - refactor: lizard prefs updated to work with new code
-  - image: digi-leg sprites for most (all?) uniforms
-  - image: snouted variants for most (all?) masks
-  - image: digi + snouted support for most (all?) MODs
-  - bugfix: button rendering as expected
-  - image: button colors match the general look
-  - image: launcher buttons resprited
-  Ghommie:
-  - rscadd: 'Expanded the Experimental MODsuit Bepis node with three new modules:
-      Magneto Charger, Recycler and Shooting Assistant.'
-  - rscadd: Added a Riot Foam Recycler module to the black market, as well a more
-      innocuous version as maint loot.
+  Cheshify, Kinnebian, and RedSentry27:
+  - rscadd: Maintenance engineers have sent out blueprints across the sector for a
+      new laser musket.
+  - admin: A new energy-gun toting ERT is available to send to the crew.
+  Jacquerel:
+  - bugfix: Actions granted by equipped or held items now actually appear again
+  LT3:
+  - qol: Context tooltip size increased
+  - bugfix: Fixed remnants of old maptext code on various things
   MTandi:
-  - qol: You can name barrels with a pen now, changing its icon
-  Melbert:
-  - bugfix: Fix hungover people never spawning stuck in closets
-  Tattle:
-  - image: removed a stray gray pixel from the milk containers
-  carlarctg:
-  - qol: Heretic runes no longer have every single transparent pixel set to 1 alpha,
-      to make it easier to click on objects.
-  - qol: Clearing heretic runes with mansus grasp takes 0.4 seconds of standing still,
-      to prevent you from accidentally clearing it in combat.
-  - code_imp: Added code for effect remover element to use a windup if set.
-  mc-oofert:
-  - bugfix: siliconnect log tab updates correctly
+  - rscadd: Food and pills have a 10% chance to infect with one of three new diseases
+      on consumption when left for more than 5 seconds on the floor. You can wash
+      it to avoid disease. ChemMaster and Pill Press are added to the list of elevated
+      structures (Considered as tables for pills). Made harvest spawn on top of hydrotrays
+      to stay protected from germs.
+  - rscadd: 'Added three new advanced diseases: Gastritium, Carpellosis, Nebula Nausea
+      with static cures obtained by digesting dirty food.'
+  - bugfix: Food no longer decomposes on Hydrotrays, Grilles, Bonfires and all dense
+      kitchen machinery
+  - code_imp: Decomposition now uses `germ_sensitive` component and follows 5 second
+      rule too.
+  - qol: Crafted food items spawns on nearby tables (except the one behind you) instead
+      of dropping on floor when hands are full.
+  SyncIt21:
+  - bugfix: jetpack modules work on mod suits again
+  - bugfix: jetpack cyber implants also work
+  - refactor: removed `get_mover` callback, user is retrieved during activation
+  - refactor: timestop module on `on_module_triggered()` accepts user as 2nd param
+  Vekter:
+  - balance: Increased armor penetration on xenos' neurotoxin spit. Well-protected
+      crew members should still take more than a few hits to down but shouldn't be
+      immune to it.
+  necromanceranne:
+  - rscadd: Coroners are now Morbid!
+  - rscadd: Coroners come with a series of special tools that are especially good
+      at performing certain surgeries if used by a Morbid individual (which the coroner
+      happens to be). They are found in the coroner's medkit.
+  - rscadd: The sorts of surgeries they enjoy are; dissections, autospies, revival
+      surgery, plastic surgery, organ/feature manipulations, amputations. Also eyesnatching.
+  - rscadd: Coroners therefore hate; tending the wounds of the living, defibrillation
+      and CPR. Why waste so much effort on breathers if you can't even carve them
+      up a bit first?
+  - rscadd: Coroners love pickles and pickle juice.
+  - rscadd: The coroner can finally put their autopsy scanner into their special medkit.
+      Not the compact one, though.
+  - rscadd: The elephant graveyard is safer to plunder for the morbid individual.
+      The rewards from the graveyard are now also slightly more lucrative...if you
+      don't care about being cursed, that is.
+  - balance: Roboticists get secure morgue access during skeleton shifts
+  timothymtorres:
+  - qol: Add hotkeys to APCs for AIs and borgs. Toggle environmental (ctrl + shift),
+      toggle lighting (shift), toggle equipment (alt), and toggle breaker (ctrl).
+  - qol: Remove APC UI popup when using RMB to toggle the lock.
 2023-07-02:
   ChungusGamer666:
   - bugfix: Hair and facial hair gradients work again now
@@ -1187,12 +1193,6 @@
   xPokee:
   - rscadd: Photophobia as a negative quirk.
 2023-07-29:
-  CliffracerX:
-  - rscadd: runechat color option - set to black to use pastels
-  - qol: increased max length of runechat
-  - qol: runechat width for wordwrap has been increased
-  - refactor: we're up-to-date with TG again
-  - server: for the love of god don't fullmerge this without a TM first
   DaydreamIQ:
   - bugfix: Birdshot AI sat now has unrestricted exit instead of entrance
   Ghommie:
@@ -1230,11 +1230,10 @@
   - balance: The market crash event now stands as it's own separate event, and ramps
       up the cost of vendor items until finally popping and returning to normal. Market
       crash now lasts longer to have more impact while it scales with time.
+  - image: New cargo exo-drone scanner sprites!
   Ben10Omintrix:
   - refactor: the bear is a basic now. please report any bugs
   - rscadd: the bear will climb trees and search honey
-  CliffracerX:
-  - refactor: updated for real this time
   Ghommie:
   - bugfix: Put a cap to the amount of stickers that can be sticked to an atom (12)
       to prevent icon-related issues.
@@ -1250,6 +1249,15 @@
   - rscadd: Placing a pAI into a bot temporarily teaches that bot all the langauges
       the pAI could speak.
   Melbert:
+  - refactor: Refactored chameleon actions a fair bit
+  - rscadd: Adds outfit saving to chameleon clothes. RMB the "chameleon outfit" action
+      to save your current chameleon setup for quick swapping.
+  - rscadd: Swapping between chameleon outfits now has a slight "animation" associated,
+      to distinguish traitors from lings slightly.
+  - rscadd: Adds a new chameleon item, the "Chameleon Scanner". Use it on other crewmembers
+      to stealthily save their current outfit as a custom outfit to use later. And
+      of course, it's chameleon too.
+  - bugfix: Ethereals, the DNA lock mod, GPSs, and storage items now respect EMP protection
   - balance: The "Long Shift" achievement is now feasibly obtainable, and admins can
       no longer trigger it unknowingly
   - bugfix: Fixes runtime from trying to put two pots on one stove.
@@ -1272,6 +1280,9 @@
       now have that tail actually look like it came from the person in question, rather
       than just be a grey thing of sadness.
 2023-07-31:
+  CRITAWAKETS:
+  - balance: The bluespace MOD storage can now hold bulky storage items (backpacks,
+      toolbelts) just like the bag of holding.
   GoldenAlpharex:
   - bugfix: Clothes equipped in the jumpsuit slot that happen to cover your feet will
       no longer get bloody when you walk over blood if you are also wearing shoes.
@@ -1280,8 +1291,11 @@
   - bugfix: Chat highlights now escape special RegEx characters from non-RegEx highlights.
   - bugfix: Broken RegEx expressions no longer cause the chat to bluescreen, allowing
       you to properly fix them.
-  NaakaKo:
-  - bugfix: fixed a bug that would cause pAIs to be able to break their leash
+  SyncIt21:
   - bugfix: Module duplicator has cheaper costs for circuit duplication
-  - balance: The bluespace MOD storage can now hold bulky storage items (backpacks,
-      toolbelts) just like the bag of holding.
+  - rscadd: RPED can carry & install computer boards and complete computer frames
+  cnleth:
+  - bugfix: Using the timeline jumper MOD module updates stamina after resetting it,
+      no more infinite stamcrits
+  vinylspiders:
+  - bugfix: fixed a bug that would cause pAIs to be able to break their leash

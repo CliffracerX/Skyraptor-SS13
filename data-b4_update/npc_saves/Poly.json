@@ -1,0 +1,31 @@
+{
+	"phrases": {
+		":e Check the crystal, you chucklefucks!": {
+			"voice": "invalid", 
+			"pitch": 0
+		}, 
+		":e OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE": {
+			"voice": "invalid", 
+			"pitch": 0
+		}, 
+		":e WHO TOOK THE DAMN MODSUITS?": {
+			"voice": "invalid", 
+			"pitch": 0
+		}, 
+		":e Wire the solars, you lazy bums!": {
+			"voice": "invalid", 
+			"pitch": 0
+		}, 
+		"Poly wanna cracker!": {
+			"voice": "invalid", 
+			"pitch": 0
+		}, 
+		"The things I've seen!": {
+			"voice": "invalid", 
+			"pitch": 0
+		}
+	}, 
+	"roundssurvived": -1, 
+	"longestsurvival": 0, 
+	"longestdeathstreak": -1
+}

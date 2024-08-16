@@ -1,0 +1,3 @@
+{"ts":"1698696741.476430","round-id":null,"secret":0,"cat-list":["economy"],"cat":"economy"}
+{"ts":"2023-10-30 16:14:11.277","cat":"economy","msg":"500 credits were given to Naenia Kodiosoma's account from income.","data":null,"w-state":{"tick_usage":1.7936,"tick_lag":0.5,"time":374.5,"timestamp":"1698696851.278081"},"s-store":null,"id":618,"s-ver":"1.0.0"}
+{"ts":"2023-10-30 16:14:12.340","cat":"economy","msg":"50 credits were transferred from Defense Budget's account to Naenia Kodiosoma","data":null,"w-state":{"tick_usage":3.3736,"tick_lag":0.5,"time":385,"timestamp":"1698696852.341201"},"s-store":null,"id":634,"s-ver":"1.0.0"}

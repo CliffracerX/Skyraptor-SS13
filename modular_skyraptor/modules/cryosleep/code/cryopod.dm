@@ -141,7 +141,8 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	..()
 	return INITIALIZE_HINT_LATELOAD //Gotta populate the cryopod computer GLOB first
 
-/obj/machinery/cryopod/LateInitialize()
+/obj/machinery/cryopod/post_machine_initialize()
+	. = ..()
 	update_icon()
 	find_control_computer()
 
@@ -166,7 +167,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 	return control_computer_weakref != null
 
-/obj/machinery/cryopod/close_machine(atom/movable/target)
+/obj/machinery/cryopod/close_machine(atom/movable/target, density_to_set = TRUE)
 	if(!control_computer_weakref)
 		find_control_computer(TRUE)
 	if((isnull(target) || isliving(target)) && state_open && !panel_open)
@@ -178,7 +179,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		COOLDOWN_START(src, despawn_world_time, time_till_despawn)
 	icon_state = "cryopod"
 
-/obj/machinery/cryopod/open_machine()
+/obj/machinery/cryopod/open_machine(drop = TRUE, density_to_set = FALSE)
 	..()
 	icon_state = "cryopod-open"
 	set_density(TRUE)
@@ -315,7 +316,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	open_machine()
 	name = initial(name)
 
-/obj/machinery/cryopod/MouseDrop_T(mob/living/target, mob/user)
+/obj/machinery/cryopod/mouse_drop_receive(mob/target, mob/user, params)
 	if(!istype(target) || !can_interact(user) || !target.Adjacent(user) || !ismob(target) || isanimal(target) || !istype(user.loc, /turf) || target.buckled)
 		return
 
@@ -329,9 +330,9 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 	if(target.key && user != target)
 		if(iscyborg(target))
-			to_chat(user, span_danger("You can't put [target] into [src]. [target.p_theyre(capitalized = TRUE)] online."))
+			to_chat(user, span_danger("You can't put [target] into [src]. [target.p_Theyre()] online."))
 		else
-			to_chat(user, span_danger("You can't put [target] into [src]. [target.p_theyre(capitalized = TRUE)] conscious."))
+			to_chat(user, span_danger("You can't put [target] into [src]. [target.p_Theyre()] conscious."))
 		return
 
 	if(target == user && (tgui_alert(target, "Would you like to enter cryosleep?", "Enter Cryopod?", list("Yes", "No")) != "Yes"))

@@ -39,7 +39,6 @@
 
 	var/eye_color_left = "" //set to a hex code to override a mob's left eye color
 	var/eye_color_right = "" //set to a hex code to override a mob's right eye color
-	var/eye_icon_file = 'icons/mob/human/human_face.dmi' //SKYRAPTOR EDIT: modularize displayed eyes into their own files
 	var/eye_icon_state = "eyes"
 	/// The color of the previous left eye before this one was inserted
 	var/old_eye_color_left = "fff"
@@ -131,16 +130,18 @@
 
 	if(isnull(eye_icon_state))
 		return list()
+	var/obj/item/bodypart/head/my_head = parent.get_bodypart(BODY_ZONE_HEAD) /// SKYRAPTOR ADDITION
+	var/eye_icon_file = my_head?.eyes_icon || 'icons/mob/human/human_face.dmi' /// SKYRAPTOR ADDITION
 
-	var/mutable_appearance/eye_left = mutable_appearance(eye_icon_file, "[eye_icon_state]_l", -BODY_LAYER) //SKYRAPTOR EDITS: Eyes modularized into their own files, maintain backwards compat
-	var/mutable_appearance/eye_right = mutable_appearance(eye_icon_file, "[eye_icon_state]_r", -BODY_LAYER)
+	var/mutable_appearance/eye_left = mutable_appearance(eye_icon_file, "[eye_icon_state]_l", -BODY_LAYER) //SKYRAPTOR EDIT: custom eyes
+	var/mutable_appearance/eye_right = mutable_appearance(eye_icon_file, "[eye_icon_state]_r", -BODY_LAYER) //SKYRAPTOR EDIT: custom eyes
 	var/list/overlays = list(eye_left, eye_right)
 
 	var/obscured = parent.check_obscured_slots(TRUE)
 	if(overlay_ignore_lighting && !(obscured & ITEM_SLOT_EYES))
 		overlays += emissive_appearance(eye_left.icon, eye_left.icon_state, parent, -BODY_LAYER, alpha = eye_left.alpha)
 		overlays += emissive_appearance(eye_right.icon, eye_right.icon_state, parent, -BODY_LAYER, alpha = eye_right.alpha)
-	var/obj/item/bodypart/head/my_head = parent.get_bodypart(BODY_ZONE_HEAD)
+	//var/obj/item/bodypart/head/my_head = parent.get_bodypart(BODY_ZONE_HEAD) /// SKYRAPTOR REMOVAL
 	if(my_head)
 		if(my_head.head_flags & HEAD_EYECOLOR)
 			eye_right.color = eye_color_right
@@ -285,11 +286,7 @@
 
 /datum/action/cooldown/golem_ore_sight/Activate(atom/target)
 	. = ..()
-<<<<<<< HEAD
-	mineral_scan_pulse(get_turf(target))
-=======
 	mineral_scan_pulse(get_turf(target), scanner = target)
->>>>>>> 7a1b8d502ca (Fixes runtime when mineral scanning (#81049))
 
 ///Robotic
 
@@ -298,6 +295,7 @@
 	icon_state = "cybernetic_eyeballs"
 	desc = "Your vision is augmented."
 	organ_flags = ORGAN_ROBOTIC
+	failing_desc = "seems to be broken."
 
 /obj/item/organ/internal/eyes/robotic/emp_act(severity)
 	. = ..()
@@ -505,7 +503,7 @@
 				set_beam_color(new_color, to_update)
 				return TRUE
 		if("enter_color")
-			var/new_color = lowertext(params["new_color"])
+			var/new_color = LOWER_TEXT(params["new_color"])
 			var/to_update = params["to_update"]
 			set_beam_color(new_color, to_update, sanitize = TRUE)
 			return TRUE
@@ -639,6 +637,7 @@
 
 	if(QDELETED(eye_owner) || !ishuman(eye_owner)) //Other carbon mobs don't have eye color.
 		return
+
 	if(!eye.light_on)
 		eye_icon_state = initial(eye_icon_state)
 		overlay_ignore_lighting = FALSE

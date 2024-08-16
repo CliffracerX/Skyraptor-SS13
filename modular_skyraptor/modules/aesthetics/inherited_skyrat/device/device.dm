@@ -22,8 +22,9 @@
 	icon = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/device/device.dmi'
 
 ///OTHER STUFF OUGH
-/obj/item/grenade/empgrenade
-	icon = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/device/device.dmi'
+// who wrote this, why
+/*/obj/item/grenade/empgrenade
+	icon = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/device/device.dmi'*/
 
 /obj/item/desynchronizer
 	icon = 'modular_skyraptor/modules/aesthetics/inherited_skyrat/device/device.dmi'
@@ -33,4 +34,4 @@
 
 // This needs default but is a subtype. Pain.
 /obj/item/t_scanner/adv_mining_scanner
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/scanner.dmi'

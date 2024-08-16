@@ -2,7 +2,8 @@
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_TESHVALI
 	is_dimorphic = FALSE
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_TESHVALI
+	bodyshape = BODYSHAPE_TESHVALI
+	eyes_icon = 'modular_skyraptor/modules/species_teshvali/icons/teshvali_external.dmi'
 
 /obj/item/bodypart/head/teshvali/Initialize(mapload)
 	worn_ears_offset = new(
@@ -36,8 +37,8 @@
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_TESHVALI
 	is_dimorphic = TRUE
-	acceptable_bodytype = BODYTYPE_TESHVALI
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_TESHVALI
+	acceptable_bodyshape = BODYSHAPE_TESHVALI
+	bodyshape = BODYSHAPE_TESHVALI
 
 /obj/item/bodypart/chest/teshvali/Initialize(mapload)
 	worn_belt_offset = new(
@@ -75,11 +76,12 @@
 /obj/item/bodypart/arm/left/teshvali
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_TESHVALI
-	unarmed_attack_verb = "slash"
+	unarmed_attack_verbs = list("slash", "scratch", "claw")
+	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_TESHVALI
+	bodyshape = BODYSHAPE_TESHVALI
 
 /obj/item/bodypart/arm/left/teshvali/Initialize(mapload)
 	held_hand_offset =  new(
@@ -93,11 +95,12 @@
 /obj/item/bodypart/arm/right/teshvali
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_TESHVALI
-	unarmed_attack_verb = "slash"
+	unarmed_attack_verbs = list("slash", "scratch", "claw")
+	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_TESHVALI
+	bodyshape = BODYSHAPE_TESHVALI
 
 /obj/item/bodypart/arm/right/teshvali/Initialize(mapload)
 	held_hand_offset =  new(
@@ -111,9 +114,9 @@
 /obj/item/bodypart/leg/left/teshvali
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_TESHVALI
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_TESHVALI
+	bodyshape = BODYSHAPE_TESHVALI
 
 /obj/item/bodypart/leg/right/teshvali
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_TESHVALI
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_TESHVALI
+	bodyshape = BODYSHAPE_TESHVALI

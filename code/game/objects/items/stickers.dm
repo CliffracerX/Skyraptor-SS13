@@ -80,8 +80,12 @@
 	if(!isnull(user))
 		user.do_attack_animation(target, used_item = src)
 		target.balloon_alert(user, "sticker sticked")
+		var/mob/living/victim = target
+		if(istype(victim) && !isnull(victim.client))
+			user.log_message("stuck [src] to [key_name(victim)]", LOG_ATTACK)
+			victim.log_message("had [src] stuck to them by [key_name(user)]", LOG_ATTACK)
 
-	target.AddComponent(/datum/component/sticker, src, user, get_dir(target, src), px, py)
+	target.AddComponent(/datum/component/sticker, src, get_dir(target, src), px, py)
 	return TRUE
 
 #undef MAX_STICKER_COUNT
@@ -169,6 +173,10 @@
 	name = "syndicate sticker"
 	icon_state = "synd"
 	contraband = TRUE
+
+/obj/item/sticker/syndicate/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
 
 /obj/item/sticker/syndicate/c4
 	name = "C-4 sticker"

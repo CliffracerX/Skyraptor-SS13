@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(atmos_components, typecacheof(list(/obj/machinery/atmospherics)
 	var/connections = NONE
 
 /obj/machinery/atmospherics/pipe/smart/update_pipe_icon()
-	icon = bitmask_icon ///SKYRAPTOR EDIT
+	icon = bitmask_icon /// SKYRAPTOR EDIT: modular icons
 
 	//find all directions this pipe is connected with other nodes
 	connections = NONE

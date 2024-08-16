@@ -9,7 +9,7 @@
 		return FALSE
 
 	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
-	var/datum/species/species = new species_type
+	var/datum/species/species = GLOB.species_prototypes[species_type]
 	return !(TRAIT_FIXED_MUTANT_COLORS in species.inherent_traits)
 
 /datum/preference/color/mutant_color/create_default_value()
@@ -22,8 +22,9 @@
 	if (!..(value))
 		return FALSE
 
-	/// SKYRAPTOR REMOVAL: this check is stupid, nobody powergames with mutcolors, they just go for maximum drip.
+	/// SKYRAPTOR REMOVAL BEGIN: powergame protection like this is dumb, TG
 	/*if (is_color_dark(value, 15))
 		return FALSE*/
+	/// SKYRAPTOR REMOVAL END
 
 	return TRUE

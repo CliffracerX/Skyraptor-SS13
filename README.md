@@ -23,7 +23,7 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 ## DOWNLOADING
 [Downloading](.github/guides/DOWNLOADING.md)
 
-[Running on the server](.github/guides/RUNNING_A_SERVER.md)
+[Running a server](.github/guides/RUNNING_A_SERVER.md)
 
 [Maps and Away Missions](.github/guides/MAPS_AND_AWAY_MISSIONS.md)
 
@@ -48,7 +48,9 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 With thanks & apologies to:
  - [TGStation](https://github.com/tgstation/tgstation) for being the source this was forked from, and for putting up with multiple accidental nukes in PR form.
  - [Skyrat Station](https://github.com/Skyrat-SS13/Skyrat-tg) for inspiration & inspiration for our tongue-in-cheek name, as well as a handful of sprites.
- - [Daedalus Dock](https://github.com/DaedalusDock/daedalusdock) for being goals & reference during implementation of systems like Goonstam.
+ - [Nova Sector](https://github.com/NovaSector/NovaSector) for being a lovely place after Skyrat imploded
+ - [Effigy Station](https://github.com/effigy-se/effigy-se) for being an even lovelier place and reason for Naaka's eteranl trauma about giving hugs.
+ - [Daedalus Dock](https://github.com/DaedalusDock/daedalusdock) for reference during implementation of systems like Goonstam.
  - [Goonstation](https://github.com/goonstation/goonstation) for its kick-ass stamina mechanics and a handful of assets.
  - [Shiptest](https://github.com/shiptest-ss13/Shiptest) for its beaker revamp, and proof SS13 mechanics can work very well for space exploration instead of stationside drama.
 

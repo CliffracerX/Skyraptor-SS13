@@ -93,5 +93,145 @@
 			"icon_state": "dub_greyscale_gubbins",
 			"blend_mode": "overlay"
 		}
+	],
+	"fullsize_10": [
+		{
+			"type": "icon_state",
+			"icon_state": "fullsize_10",
+			"blend_mode": "overlay"
+		}
+	],
+	"fullsize_30": [
+		{
+			"type": "icon_state",
+			"icon_state": "fullsize_30",
+			"blend_mode": "overlay"
+		}
+	],
+	"fullsize_50": [
+		{
+			"type": "icon_state",
+			"icon_state": "fullsize_50",
+			"blend_mode": "overlay"
+		}
+	],
+	"fullsize_70": [
+		{
+			"type": "icon_state",
+			"icon_state": "fullsize_70",
+			"blend_mode": "overlay"
+		}
+	],
+	"fullsize_90": [
+		{
+			"type": "icon_state",
+			"icon_state": "fullsize_90",
+			"blend_mode": "overlay"
+		}
+	],
+	"emergency_10": [
+		{
+			"type": "icon_state",
+			"icon_state": "emergency_10",
+			"blend_mode": "overlay"
+		}
+	],
+	"emergency_30": [
+		{
+			"type": "icon_state",
+			"icon_state": "emergency_30",
+			"blend_mode": "overlay"
+		}
+	],
+	"emergency_50": [
+		{
+			"type": "icon_state",
+			"icon_state": "emergency_50",
+			"blend_mode": "overlay"
+		}
+	],
+	"emergency_70": [
+		{
+			"type": "icon_state",
+			"icon_state": "emergency_70",
+			"blend_mode": "overlay"
+		}
+	],
+	"emergency_90": [
+		{
+			"type": "icon_state",
+			"icon_state": "emergency_90",
+			"blend_mode": "overlay"
+		}
+	],
+	"engi_10": [
+		{
+			"type": "icon_state",
+			"icon_state": "engi_10",
+			"blend_mode": "overlay"
+		}
+	],
+	"engi_30": [
+		{
+			"type": "icon_state",
+			"icon_state": "engi_30",
+			"blend_mode": "overlay"
+		}
+	],
+	"engi_50": [
+		{
+			"type": "icon_state",
+			"icon_state": "engi_50",
+			"blend_mode": "overlay"
+		}
+	],
+	"engi_70": [
+		{
+			"type": "icon_state",
+			"icon_state": "engi_70",
+			"blend_mode": "overlay"
+		}
+	],
+	"engi_90": [
+		{
+			"type": "icon_state",
+			"icon_state": "engi_90",
+			"blend_mode": "overlay"
+		}
+	],
+	"double_10": [
+		{
+			"type": "icon_state",
+			"icon_state": "double_10",
+			"blend_mode": "overlay"
+		}
+	],
+	"double_30": [
+		{
+			"type": "icon_state",
+			"icon_state": "double_30",
+			"blend_mode": "overlay"
+		}
+	],
+	"double_50": [
+		{
+			"type": "icon_state",
+			"icon_state": "double_50",
+			"blend_mode": "overlay"
+		}
+	],
+	"double_70": [
+		{
+			"type": "icon_state",
+			"icon_state": "double_70",
+			"blend_mode": "overlay"
+		}
+	],
+	"double_90": [
+		{
+			"type": "icon_state",
+			"icon_state": "double_90",
+			"blend_mode": "overlay"
+		}
 	]
 }

@@ -7,7 +7,7 @@
 	ruin_type = ZTRAIT_ICE_RUINS
 	default_area = /area/icemoon/surface/outdoors/unexplored
 	has_ceiling = TRUE
-	ceiling_turf = /turf/closed/mineral/random/snow/do_not_chasm
+	ceiling_turf = /turf/closed/mineral/snowmountain/do_not_chasm
 	ceiling_baseturfs = list(/turf/open/misc/asteroid/snow/icemoon/do_not_chasm)
 
 // above ground only
@@ -123,7 +123,7 @@
 	suffix = "icemoon_underground_hermit.dmm"
 
 /datum/map_template/ruin/icemoon/underground/lavaland
-	name = "Ice-Ruin Lavaland Site"
+	name = "Ice-Ruin Lavaland Incursion"
 	id = "lavalandsite"
 	description = "I guess we never really left you huh?"
 	suffix = "icemoon_underground_lavaland.dmm"
@@ -166,6 +166,12 @@
 	description = "3 Peaks Radio, where the 2000's live forever."
 	suffix = "icemoon_underground_frozen_comms.dmm"
 
+/datum/map_template/ruin/icemoon/underground/comms_agent
+	name = "Ice-Ruin Listening Post"
+	id = "icemoon_comms_agent"
+	description = "Radio signals are being detected and the source is this completely innocent pile of snow."
+	suffix = "icemoon_underground_comms_agent.dmm"
+
 //TODO: Bottom-Level ONLY Spawns after Refactoring Related Code
 /datum/map_template/ruin/icemoon/underground/plasma_facility
 	name = "Ice-Ruin Abandoned Plasma Facility"
@@ -179,8 +185,6 @@
 	id = "hotsprings"
 	description = "Just relax and take a dip, nothing will go wrong, I swear!"
 	suffix = "icemoon_underground_hotsprings.dmm"
-<<<<<<< HEAD
-=======
 
 /datum/map_template/ruin/icemoon/underground/vent
 	name = "Ice-Ruin Icemoon Ore Vent"
@@ -201,4 +205,3 @@
 	cost = 0
 	mineral_cost = 1
 	always_place = TRUE
->>>>>>> d68ef829ad7 (Universalizing ruin names  (#81737))

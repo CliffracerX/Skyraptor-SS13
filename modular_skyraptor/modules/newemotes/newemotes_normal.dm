@@ -2,7 +2,6 @@
 	key = "clap1"
 	key_third_person = "claps once"
 	message = "claps once."
-	muzzle_ignore = TRUE
 	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	audio_cooldown = 1 SECONDS

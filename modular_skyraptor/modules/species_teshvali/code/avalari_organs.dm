@@ -1,7 +1,6 @@
 /obj/item/organ/internal/eyes/avalari
 	name = "avalari eyes"
 	desc = "All-seeing eyes built to survey from the skies."
-	eye_icon_file = 'modular_skyraptor/modules/species_teshvali/icons/avalari_external.dmi'
 	eye_icon_state = "avalarieyes"
 	icon_state = "eyeballs-moth"
 

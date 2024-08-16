@@ -63,10 +63,6 @@
 	new /obj/effect/landmark/ruin(center, src)
 	return center
 
-<<<<<<< HEAD
-
-/proc/seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/potentialRuins, clear_below = FALSE)
-=======
 /**
  * Loads the ruins for a given z level.
  * @param z_levels The z levels to load ruins on.
@@ -78,7 +74,6 @@
  * @param mineral_budget_update What type of ore distribution should spawn from ruins picked by this cave generator? This list is copied from ores_spawned.dm into SSore_generation.ore_vent_minerals.
  */
 /proc/seedRuins(list/z_levels = null, budget = 0, whitelist = list(/area/space), list/potentialRuins, clear_below = FALSE, mineral_budget = 15, mineral_budget_update)
->>>>>>> ed31397cc46 (Fixes ore vents spawning without ores on icebox, sets up map specific ore configurations (#81103))
 	if(!z_levels || !z_levels.len)
 		WARNING("No Z levels provided - Not generating ruins")
 		return
@@ -113,14 +108,14 @@
 			R.allow_duplicates = FALSE // no multiples for testing
 			R.always_place = !R.unpickable // unpickable ruin means it spawns as a set with another ruin
 
-		if(R.cost > budget) //Why would you do that
+		if(R.cost > budget || R.mineral_cost > mineral_budget) //Why would you do that
 			continue
 		if(R.always_place)
 			forced_ruins[R] = -1
 		if(R.unpickable)
 			continue
 		ruins_available[R] = R.placement_weight
-	while(budget > 0 && (ruins_available.len || forced_ruins.len))
+	while((budget > 0 || mineral_budget > 0) && (ruins_available.len || forced_ruins.len))
 		var/datum/map_template/ruin/current_pick
 		var/forced = FALSE
 		var/forced_z //If set we won't pick z level and use this one instead.
@@ -179,6 +174,7 @@
 			log_world("Failed to place [current_pick.name] ruin.")
 		else
 			budget -= current_pick.cost
+			mineral_budget -= current_pick.mineral_cost
 			if(!current_pick.allow_duplicates)
 				for(var/datum/map_template/ruin/R in ruins_available)
 					if(R.id == current_pick.id)
@@ -209,7 +205,7 @@
 
 		//Update the available list
 		for(var/datum/map_template/ruin/R in ruins_available)
-			if(R.cost > budget)
+			if(R.cost > budget || R.mineral_cost > mineral_budget)
 				ruins_available -= R
 
 	log_world("Ruin loader finished with [budget] left to spend.")

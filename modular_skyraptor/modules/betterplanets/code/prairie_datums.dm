@@ -147,7 +147,7 @@
 
 	spawn(10)
 		for(var/area/affected_area in impacted_areas)
-			for(var/turf/open/spess in affected_area.get_contained_turfs())
+			for(var/turf/open/spess in affected_area.get_turfs_from_all_zlevels())
 				if(spess.light_color == LIGHT_COLOR_PRAIRIEWORLD)
 					spess.set_light(3, 0.75, LIGHT_COLOR_PRAIRIEWORLD_STORM)
 				if(spess.light_color == NIGHT_COLOR_PRAIRIEWORLD)
@@ -176,7 +176,7 @@
 
 	spawn(10)
 		for(var/area/affected_area in impacted_areas)
-			for(var/turf/open/spess in affected_area.get_contained_turfs())
+			for(var/turf/open/spess in affected_area.get_turfs_from_all_zlevels())
 				if(spess.planetary_atmos)
 					if(spess.initial_gas_mix == PRAIRIE_GASMIX)
 						spess.initial_gas_mix = PRAIRIE_GASMIX_STORM
@@ -197,7 +197,7 @@
 
 	spawn(10)
 		for(var/area/affected_area in impacted_areas)
-			for(var/turf/open/spess in affected_area.get_contained_turfs())
+			for(var/turf/open/spess in affected_area.get_turfs_from_all_zlevels())
 				if(spess.planetary_atmos)
 					if(spess.initial_gas_mix == PRAIRIE_GASMIX_STORM)
 						spess.initial_gas_mix = PRAIRIE_GASMIX
@@ -213,7 +213,7 @@
 /datum/weather/prairie_plasma_storm/end()
 	GLOB.prairie_plasma_storm_sounds -= weak_sounds
 	for(var/area/affected_area in impacted_areas)
-		for(var/turf/open/spess in affected_area.get_contained_turfs())
+		for(var/turf/open/spess in affected_area.get_turfs_from_all_zlevels())
 			if(spess.light_color == LIGHT_COLOR_PRAIRIEWORLD_STORM)
 				spess.set_light(3, 0.75, LIGHT_COLOR_PRAIRIEWORLD)
 			if(spess.light_color == NIGHT_COLOR_PRAIRIEWORLD_STORM)

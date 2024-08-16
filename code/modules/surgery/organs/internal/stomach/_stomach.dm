@@ -127,12 +127,12 @@
 	if(HAS_TRAIT_FROM(human, TRAIT_FAT, OBESITY))//I share your pain, past coder.
 		if(human.overeatduration < (200 SECONDS))
 			to_chat(human, span_notice("You feel fit again!"))
-			REMOVE_TRAIT(human, TRAIT_FAT, OBESITY)
+			human.remove_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
 
 	else
 		if(human.overeatduration >= (200 SECONDS))
 			to_chat(human, span_danger("You suddenly feel blubbery!"))
-			ADD_TRAIT(human, TRAIT_FAT, OBESITY)
+			human.add_traits(list(TRAIT_FAT, TRAIT_OFF_BALANCE_TACKLER), OBESITY)
 
 	// nutrition decrease and satiety
 	if (human.nutrition > 0 && human.stat != DEAD)
@@ -173,7 +173,7 @@
 			human.stamina.regmods["hunger_SATI"] = 3 /// SKYRAPTOR ADDITION
 			human.stamina.warnings["hunger_status"] = 2
 			human.stamina.majorbufflist["Vigorous"] = "Supercharged metabolism, +3 regen"
-			human.stamina.bufflist["Sluggish"] = ""
+			human.stamina.bufflist["Sluggish"] = "" /// SKYRAPTOR ADDITION END
 			human.metabolism_efficiency = 1.25
 	else if(nutrition < NUTRITION_LEVEL_STARVING + 50)
 		if(human.metabolism_efficiency != 0.8)
@@ -181,51 +181,44 @@
 			human.stamina.regmods["hunger_SATI"] = -1 /// SKYRAPTOR ADDITION
 			human.stamina.warnings["hunger_status"] = 1
 			human.stamina.majorbufflist["Vigorous"] = ""
-			human.stamina.bufflist["Sluggish"] = "Hungry, -1 regen"
+			human.stamina.bufflist["Sluggish"] = "Hungry, -1 regen" /// SKYRAPTOR ADDITION END
 		human.metabolism_efficiency = 0.8
 	else
 		if(human.metabolism_efficiency == 1.25)
 			to_chat(human, span_notice("You no longer feel vigorous."))
 			human.stamina.regmods["hunger_SATI"] = 0 /// SKYRAPTOR ADDITION
 			human.stamina.majorbufflist["Vigorous"] = ""
-			human.stamina.bufflist["Sluggish"] = ""
+			human.stamina.bufflist["Sluggish"] = "" /// SKYRAPTOR ADDITION END
 		human.metabolism_efficiency = 1
 
 	//Hunger slowdown for if mood isn't enabled
 	if(CONFIG_GET(flag/disable_human_mood))
 		handle_hunger_slowdown(human)
 
-<<<<<<< HEAD
-	// If we did anything more then just set and throw alerts here I would add bracketing
-	// But well, it is all we do, so there's not much point bothering with it you get me?
+	/// SKYRAPTOR ADDITION BEGIN
 	switch(nutrition)
 		if(NUTRITION_LEVEL_FULL to INFINITY)
-			human.throw_alert(ALERT_NUTRITION, /atom/movable/screen/alert/fat)
 			human.stamina.regmods["hunger_NUTR"] = -1 /// SKYRAPTOR ADDITION
 			human.stamina.capmods["hunger_NUTR"] = 100 /// SKYRAPTOR ADDITION
 			human.stamina.majorbufflist["Overweight"] = "Full of energy, 100 capacity and -1 regen"
 			human.stamina.majorbufflist["Starving"] = ""
 		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FULL)
-			human.clear_alert(ALERT_NUTRITION)
 			human.stamina.regmods["hunger_NUTR"] = 0 /// SKYRAPTOR ADDITION
 			human.stamina.capmods["hunger_NUTR"] = 0 /// SKYRAPTOR ADDITION
 			human.stamina.majorbufflist["Overweight"] = ""
 			human.stamina.majorbufflist["Starving"] = ""
 		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-			human.throw_alert(ALERT_NUTRITION, /atom/movable/screen/alert/hungry)
 			human.stamina.regmods["hunger_NUTR"] = -1 /// SKYRAPTOR ADDITION
 			human.stamina.capmods["hunger_NUTR"] = -25 /// SKYRAPTOR ADDITION
 			human.stamina.majorbufflist["Overweight"] = ""
 			human.stamina.majorbufflist["Starving"] = "Malnourished, -25 capacity and -1 regen"
 		if(0 to NUTRITION_LEVEL_STARVING)
-			human.throw_alert(ALERT_NUTRITION, /atom/movable/screen/alert/starving)
 			human.stamina.regmods["hunger_NUTR"] = -3 /// SKYRAPTOR ADDITION
 			human.stamina.capmods["hunger_NUTR"] = -75 /// SKYRAPTOR ADDITION
 			human.stamina.majorbufflist["Overweight"] = ""
 			human.stamina.majorbufflist["Starving"] = "Extremely malnourished, -75 capacity and -3 regen"
+	/// SKYRAPTOR ADDITION END
 
-=======
->>>>>>> b8b420cfcbd (Food Bar Updates, moves it out of the alert "stack" and to the left of mood, makes it more snappy (#81834))
 ///for when mood is disabled and hunger should handle slowdowns
 /obj/item/organ/internal/stomach/proc/handle_hunger_slowdown(mob/living/carbon/human/human)
 	var/hungry = (500 - human.nutrition) / 5 //So overeat would be 100 and default level would be 80
@@ -258,7 +251,7 @@
 			if(SPT_PROB(pukeprob, seconds_per_tick)) //iT hAndLeS mOrE ThaN PukInG
 				disgusted.adjust_confusion(2.5 SECONDS)
 				disgusted.adjust_stutter(2 SECONDS)
-				disgusted.vomit(VOMIT_CATEGORY_DEFAULT, distance = 0)
+				disgusted.vomit(VOMIT_CATEGORY_KNOCKDOWN, distance = 0)
 			disgusted.set_dizzy_if_lower(10 SECONDS)
 		if(disgust >= DISGUST_LEVEL_DISGUSTED)
 			if(SPT_PROB(13, seconds_per_tick))
@@ -316,6 +309,7 @@
 /obj/item/organ/internal/stomach/cybernetic
 	name = "basic cybernetic stomach"
 	desc = "A basic device designed to mimic the functions of a human stomach"
+	failing_desc = "seems to be broken."
 	icon_state = "stomach-c"
 	organ_flags = ORGAN_ROBOTIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5

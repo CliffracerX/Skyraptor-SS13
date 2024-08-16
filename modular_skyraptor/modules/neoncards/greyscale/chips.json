@@ -1,0 +1,15 @@
+{
+	"chip_stripe": [
+		{
+			"type": "icon_state",
+			"icon_state": "chip_stripe",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "chip_stripe_color",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	]
+}

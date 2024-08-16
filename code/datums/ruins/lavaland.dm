@@ -29,6 +29,13 @@
 	description = "WELCOME TO CLOWN PLANET! HONK HONK HONK etc.!"
 	suffix = "lavaland_biodome_clown_planet.dmm"
 
+/datum/map_template/ruin/lavaland/lizgas
+	name = "Lava-Ruin The Lizard's Gas"
+	id = "lizgas2"
+	description = "A recently opened gas station from the Lizard's Gas franchise."
+	suffix = "lavaland_surface_gas.dmm"
+	allow_duplicates = FALSE
+
 /datum/map_template/ruin/lavaland/cube
 	name = "Lava-Ruin The Wishgranter Cube"
 	id = "wishgranter-cube"
@@ -284,8 +291,6 @@
 	allow_duplicates = TRUE
 	cost = 3
 
-<<<<<<< HEAD
-=======
 /datum/map_template/ruin/lavaland/vent
 	name = "Lava-Ruin Ore Vent"
 	id = "ore_vent"
@@ -296,7 +301,6 @@
 	mineral_cost = 1
 	always_place = TRUE
 
->>>>>>> d68ef829ad7 (Universalizing ruin names  (#81737))
 /datum/map_template/ruin/lavaland/watcher_grave
 	name = "Lava-Ruin Watchers' Grave"
 	id = "watcher-grave"
@@ -312,3 +316,10 @@
 	suffix = "lavaland_surface_mookvillage.dmm"
 	allow_duplicates = FALSE
 	cost = 5
+
+/datum/map_template/ruin/lavaland/shuttle_wreckage
+	name = "Lava-Ruin Shuttle Wreckage"
+	id = "shuttle_wreckage"
+	description = "Not every shuttle makes it back to CentCom."
+	suffix = "lavaland_surface_shuttle_wreckage.dmm"
+	allow_duplicates = FALSE

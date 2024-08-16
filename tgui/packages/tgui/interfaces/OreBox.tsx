@@ -4,13 +4,6 @@ import { useBackend } from '../backend';
 import { Box, Button, Section, Table } from '../components';
 import { Window } from '../layouts';
 
-<<<<<<< HEAD
-type Data = {
-  materials: Material[];
-};
-
-=======
->>>>>>> 6b6a22ee718 (General maintenance for ore box (#81459))
 type Material = {
   name: string;
   amount: number;

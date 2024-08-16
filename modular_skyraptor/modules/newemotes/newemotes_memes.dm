@@ -2,7 +2,6 @@
 	key = "agony"
 	key_third_person = "agonizes"
 	message = "seizes up and falls limp, their eyes dead and lifeless..."
-	muzzle_ignore = FALSE
 	hands_use_check = FALSE
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
 	audio_cooldown = 1 SECONDS

@@ -1,0 +1,4 @@
+{"ts":"1698907005.031997","round-id":null,"secret":0,"cat-list":["admin-dsay","admin-circuit","admin"],"cat":"admin"}
+{"ts":"2023-11-02 02:40:10.311","cat":"admin","msg":"CliffracerX has started the game.","data":null,"w-state":{"tick_usage":80.7774,"tick_lag":0.5,"time":820,"timestamp":"1698907210.312454"},"s-store":null,"id":589,"s-ver":"1.0.0"}
+{"ts":"2023-11-02 02:40:22.618","cat":"admin","msg":"CliffracerX/(Naenia Kodiosoma) admin ghosted.","data":null,"w-state":{"tick_usage":78.6628,"tick_lag":0.5,"time":914.5,"timestamp":"1698907222.619011"},"s-store":null,"id":664,"s-ver":"1.0.0"}
+{"ts":"2023-11-02 02:41:08.649","cat":"admin","msg":"CliffracerX/(Naenia Kodiosoma) created an instance of /obj/item/healthanalyzer/advanced","data":null,"w-state":{"tick_usage":93.658,"tick_lag":0.5,"time":1373.5,"timestamp":"1698907268.649792"},"s-store":null,"id":789,"s-ver":"1.0.0"}

@@ -24,8 +24,7 @@
 /datum/preference/numeric/max_chat_length/create_default_value()
 	return CHAT_MESSAGE_MAX_LENGTH
 
-
-
+/// SKYRAPTOR ADDITION BEGIN
 /datum/preference/color/runechat_color
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_key = "runechat_color"
@@ -48,3 +47,4 @@
 		g = round(g, 1)
 		b = round(b, 1)
 		target.chat_color_darkened = "#[num2hex(r, 2)][num2hex(g, 2)][num2hex(b, 2)]"
+/// SKYRAPTOR ADDITION END

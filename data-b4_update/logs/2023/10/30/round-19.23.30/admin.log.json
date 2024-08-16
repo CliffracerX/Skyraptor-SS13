@@ -1,0 +1,4 @@
+{"ts":"1698708210.789746","round-id":null,"secret":0,"cat-list":["admin-dsay","admin-circuit","admin"],"cat":"admin"}
+{"ts":"2023-10-30 19:26:04.847","cat":"admin","msg":"CliffracerX has started the game.","data":null,"w-state":{"tick_usage":59.986,"tick_lag":0.5,"time":806,"timestamp":"1698708364.848500"},"s-store":null,"id":572,"s-ver":"1.0.0"}
+{"ts":"2023-10-30 19:26:33.368","cat":"admin","msg":"CliffracerX/(Naenia Kodiosoma) created an instance of /obj/item/storage/part_replacer/bluespace/tier4","data":null,"w-state":{"tick_usage":78.7918,"tick_lag":0.5,"time":1087,"timestamp":"1698708393.369134"},"s-store":null,"id":674,"s-ver":"1.0.0"}
+{"ts":"2023-10-30 19:36:06.353","cat":"admin","msg":"<span class='boldnotice'>Roundstart logout report</span>\n\n","data":null,"w-state":{"tick_usage":9.2926,"tick_lag":0.5,"time":6814.5,"timestamp":"1698708966.353648"},"s-store":null,"id":1443,"s-ver":"1.0.0"}

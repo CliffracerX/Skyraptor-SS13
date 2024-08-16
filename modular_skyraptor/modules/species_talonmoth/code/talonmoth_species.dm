@@ -43,17 +43,6 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/digitigrade/talonmoth,
 	)
 
-/datum/species/moth/talonmoth/random_name(gender,unique,lastname)
-	if(unique)
-		return random_unique_moth_name()
-
-	var/randname = moth_name()
-
-	if(lastname)
-		randname += " [lastname]"
-
-	return randname
-
 /datum/species/moth/talonmoth/randomize_features(mob/living/carbon/human/human_mob)
 	human_mob.undershirt = random_undershirt(human_mob.gender)
 	human_mob.underwear = random_underwear(human_mob.gender)

@@ -149,7 +149,7 @@
 /datum/station_trait/overflow_job_bureaucracy/proc/set_overflow_job_override(datum/source)
 	SIGNAL_HANDLER
 	var/datum/job/picked_job = pick(SSjob.get_valid_overflow_jobs())
-	chosen_job_name = lowertext(picked_job.title) // like Chief Engineers vs like chief engineers
+	chosen_job_name = LOWER_TEXT(picked_job.title) // like Chief Engineers vs like chief engineers
 	SSjob.set_overflow_role(picked_job.type)
 
 /datum/station_trait/slow_shuttle
@@ -184,6 +184,22 @@
 	// All bots that exist round start on station Z OR on the escape shuttle have their set language randomized.
 	for(var/mob/living/found_bot as anything in GLOB.bots_list)
 		found_bot.randomize_language_if_on_station()
+
+/datum/station_trait/machine_languages
+	name = "Machine Language Matrix Malfunction"
+	trait_type = STATION_TRAIT_NEGATIVE
+	weight = 2
+	cost = STATION_TRAIT_COST_FULL
+	show_in_report = TRUE
+	report_message = "Your station's machines have had their language matrix fried due to an event, \
+		resulting in some strange and unfamiliar speech patterns."
+	trait_to_give = STATION_TRAIT_MACHINES_GLITCHED
+
+/datum/station_trait/machine_languages/New()
+	. = ..()
+	// What "caused" our machines to go haywire (fluff)
+	var/event_source = pick("an ion storm", "a malfunction", "a software update", "a power surge", "a computer virus", "a subdued machine uprising", "a clown's prank")
+	report_message = "Your station's machinery have had their language matrix fried due to [event_source], resulting in some strange and unfamiliar speech patterns."
 
 /datum/station_trait/revenge_of_pun_pun
 	name = "Revenge of Pun Pun"
@@ -229,6 +245,9 @@
 
 	weapon?.add_mob_blood(punpun)
 	punpun.add_mob_blood(punpun)
+
+	if(!isnull(punpun.ai_controller)) // In case punpun somehow lacks AI
+		QDEL_NULL(punpun.ai_controller)
 
 	new /datum/ai_controller/monkey/angry(punpun)
 
@@ -281,11 +300,11 @@
 	name = "Random Event Modifier"
 	report_message = "A random event has been modified this shift! Someone forgot to set this!"
 	show_in_report = TRUE
-	trait_flags = STATION_TRAIT_ABSTRACT
+	abstract_type = /datum/station_trait/random_event_weight_modifier
 	weight = 0
 
 	/// The path to the round_event_control that we modify.
-	var/event_control_path
+	var/datum/round_event_control/event_control_path
 	/// Multiplier applied to the weight of the event.
 	var/weight_multiplier = 1
 	/// Flat modifier added to the amount of max occurances the random event can have.
@@ -304,16 +323,19 @@
 	name = "Ionic Stormfront"
 	report_message = "An ionic stormfront is passing over your station's system. Expect an increased likelihood of ion storms afflicting your station's silicon units."
 	trait_type = STATION_TRAIT_NEGATIVE
-	trait_flags = STATION_TRAIT_MAP_UNRESTRICTED
 	weight = 3
 	event_control_path = /datum/round_event_control/ion_storm
 	weight_multiplier = 2
+
+/datum/station_trait/random_event_weight_modifier/ion_storms/get_pulsar_message()
+	var/advisory_string = "Advisory Level: <b>ERROR</b></center><BR>"
+	advisory_string += scramble_message_replace_chars("Your sector's advisory level is ERROR. An electromagnetic field has stormed through nearby surveillance equipment, causing major data loss. Partial data was recovered and showed no credible threats to Nanotrasen assets within the Spinward Sector; however, the Department of Intelligence advises maintaining high alert against potential threats due to the lack of complete data.", 35)
+	return advisory_string
 
 /datum/station_trait/random_event_weight_modifier/rad_storms
 	name = "Radiation Stormfront"
 	report_message = "A radioactive stormfront is passing through your station's system. Expect an increased likelihood of radiation storms passing over your station, as well the potential for multiple radiation storms to occur during your shift."
 	trait_type = STATION_TRAIT_NEGATIVE
-	trait_flags = STATION_TRAIT_MAP_UNRESTRICTED
 	weight = 2
 	event_control_path = /datum/round_event_control/radiation_storm
 	weight_multiplier = 1.5
@@ -323,7 +345,6 @@
 	name = "Dust Stormfront"
 	report_message = "The space around your station is clouded by heavy pockets of space dust. Expect an increased likelyhood of space dust storms damaging the station hull."
 	trait_type = STATION_TRAIT_NEGATIVE
-	trait_flags = STATION_TRAIT_MAP_UNRESTRICTED
 	weight = 2
 	cost = STATION_TRAIT_COST_LOW
 	event_control_path = /datum/round_event_control/meteor_wave/dust_storm
@@ -452,7 +473,7 @@
 ///Station traits that influence the space background and apply some unique effects!
 /datum/station_trait/nebula
 	name = "Nebula"
-	trait_flags = STATION_TRAIT_ABSTRACT
+	abstract_type = /datum/station_trait/nebula
 	weight = 0
 
 	show_in_report = TRUE
@@ -473,7 +494,7 @@
 
 ///Station nebula that incur some sort of effect if no shielding is created
 /datum/station_trait/nebula/hostile
-	trait_flags = STATION_TRAIT_ABSTRACT
+	abstract_type = /datum/station_trait/nebula/hostile
 	trait_processes = TRUE
 
 	///Intensity of the nebula
@@ -573,6 +594,8 @@
 /datum/station_trait/nebula/hostile/radiation/New()
 	. = ..()
 
+	RegisterSignal(SSdcs, COMSIG_RULESET_BODY_GENERATED_FROM_GHOSTS, PROC_REF(on_spawned_mob))
+
 	for(var/area/target as anything in get_areas(radioactive_areas))
 		RegisterSignal(target, COMSIG_AREA_ENTERED, PROC_REF(on_entered))
 		RegisterSignal(target, COMSIG_AREA_EXITED, PROC_REF(on_exited))
@@ -594,7 +617,7 @@
 		//if engineering isnt valid, just send it to the bridge
 		send_supply_pod_to_area(supply_pack_shielding.generate(null), /area/station/command/bridge, /obj/structure/closet/supplypod/centcompod)
 
-	// Let the viro know resistence is futile
+	// Let medical know resistence is futile
 	send_fax_to_area(new /obj/item/paper/fluff/radiation_nebula_virologist(), /area/station/medical/virology, "NT Virology Department", \
 	force = TRUE, force_pod_type = /obj/structure/closet/supplypod/centcompod)
 
@@ -620,9 +643,22 @@
 
 	// The component handles its own removal
 
+/// When a mob is spawned by dynamic, intercept and give it a little radiation shield. Only works for dynamic mobs!
+/datum/station_trait/nebula/hostile/radiation/proc/on_spawned_mob(datum/source, mob/spawned_mob)
+	SIGNAL_HANDLER
+
+	if(!istype(get_area(spawned_mob), radioactive_areas)) //only if you're spawned in the radioactive areas
+		return
+
+	if(!isliving(spawned_mob)) // Dynamic shouldnt spawn non-living but uhhhhhhh why not
+		return
+
+	var/mob/living/spawnee = spawned_mob
+	spawnee.apply_status_effect(/datum/status_effect/radiation_immunity/radnebula)
+
 /datum/station_trait/nebula/hostile/radiation/apply_nebula_effect(effect_strength = 0)
 	//big bombad now
-	if(effect_strength > 0)
+	if(effect_strength > 0 && !SSmapping.is_planetary()) //admins can force this
 		if(!SSweather.get_weather_by_type(/datum/weather/rad_storm/nebula))
 			COOLDOWN_START(src, send_care_package_at, send_care_package_time)
 			SSweather.run_weather(/datum/weather/rad_storm/nebula)
@@ -691,7 +727,7 @@
 
 ///Starts a storm on roundstart
 /datum/station_trait/storm
-	trait_flags = STATION_TRAIT_ABSTRACT
+	abstract_type = /datum/station_trait/storm
 	var/datum/weather/storm_type
 
 /datum/station_trait/storm/on_round_start()
@@ -707,7 +743,11 @@
 	weight = 3
 	show_in_report = TRUE
 	report_message = "It looks like the storm is not gonna calm down anytime soon, stay safe out there."
-
 	storm_type = /datum/weather/snow_storm/forever_storm
+
+/datum/station_trait/storm/foreverstorm/get_pulsar_message()
+	var/advisory_string = "Advisory Level: <b>Ice Giant</b></center><BR>"
+	advisory_string += "The ongoing blizzard has interfered with our surveillance equipment, and we cannot provide an accurate threat summary at this time. We advise you to stay safe and avoid traversing the area around the station."
+	return advisory_string
 
 #undef GLOW_NEBULA

@@ -194,7 +194,6 @@
 	if(user)
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey
-		target.LAssailant = WEAKREF(user)
 		if(log_stun_attack)
 			log_combat(user, target, "stun attacked", src)
 	if(baton_effect(target, user, modifiers) && user)
@@ -207,8 +206,8 @@
 		if(!affect_cyborg)
 			return FALSE
 		target.flash_act(affect_silicon = TRUE)
-		//target.Paralyze((isnull(stun_override) ? stun_time_cyborg : stun_override) * (trait_check ? 0.1 : 1)) SKYRAPTOR REMOVAL
-		target.Disorient(6 SECONDS, charged_stamina_damage, paralyze = disable_duration, stack_status = FALSE) //replacement
+		//target.Paralyze((isnull(stun_override) ? stun_time_cyborg : stun_override) * (trait_check ? 0.1 : 1)) /// SKYRAPTOR REMOVAL
+		target.Disorient(6 SECONDS, charged_stamina_damage, paralyze = disable_duration, stack_status = FALSE) // SKYRAPTOR ADDITION
 		additional_effects_cyborg(target, user)
 	else
 		if(ishuman(target))
@@ -217,9 +216,10 @@
 				human_target.force_say()
 		/// SKYRAPTOR REMOVAL: we don't need to deal stamina damage manually, the Disorient effect does that for us
 		if(!trait_check)
-			//target.Knockdown((isnull(stun_override) ? knockdown_time : stun_override)) SKYRAPTOR REMOVAL
-			target.Disorient(6 SECONDS, charged_stamina_damage, paralyze = disable_duration, stack_status = FALSE)
+			//target.Knockdown((isnull(stun_override) ? knockdown_time : stun_override)) /// SKYRAPTOR REMOVAL
+			target.Disorient(6 SECONDS, charged_stamina_damage, paralyze = disable_duration, stack_status = FALSE) /// SKYRAPTOR ADDITION
 		additional_effects_non_cyborg(target, user)
+	SEND_SIGNAL(target, COMSIG_MOB_BATONED, user, src)
 	return TRUE
 
 /// Description for trying to stun when still on cooldown.
@@ -262,12 +262,13 @@
 	return
 
 /obj/item/melee/baton/proc/set_batoned(mob/living/target, mob/living/user, cooldown)
-	/// SKYRAPTOR REMOVAL: Entire function made defunct by stamina rework.
+	/// SKYRAPTOR REMOVAL BEGIN: Entire function made defunct by stamina rework.
 	/*if(!cooldown)
 		return
 	var/user_ref = REF(user) // avoids harddels.
 	ADD_TRAIT(target, TRAIT_IWASBATONED, user_ref)
 	addtimer(TRAIT_CALLBACK_REMOVE(target, TRAIT_IWASBATONED, user_ref), cooldown)*/
+	/// SKYRAPTOR REMOVAL END
 
 /obj/item/melee/baton/proc/clumsy_check(mob/living/user, mob/living/intented_target)
 	if(!active || !HAS_TRAIT(user, TRAIT_CLUMSY) || prob(50))
@@ -289,7 +290,7 @@
 			var/mob/living/carbon/human/human_user = user
 			human_user.force_say()
 		user.Knockdown(clumsy_knockdown_time)
-		user.stamina.adjust(-charged_stamina_damage) /// SKYRAPTOR EDIT: differentiating batong stamdamage from regular stamdamage, changing to direct stamina adjustment
+		user.stamina.adjust(-charged_stamina_damage) /// SKYRAPTOR EDIT: charged stamina damage
 		additional_effects_non_cyborg(user, user) // user is the target here
 		if(on_stun_sound)
 			playsound(get_turf(src), on_stun_sound, on_stun_volume, TRUE, -1)
@@ -326,6 +327,8 @@
 	bare_wound_bonus = 5
 	clumsy_knockdown_time = 15 SECONDS
 	active = FALSE
+	pickup_sound = 'sound/items/stun_baton_pick_up.ogg'
+	drop_sound = 'sound/items/stun_baton_drop.ogg'
 
 	/// The sound effecte played when our baton is extended.
 	var/on_sound = 'sound/weapons/batonextend.ogg'
@@ -394,7 +397,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NONE
 	force = 5
-	cooldown = 2.5 SECONDS /// SKYRAPTOR EDIT: removing cooldowns in a way that doesn't make ten billion merge conflicts
+	cooldown = 2.5 SECONDS
 	force_say_chance = 80 //very high force say chance because it's funny
 	charged_stamina_damage = 85 /// SKYRAPTOR EDIT: differentiating batong stamdamage from regular stamdamage
 	clumsy_knockdown_time = 24 SECONDS
@@ -409,6 +412,7 @@
 	return span_danger("The baton is still charging!")
 
 /obj/item/melee/baton/telescopic/contractor_baton/additional_effects_non_cyborg(mob/living/target, mob/living/user)
+	. = ..()
 	target.set_jitter_if_lower(40 SECONDS)
 	target.set_stutter_if_lower(40 SECONDS)
 
@@ -430,16 +434,16 @@
 	charged_stamina_damage = 130 /// SKYRAPTOR EDIT: differentiating batong stamdamage from regular stamdamage, buffed to 130
 	knockdown_time = 5 SECONDS
 	clumsy_knockdown_time = 15 SECONDS
-	cooldown = 2.5 SECONDS /// SKYRAPTOR EDIT: removing cooldowns in a way that doesn't make ten billion merge conflicts
+	cooldown = 2.5 SECONDS
 	on_stun_sound = 'sound/weapons/egloves.ogg'
 	on_stun_volume = 50
 	active = FALSE
 	context_living_rmb_active = "Harmful Stun"
 
 	var/throw_stun_chance = 35
-	var/obj/item/stock_parts/cell/cell
+	var/obj/item/stock_parts/power_store/cell
 	var/preload_cell_type //if not empty the baton starts with this type of cell
-	var/cell_hit_cost = 1000
+	var/cell_hit_cost = STANDARD_CELL_CHARGE
 	var/can_remove_cell = TRUE
 	var/convertible = TRUE //if it can be converted with a conversion kit
 
@@ -451,7 +455,7 @@
 /obj/item/melee/baton/security/Initialize(mapload)
 	. = ..()
 	if(preload_cell_type)
-		if(!ispath(preload_cell_type, /obj/item/stock_parts/cell))
+		if(!ispath(preload_cell_type, /obj/item/stock_parts/power_store/cell))
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
@@ -530,8 +534,8 @@
 	return TRUE
 
 /obj/item/melee/baton/security/attackby(obj/item/item, mob/user, params)
-	if(istype(item, /obj/item/stock_parts/cell))
-		var/obj/item/stock_parts/cell/active_cell = item
+	if(istype(item, /obj/item/stock_parts/power_store/cell))
+		var/obj/item/stock_parts/power_store/cell/active_cell = item
 		if(cell)
 			to_chat(user, span_warning("[src] already has a cell!"))
 		else
@@ -558,6 +562,8 @@
 		active = !active
 		balloon_alert(user, "turned [active ? "on" : "off"]")
 		playsound(src, SFX_SPARKS, 75, TRUE, -1)
+		toggle_light(user)
+		do_sparks(1, TRUE, src)
 	else
 		active = FALSE
 		if(!cell)
@@ -566,6 +572,11 @@
 			balloon_alert(user, "out of charge!")
 	update_appearance()
 	add_fingerprint(user)
+
+/// Toggles the stun baton's light
+/obj/item/melee/baton/security/proc/toggle_light(mob/user)
+	set_light_on(!light_on)
+	return
 
 /obj/item/melee/baton/security/proc/deductcharge(deducted_charge)
 	if(!cell)
@@ -576,6 +587,7 @@
 	if(active && cell.charge < cell_hit_cost)
 		//we're below minimum, turn off
 		active = FALSE
+		set_light_on(FALSE)
 		update_appearance()
 		playsound(src, SFX_SPARKS, 75, TRUE, -1)
 
@@ -618,17 +630,18 @@
 	target.set_stutter_if_lower(10 SECONDS) /// SKYRAPTOR EDIT: stutter down to 10 seconds
 
 	SEND_SIGNAL(target, COMSIG_LIVING_MINOR_SHOCK)
-	//addtimer(CALLBACK(src, PROC_REF(apply_stun_effect_end), target), 2 SECONDS) SKYRAPTOR REMOVAL
+	//addtimer(CALLBACK(src, PROC_REF(apply_stun_effect_end), target), 2 SECONDS) /// SKYRAPTOR REMOVAL
 
 /// After the initial stun period, we check to see if the target needs to have the stun applied.
 /obj/item/melee/baton/security/proc/apply_stun_effect_end(mob/living/target)
-	/// SKYRAPTOR REMOVAL: this goes bye-bye
+	/// SKYRAPTOR REMOVAL BEGIN: this goes bye-bye
 	/*var/trait_check = HAS_TRAIT(target, TRAIT_BATON_RESISTANCE) //var since we check it in out to_chat as well as determine stun duration
 	if(!target.IsKnockdown())
 		to_chat(target, span_warning("Your muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
 
 	if(!trait_check)
 		target.Knockdown(knockdown_time)*/
+	/// SKYRAPTOR REMOVAL END
 
 /obj/item/melee/baton/security/get_wait_description()
 	return span_danger("The baton is still charging!")
@@ -655,7 +668,7 @@
 	if (!cell)
 		return
 	if (!(. & EMP_PROTECT_SELF))
-		deductcharge(1000 / severity)
+		deductcharge(STANDARD_CELL_CHARGE / severity)
 	if (cell.charge >= cell_hit_cost)
 		var/scramble_time
 		scramble_mode()
@@ -667,11 +680,13 @@
 	if (!cell || cell.charge < cell_hit_cost)
 		return
 	active = !active
+	toggle_light()
+	do_sparks(1, TRUE, src)
 	playsound(src, SFX_SPARKS, 75, TRUE, -1)
 	update_appearance()
 
 /obj/item/melee/baton/security/loaded //this one starts with a cell pre-installed.
-	preload_cell_type = /obj/item/stock_parts/cell/high
+	preload_cell_type = /obj/item/stock_parts/power_store/cell/high
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/security/cattleprod
@@ -687,7 +702,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 3
 	throwforce = 5
-	cell_hit_cost = 2000
+	cell_hit_cost = STANDARD_CELL_CHARGE * 2
 	throw_stun_chance = 10
 	slot_flags = ITEM_SLOT_BACK
 	convertible = FALSE
@@ -751,7 +766,7 @@
 	force = 5
 	throwforce = 5
 	throw_range = 5
-	cell_hit_cost = 2000
+	cell_hit_cost = STANDARD_CELL_CHARGE * 2
 	throw_stun_chance = 99  //Have you prayed today?
 	convertible = FALSE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT*2, /datum/material/silver = SHEET_MATERIAL_AMOUNT*5, /datum/material/gold = SHEET_MATERIAL_AMOUNT)
@@ -769,7 +784,7 @@
 		finalize_baton_attack(hit_atom, thrown_by, in_attack_chain = FALSE)
 
 /obj/item/melee/baton/security/boomerang/loaded //Same as above, comes with a cell.
-	preload_cell_type = /obj/item/stock_parts/cell/high
+	preload_cell_type = /obj/item/stock_parts/power_store/cell/high
 
 /obj/item/melee/baton/security/cattleprod/teleprod
 	name = "teleprod"

@@ -64,7 +64,8 @@
 		make_tameable()
 	if(can_lay_eggs)
 		make_egg_layer()
-
+	ADD_TRAIT(src, TRAIT_BOULDER_BREAKER, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_INSTANTLY_PROCESSES_BOULDERS, INNATE_TRAIT)
 	RegisterSignal(src, COMSIG_ATOM_PRE_BULLET_ACT, PROC_REF(block_bullets))
 
 /mob/living/basic/mining/goldgrub/proc/block_bullets(datum/source, obj/projectile/hitting_projectile)
@@ -74,15 +75,17 @@
 		return COMPONENT_BULLET_PIERCED
 
 	///high penetration bullets should still go through. No goldgrub can save you from the colossus' death bolts.
-	//if(prob(hitting_projectile.armour_penetration)) /// SKYRAPTOR REMOVAL: joke's on you, death bolts are fucking cringe
-		//return NONE
+	/// SKYRAPTOR REMOVAL BEGIN: au contraire, let people game smarter, not harder
+	/*if(prob(hitting_projectile.armour_penetration))
+		return NONE*/
+	/// SKYRAPTOR REMOVAL END
 
 	visible_message(span_danger("[hitting_projectile] is repelled by [source]'s girth!"))
 	return COMPONENT_BULLET_BLOCKED
 
 /mob/living/basic/mining/goldgrub/proc/barf_contents(gibbed)
 	playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
-	for(var/obj/item/ore as anything in src)
+	for(var/obj/item/stack/ore/ore in src)
 		ore.forceMove(loc)
 	if(!gibbed)
 		visible_message(span_danger("[src] spits out its consumed ores!"))

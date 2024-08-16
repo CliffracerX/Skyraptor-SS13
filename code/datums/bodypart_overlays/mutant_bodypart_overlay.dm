@@ -8,7 +8,7 @@
 
 	///The color this organ draws with. Updated by bodypart/inherit_color()
 	var/draw_color
-	///Where does this organ inherit it's color from?
+	///Where does this organ inherit its color from?
 	var/color_source = ORGAN_COLOR_INHERIT
 	///Take on the dna/preference from whoever we're gonna be inserted in
 	var/imprint_on_next_insertion = TRUE
@@ -85,23 +85,29 @@
 	sprite_datum = get_random_appearance()
 
 ///Grab a random appearance datum (thats not locked)
-/datum/bodypart_overlay/mutant/proc/get_random_appearance()
+/datum/bodypart_overlay/mutant/proc/get_random_appearance() as /datum/sprite_accessory
+	RETURN_TYPE(/datum/sprite_accessory)
 	var/list/valid_restyles = list()
 	var/list/feature_list = get_global_feature_list()
 	for(var/accessory in feature_list)
 		var/datum/sprite_accessory/accessory_datum = feature_list[accessory]
 		if(initial(accessory_datum.locked)) //locked is for stuff that shouldn't appear here
 			continue
+		if(!initial(accessory_datum.natural_spawn))
+			continue
 		valid_restyles += accessory_datum
 	return pick(valid_restyles)
 
 ///Return the BASE icon state of the sprite datum (so not the gender, layer, feature_key)
 /datum/bodypart_overlay/mutant/proc/get_base_icon_state()
+	/// SKYRAPTOR ADDITION BEGIN
+	/// SKYRAPTOR WARNING - we need to set this up to assert() and print out the stack trace, might help track down where things go wrong
 	if(sprite_datum)
 		return sprite_datum.icon_state
 	else
 		world.log << "SKYRAPTOR WARNING: Tried to initialize a bodypart overlay with a missing sprite datum!"
 		return "none"
+	/// SKYRAPTOR ADDITION END
 
 ///Get the image we need to draw on the person. Called from get_overlay() which is called from _bodyparts.dm. Limb can be null
 /datum/bodypart_overlay/mutant/get_image(image_layer, obj/item/bodypart/limb)

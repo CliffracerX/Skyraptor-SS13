@@ -2,7 +2,8 @@
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_AVALARI
 	is_dimorphic = FALSE
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_AVALARI
+	bodyshape = BODYSHAPE_AVALARI
+	eyes_icon = 'modular_skyraptor/modules/species_teshvali/icons/avalari_external.dmi'
 
 /obj/item/bodypart/head/avalari/Initialize(mapload)
 	worn_ears_offset = new(
@@ -37,8 +38,8 @@
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_AVALARI
 	is_dimorphic = TRUE
-	acceptable_bodytype = BODYTYPE_AVALARI
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_AVALARI
+	acceptable_bodyshape = BODYSHAPE_AVALARI
+	bodyshape = BODYSHAPE_AVALARI
 
 /obj/item/bodypart/chest/avalari/Initialize(mapload)
 	worn_belt_offset = new(
@@ -75,11 +76,12 @@
 /obj/item/bodypart/arm/left/avalari
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_AVALARI
-	unarmed_attack_verb = "slash"
+	unarmed_attack_verbs = list("slash", "scratch", "claw")
+	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_AVALARI
+	bodyshape = BODYSHAPE_AVALARI
 
 /obj/item/bodypart/arm/left/avalari/Initialize(mapload)
 	held_hand_offset =  new(
@@ -93,11 +95,12 @@
 /obj/item/bodypart/arm/right/avalari
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_AVALARI
-	unarmed_attack_verb = "slash"
+	unarmed_attack_verbs = list("slash", "scratch", "claw")
+	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_AVALARI
+	bodyshape = BODYSHAPE_AVALARI
 
 /obj/item/bodypart/arm/right/avalari/Initialize(mapload)
 	held_hand_offset =  new(
@@ -111,9 +114,9 @@
 /obj/item/bodypart/leg/left/avalari
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_AVALARI
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_AVALARI
+	bodyshape = BODYSHAPE_AVALARI
 
 /obj/item/bodypart/leg/right/avalari
 	icon_greyscale = 'modular_skyraptor/modules/species_teshvali/icons/bodyparts.dmi'
 	limb_id = SPECIES_AVALARI
-	bodytype = BODYTYPE_ORGANIC | BODYTYPE_AVALARI
+	bodyshape = BODYSHAPE_AVALARI

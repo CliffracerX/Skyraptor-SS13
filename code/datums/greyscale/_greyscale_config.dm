@@ -57,9 +57,10 @@
 	if(!json_config)
 		stack_trace("Greyscale config object [DebugName()] is missing a json configuration, make sure `json_config` has been assigned a value.")
 	string_json_config = "[json_config]"
-	/// SKYRAPTOR REMOVAL: this is stupid and incompatible with modularization
+	/// SKYRAPTOR REMOVAL BEGIN: this is stupid and incompatible with modularization
 	/*if(findtext(string_json_config, "greyscale/json_configs/") == 0)
 		stack_trace("All greyscale json configuration files should be located within '/greyscale/json_configs/'")*/
+	/// SKYRAPTOR REMOVAL END
 	if(!icon_file)
 		stack_trace("Greyscale config object [DebugName()] is missing an icon file, make sure `icon_file` has been assigned a value.")
 	string_icon_file = "[icon_file]"
@@ -154,7 +155,7 @@
 /// Gets the name used for debug purposes
 /datum/greyscale_config/proc/DebugName()
 	var/display_name = name || "MISSING_NAME"
-	return "[display_name] ([icon_file]|[json_config], type [type])" /// SKYRAPTOR ADDITION: displays the type for when something gets really fucked up
+	return "[display_name] ([icon_file]|[json_config], type [type])" /// SKYRAPTOR EDIT: displays the type for when something gets really fucked up
 
 /// Takes the json icon state configuration and puts it into a more processed format.
 /datum/greyscale_config/proc/ReadIconStateConfiguration(list/data)
@@ -236,14 +237,18 @@
 /// Actually create the icon and color it in, handles caching
 /datum/greyscale_config/proc/Generate(color_string, icon/last_external_icon)
 	var/key = color_string
-	if(key in icon_cache) /// SKYRAPTOR EDIT: this somehow breaks horribly now and i do not know why
+	var/icon/new_icon = icon_cache[key]
+	if(new_icon)
+		return icon(new_icon)
+	/// SKYRAPTOR WARNING: We might need to pull these back in if GAGS gets haunted
+	/*if(key in icon_cache) /// SKYRAPTOR EDIT: this somehow breaks horribly now and i do not know why
 		return icon(icon_cache[key])
 	if(icon_cache == null) /// SKYRAPTOR SANITY CHECK ADDITION.
 		//to_chat(world, span_bolddanger("OH GOD OH FUCK SOMEONE *REALLY* SCREWED UP THE GREYSCALE SUBSYS, [name]'S ICON CACHE WAS FUCKING NULL"))
 		icon_cache = list()
 	if(key == null) /// SKYRAPTOR SANITY CHECK ADDITION, DITTO.
 		to_chat(world, span_bolddanger("OH GOD OH FUCK SOMEONE SCREWED UP THE GREYSCALE SUBSYS, IT JUST SPAWNED A NULL KEY FOR [name]/[type]"))
-		return last_external_icon
+		return last_external_icon*/
 
 	var/icon/icon_bundle = GenerateBundle(color_string, last_external_icon=last_external_icon)
 	icon_bundle = fcopy_rsc(icon_bundle)
@@ -255,9 +260,11 @@
 /datum/greyscale_config/proc/GenerateBundle(list/colors, list/render_steps, icon/last_external_icon)
 	if(!istype(colors))
 		colors = SSgreyscale.ParseColorString(colors)
-	if(expected_colors == 0 || json_config == null) /// SKYRAPTOR ADDITION: A sanity check because god, these things are fucking haunted
+	/// SKYRAPTOR ADDITION BEGIN
+	if(expected_colors == 0 || json_config == null)
 		world.log << "SKYRAPTOR DEBUG WARNING: Greyscale [type] is fucked and asked to generate with no json config specified!"
 		return last_external_icon
+	/// SKYRAPTOR ADDITION END
 	if(length(colors) != expected_colors)
 		CRASH("[DebugName()] expected [expected_colors] color arguments but only received [length(colors)]")
 
@@ -287,8 +294,9 @@
 	for(var/datum/greyscale_layer/layer as anything in group)
 		var/icon/layer_icon
 		if(islist(layer))
+			var/list/layer_list = layer
 			layer_icon = GenerateLayerGroup(colors, layer, render_steps, new_icon || last_external_icon)
-			layer = layer[1] // When there are multiple layers in a group like this we use the first one's blend mode
+			layer = layer_list[1] // When there are multiple layers in a group like this we use the first one's blend mode
 		else
 			layer_icon = layer.Generate(colors, render_steps, new_icon || last_external_icon)
 

@@ -1,0 +1,1091 @@
+{
+	"deck_neon_full": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_deck_full",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_deck_full_color",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"deck_neon_half": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_deck_half",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_deck_half_color",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"deck_neon_low": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_deck_low",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_deck_low_color",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"deck_neon_empty": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_deck_empty",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_deck_empty_color",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"singlecard_down_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_back",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"sc_Ace of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_ace",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_2 of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_2",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_3 of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_3",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_4 of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_4",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_5 of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_5",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_6 of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_6",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_7 of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_7",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_8 of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_8",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_9 of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_9",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_10 of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_10",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_Jack of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_jack",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_Queen of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_queen",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_King of Clubs_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_clubs",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_king",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	],
+	"sc_Ace of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_ace",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_2 of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_2",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_3 of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_3",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_4 of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_4",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_5 of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_5",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_6 of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_6",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_7 of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_7",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_8 of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_8",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_9 of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_9",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_10 of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_10",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_Jack of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_jack",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_Queen of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_queen",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_King of Spades_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_spades",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_king",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	],
+	"sc_Ace of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_ace",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_2 of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_2",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_3 of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_3",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_4 of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_4",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_5 of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_5",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_6 of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_6",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_7 of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_7",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_8 of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_8",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_9 of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_9",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_10 of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_10",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_Jack of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_jack",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_Queen of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_queen",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_King of Hearts_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_hearts",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_king",
+			"blend_mode": "overlay",
+			"color_ids": [ 4 ]
+		}
+	],
+	"sc_Ace of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_ace",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_2 of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_2",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_3 of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_3",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_4 of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_4",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_5 of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_5",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_6 of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_6",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_7 of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_7",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_8 of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_8",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_9 of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_9",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_10 of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_10",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_Jack of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_jack",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_Queen of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_queen",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_King of Diamonds_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_diamonds",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_king",
+			"blend_mode": "overlay",
+			"color_ids": [ 5 ]
+		}
+	],
+	"sc_Joker Clown_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_joker",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_joker",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"sc_Joker Mime_neon": [
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_base",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_suit_joker",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "neoncard_sym_joker",
+			"blend_mode": "overlay"
+		}
+	]
+}

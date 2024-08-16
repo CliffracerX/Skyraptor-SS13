@@ -242,7 +242,7 @@
 		/obj/item/storage/box/lights/mixed = 1,
 	)
 	belt = /obj/item/storage/belt/janitor/full
-	glasses = /obj/item/clothing/glasses/night
+	glasses = /obj/item/clothing/glasses/night/colorless
 	l_pocket = /obj/item/grenade/chem_grenade/cleaner
 	r_pocket = /obj/item/grenade/chem_grenade/cleaner
 	l_hand = /obj/item/storage/bag/trash/bluespace
@@ -293,9 +293,7 @@
 	id_trim = /datum/id_trim/centcom/intern
 	uniform = /obj/item/clothing/under/rank/centcom/intern
 	back = /obj/item/storage/backpack/satchel
-	backpack_contents = list(
-		/obj/item/storage/box/survival = 1,
-	)
+	box = /obj/item/storage/box/survival
 	belt = /obj/item/melee/baton
 	ears = /obj/item/radio/headset/headset_cent
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -390,7 +388,7 @@
 	)
 	head = /obj/item/clothing/head/utility/hardhat/welding
 	mask = /obj/item/clothing/mask/gas/atmos
-	l_hand = /obj/item/areaeditor/blueprints
+	l_hand = /obj/item/blueprints
 
 /datum/outfit/centcom/ert/clown/party
 	name = "ERP Comedian"
@@ -547,11 +545,11 @@
 	shoes = /obj/item/clothing/shoes/cowboy
 	gloves = /obj/item/clothing/gloves/combat
 	back = /obj/item/storage/backpack/satchel/leather
+	box = /obj/item/storage/box/survival
 	l_pocket = /obj/item/switchblade
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
 	ears = /obj/item/radio/headset
 	backpack_contents = list(
-			/obj/item/storage/box/survival = 1,
 			/obj/item/storage/medkit/emergency = 1,
 			/obj/item/crowbar = 1,
 			/obj/item/restraints/handcuffs = 1,

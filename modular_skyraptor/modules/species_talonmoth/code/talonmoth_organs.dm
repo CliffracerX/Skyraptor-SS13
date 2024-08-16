@@ -1,7 +1,6 @@
 /obj/item/organ/internal/eyes/talonmoth
 	name = "talonmoth eyes"
 	desc = "Tired eyes from a dying world."
-	eye_icon_file = 'modular_skyraptor/modules/species_talonmoth/icons/talonmoth_external.dmi'
 	eye_icon_state = "talonmotheyes"
 	icon_state = "eyeballs-moth"
 

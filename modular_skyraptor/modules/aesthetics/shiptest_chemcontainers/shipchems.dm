@@ -9,6 +9,8 @@
 	/// Whether the container has a cap on. Do not set directly at runtime; use set_cap_status().
 	VAR_PROTECTED/cap_on = FALSE
 	VAR_PRIVATE/mutable_appearance/cap_overlay = null
+	var/list/cap_open_sounds = list('modular_skyraptor/modules/aesthetics/shiptest_chemcontainers/lid_open1.ogg', 'modular_skyraptor/modules/aesthetics/shiptest_chemcontainers/lid_open2.ogg')
+	var/list/cap_close_sounds = list('modular_skyraptor/modules/aesthetics/shiptest_chemcontainers/lid_close1.ogg', 'modular_skyraptor/modules/aesthetics/shiptest_chemcontainers/lid_close2.ogg')
 
 /// Adds code to initialization for the caps
 /obj/item/reagent_containers/Initialize(mapload, vol)
@@ -27,9 +29,13 @@
 	if(!can_have_cap)
 		CRASH("Cannot change cap status of reagent container that disallows caps!")
 	if(value_to_set)
+		if(cap_on != value_to_set)
+			playsound(src, pick(cap_open_sounds), PICKUP_SOUND_VOLUME, ignore_walls = FALSE)
 		cap_on = TRUE
 		spillable = FALSE
 	else
+		if(cap_on != value_to_set)
+			playsound(src, pick(cap_close_sounds), PICKUP_SOUND_VOLUME, ignore_walls = FALSE)
 		cap_on = FALSE
 		spillable = TRUE
 	update_icon()
@@ -41,9 +47,9 @@
 		return
 	else
 		if(cap_on)
-			. += "<span class='notice'>The cap is firmly on to prevent spilling. Alt-click to remove the cap.</span>"
+			. += "<span class='notice'>The cap is firmly on to prevent spilling. Alt-right-click to remove the cap.</span>"
 		else
-			. += "<span class='notice'>The cap has been taken off. Alt-click to put a cap on.</span>"
+			. += "<span class='notice'>The cap has been taken off. Alt-right-click to put a cap on.</span>"
 
 /// Stops injectability, drawability, refilling, draining, and so on
 /obj/item/reagent_containers/is_injectable(mob/user, allowmobs = TRUE)
@@ -64,7 +70,7 @@
 	return ..()
 
 /// Adds alt-clicking to take the cap on or off
-/obj/item/reagent_containers/AltClick(mob/user)
+/obj/item/reagent_containers/click_alt_secondary(mob/user)
 	. = ..()
 	if(can_have_cap)
 		if(cap_on)
@@ -113,9 +119,9 @@
 	desc = "A large beaker. Can hold up to 120 units."
 
 /obj/item/reagent_containers/cup/beaker/plastic
-	fill_icon_thresholds = list(1, 40, 60, 80, 100)
-	fill_icon_state = "beakerlarge"
-	cap_icon_state = "beakerlarge_cap"
+	fill_icon_thresholds = list(1, 25, 50, 75, 100)
+	fill_icon_state = "beakerxlarge"
+	cap_icon_state = "beakerwhite_cap"
 
 	volume = 180 //skyraptor buff
 	desc = "An extra-large beaker. Can hold up to 180 units."
@@ -158,7 +164,36 @@
 
 /// test tubes need some bespoke work to add caps and get them in-line with our current style, this is a TODO
 /obj/item/reagent_containers/cup/tube
-	fill_icon = 'icons/obj/medical/reagent_fillings.dmi'
-	cap_on = FALSE
-	can_have_cap = FALSE
-	cap_icon_state = null
+	icon = 'modular_skyraptor/modules/aesthetics/shiptest_chemcontainers/shipchems.dmi'
+	fill_icon = 'modular_skyraptor/modules/aesthetics/shiptest_chemcontainers/reagentfillings.dmi'
+	cap_on = TRUE
+	can_have_cap = TRUE
+	cap_icon_state = "test_tube_cap"
+
+
+
+/// Bluespace spray bottles, a funny late-game option for OMEGA CHEMS
+/obj/item/reagent_containers/spray/bluespace
+	name = "bluespace spray bottle"
+	icon = 'modular_skyraptor/modules/aesthetics/shiptest_chemcontainers/shipchems.dmi'
+	icon_state = "spraybluespace"
+	inhand_icon_state = "spraybluespace"
+	lefthand_file = 'modular_skyraptor/modules/aesthetics/shiptest_chemcontainers/shipchems_left.dmi'
+	righthand_file = 'modular_skyraptor/modules/aesthetics/shiptest_chemcontainers/shipchems_right.dmi'
+	volume = 300
+	amount_per_transfer_from_this = 1
+	possible_transfer_amounts = list(1,2,5)
+
+	unique_reskin = list("Ruggedized" = "spraybluespace",
+						"Orange" = "spraybluespace_orange",
+						"Lime" = "spraybluespace_lime",
+						"Violet" = "spraybluespace_violet",
+						"Aqua" = "spraybluespace_aqua")
+
+/obj/item/reagent_containers/spray/bluespace/click_alt(mob/user)
+	reskin_obj(user)
+
+/obj/item/reagent_containers/spray/bluespace/reskin_obj(mob/M)
+	..()
+	inhand_icon_state = icon_state
+	M.update_held_items()

@@ -8,8 +8,10 @@
 	invocation_type = INVOCATION_WHISPER
 	school = SCHOOL_EVOCATION
 
+
 /datum/action/cooldown/spell/return_back/can_cast_spell(feedback)
 	return TRUE
+
 
 /datum/action/cooldown/spell/return_back/cast(atom/cast_on)
 	. = ..()
@@ -26,7 +28,9 @@
 
 	qdel(user)
 
+
 	// Get them back to their regular name.
 	ghost.set_ghost_appearance()
 	if(ghost.client && ghost.client.prefs)
 		ghost.deadchat_name = ghost.client.prefs?.read_preference(/datum/preference/name/real_name)
+

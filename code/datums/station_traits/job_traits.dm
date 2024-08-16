@@ -1,19 +1,32 @@
+#define CAN_ROLL_ALWAYS 1 //always can roll for antag
+#define CAN_ROLL_PROTECTED 2 //can roll if config lets protected roles roll
+#define CAN_ROLL_NEVER 3 //never roll antag
+
 /**
  * A station trait which enables a temporary job
  * Generally speaking these should always all be mutually exclusive, don't have too many at once
  */
 /datum/station_trait/job
 	sign_up_button = TRUE
-	trait_flags = STATION_TRAIT_ABSTRACT
+	abstract_type = /datum/station_trait/job
 	/// What tooltip to show on the button
 	var/button_desc = "Sign up to gain some kind of unusual job, not available in most rounds."
+	/// Can this job roll antag?
+	var/can_roll_antag = CAN_ROLL_ALWAYS
+	/// How many positions to spawn?
+	var/position_amount = 1
 	/// Type of job to enable
-	var/job_to_add = /datum/job/clown
+	var/datum/job/job_to_add = /datum/job/clown
 	/// Who signed up to this in the lobby
 	var/list/lobby_candidates
 
 /datum/station_trait/job/New()
 	. = ..()
+	switch(can_roll_antag)
+		if(CAN_ROLL_PROTECTED)
+			SSstation.antag_protected_roles += job_to_add::title
+		if(CAN_ROLL_NEVER)
+			SSstation.antag_restricted_roles += job_to_add::title
 	blacklist += subtypesof(/datum/station_trait/job) - type // All but ourselves
 	RegisterSignal(SSdcs, COMSIG_GLOB_PRE_JOBS_ASSIGNED, PROC_REF(pre_jobs_assigned))
 
@@ -47,21 +60,6 @@
 	for (var/mob/dead/new_player/signee as anything in lobby_candidates)
 		if (isnull(signee) || !signee.client || !signee.mind || signee.ready != PLAYER_READY_TO_PLAY)
 			LAZYREMOVE(lobby_candidates, signee)
-<<<<<<< HEAD
-	if (!LAZYLEN(lobby_candidates))
-		on_failed_assignment()
-		return // Nobody signed up :(
-	var/mob/dead/new_player/picked_player = pick(lobby_candidates)
-	picked_player.mind.assigned_role = new job_to_add()
-	lobby_candidates = null
-
-/// Called if we didn't assign a role before the round began, we add it to the latejoin menu instead
-/datum/station_trait/job/proc/on_failed_assignment()
-	var/datum/job/our_job = job_to_add
-	our_job = SSjob.GetJob(our_job::title)
-	our_job.total_positions++
-
-=======
 
 	var/datum/job/our_job = SSjob.GetJobType(job_to_add)
 	our_job.total_positions = position_amount
@@ -77,7 +75,6 @@
 /datum/station_trait/job/can_display_lobby_button(client/player)
 	var/datum/job/our_job = SSjob.GetJobType(job_to_add)
 	return our_job.player_old_enough(player) && ..()
->>>>>>> 6a8d28b898b (Fixes station trait jobs and bank accounts ignoring the concept of jobs being singletons (#81756))
 
 /// Adds a gorilla to the cargo department, replacing the sloth and the mech
 /datum/station_trait/job/cargorilla
@@ -85,8 +82,8 @@
 	button_desc = "Sign up to become the Cargo Gorilla, a peaceful shepherd of boxes."
 	weight = 1
 	show_in_report = FALSE // Selective attention test. Did you spot the gorilla?
+	can_roll_antag = CAN_ROLL_NEVER
 	job_to_add = /datum/job/cargo_gorilla
-	trait_flags = STATION_TRAIT_MAP_UNRESTRICTED
 
 /datum/station_trait/job/cargorilla/New()
 	. = ..()
@@ -111,8 +108,6 @@
 	// monkey carries the crates, the age of robot is over
 	if(GLOB.cargo_ripley)
 		qdel(GLOB.cargo_ripley)
-<<<<<<< HEAD
-=======
 
 /datum/station_trait/job/bridge_assistant
 	name = "Bridge Assistant"
@@ -210,8 +205,7 @@
 	SIGNAL_HANDLER
 	var/datum/job_department/department = SSjob.joinable_departments_by_type[/datum/job_department/silicon]
 	department.remove_job(/datum/job/ai)
-	var/datum/station_trait/triple_ai/triple_ais = locate() in SSstation.station_traits
-	if(triple_ais)
+	if(GLOB.triple_ai_controller)
 		position_amount = 3
 
 /// Gives the AI SAT a fax machine if it doesn't have one. This is copy pasted from Bridge Assistant's coffee maker.
@@ -252,4 +246,3 @@
 #undef CAN_ROLL_ALWAYS
 #undef CAN_ROLL_PROTECTED
 #undef CAN_ROLL_NEVER
->>>>>>> 8703eac50de (split area.contained_turfs up by zlevel, make init 10 seconds faster (#80941))

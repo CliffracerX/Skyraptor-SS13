@@ -3,9 +3,8 @@
 		return
 
 	losebreath = 0
-
+	breathing_loop.stop() //This would've happened eventually but it's nice to make it stop immediatelly in this case
 	if(!gibbed)
-		INVOKE_ASYNC(src, PROC_REF(emote), "deathgasp")
 		add_memory_in_range(src, 7, /datum/memory/witnessed_death, protagonist = src)
 	reagents.end_metabolization(src)
 
@@ -19,13 +18,13 @@
 		BT.on_death()
 
 /mob/living/carbon/proc/inflate_gib() // Plays an animation that makes mobs appear to inflate before finally gibbing
-	/// SKYRAPTOR REMOVAL BEGIN
-	/*addtimer(CALLBACK(src, PROC_REF(gib), DROP_BRAIN|DROP_ORGANS|DROP_ITEMS), 25)
+	/// SKYRAPTOR REMOVAL BEGIN: fuck you, TG, for putting gd inflation and popping in a "pg" codebase
+	/*addtimer(CALLBACK(src, PROC_REF(gib), DROP_BRAIN|DROP_ORGANS|DROP_ITEMS), 2.5 SECONDS)
 	var/matrix/M = matrix()
 	M.Scale(1.8, 1.2)
 	animate(src, time = 40, transform = M, easing = SINE_EASING)*/
 	/// SKYRAPTOR REMOVAL END
-	gib(DROP_BRAIN|DROP_ORGANS|DROP_ITEMS) /// SKYRAPTOR ADDITION: inflate_Gib just redirects to normal gib.  ideally we remove this function
+	gib(DROP_BRAIN|DROP_ORGANS|DROP_ITEMS) /// SKYRAPTOR ADDITION: just blows you up normally now- ideally we want to kill this function
 
 /mob/living/carbon/gib(drop_bitflags=NONE)
 	add_memory_in_range(src, 7, /datum/memory/witness_gib, protagonist = src)

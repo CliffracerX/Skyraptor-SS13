@@ -101,7 +101,7 @@
 	if(default_deconstruction_crowbar(tool))
 		return ITEM_INTERACT_SUCCESS
 
-///To allow boulders on a conveyer belt to move unobstructed if multiple machines are made on a single line
+///To allow boulders on a conveyor belt to move unobstructed if multiple machines are made on a single line
 /obj/machinery/brm/CanAllowThrough(atom/movable/mover, border_dir)
 	if(!anchored)
 		return FALSE
@@ -151,6 +151,23 @@
 		balloon_alert(user, "batch still processing!")
 		return FALSE
 	playsound(src, MANUAL_TELEPORT_SOUND, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	return TRUE
+
+/obj/machinery/brm/attack_ai(mob/user)
+	. = ..()
+	if(. || panel_open)
+		return
+	if(!handle_teleport_conditions(user))
+		return
+
+	var/result = pre_collect_boulder()
+	if(result == TURF_BLOCKED_BY_BOULDER)
+		balloon_alert(user, "no space")
+	else if(result)
+		balloon_alert(user, "teleporting")
+
+	COOLDOWN_START(src, manual_teleport_cooldown, TELEPORTATION_TIME)
+
 	return TRUE
 
 /obj/machinery/brm/attack_robot(mob/user)
@@ -205,6 +222,17 @@
 	else
 		end_processing()
 	update_appearance(UPDATE_ICON_STATE)
+
+/obj/machinery/brm/attack_ai_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || panel_open)
+		return
+	if(!anchored)
+		balloon_alert(user, "anchor first!")
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+	toggle_auto_on(user)
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/brm/attack_robot_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -268,7 +296,7 @@
 	random_boulder.pixel_x = rand(-2, 2)
 	random_boulder.pixel_y = rand(-2, 2)
 	balloon_alert_to_viewers("boulder appears!")
-	use_power(active_power_usage)
+	use_energy(active_power_usage)
 
 	//try again if we have more boulders to work with
 	boulders_remaining -= 1

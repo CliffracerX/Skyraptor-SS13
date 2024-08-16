@@ -1,3 +1,5 @@
+// NOVA MODULE IC-SPAWNING https://github.com/Skyrat-SS13/Skyrat-tg/pull/104
+
 /mob/dead/observer/CtrlClickOn(mob/user)
 	quickicspawn(user)
 
@@ -15,11 +17,6 @@
 		var/character_option = tgui_alert(usr, "Which character?", "IC Quick Spawn", list("Selected Character", "Randomly Created", "Cancel"))
 		if (character_option == "Cancel")
 			return
-		var/addquirks = FALSE
-		if(character_option == "Selected Character")
-			addquirks = tgui_alert(usr, "Include quirks?", "Quirky", list("Add Quirks", "No Quirks", "Cancel"))
-			if (addquirks == "Cancel")
-				return
 		var/initial_outfits = tgui_alert(usr, "Select outfit", "Quick Dress", list("Bluespace Tech", "Show All", "Cancel"))
 		if (initial_outfits == "Cancel")
 			return
@@ -39,6 +36,12 @@
 			if(!give_return)
 				return
 
+		var/addquirks
+		if(character_option == "Selected Character")
+			addquirks = tgui_input_list(src, "Include quirks?", "Quirky", list("Quirks & Loadout", "Quirks Only", "Loadout Only", "Neither"))
+			if(!addquirks)
+				return
+
 
 		var/turf/current_turf = get_turf(user)
 		var/mob/living/carbon/human/spawned_player = new(user)
@@ -47,11 +50,20 @@
 			spawned_player.name = user.name
 			spawned_player.real_name = user.real_name
 
-			var/mob/living/carbon/human/H = spawned_player
-			SSquirks.AssignQuirks(H, user.client)
-			user.client?.prefs.safe_transfer_prefs_to(H)
-			H.dna.update_dna_identity()
-
+			var/mob/living/carbon/human/player_as_human = spawned_player
+			user.client?.prefs.safe_transfer_prefs_to(player_as_human)
+			if(addquirks == "Quirks & Loadout" || addquirks == "Loadout Only")
+				if(dresscode == "Naked")
+					player_as_human.equip_outfit_and_loadout(new /datum/outfit(), user.client?.prefs)
+				else
+					player_as_human.equip_outfit_and_loadout(dresscode, user.client?.prefs)
+			else if(dresscode != "Naked")
+				spawned_player.equipOutfit(dresscode)
+			if(addquirks == "Quirks & Loadout" || addquirks == "Quirks Only")
+				SSquirks.AssignQuirks(player_as_human, user.client)
+			player_as_human.dna.update_dna_identity()
+		else if(dresscode != "Naked")
+			spawned_player.equipOutfit(dresscode)
 		QDEL_IN(user, 1)
 
 		if (teleport_option == "Bluespace")
@@ -66,9 +78,6 @@
 			var/datum/action/cooldown/spell/return_back/return_spell = new(spawned_player)
 			return_spell.Grant(spawned_player)
 
-		if(dresscode != "Naked")
-			spawned_player.equipOutfit(dresscode)
-
 		switch(teleport_option)
 			if("Bluespace")
 				spawned_player.forceMove(current_turf)
@@ -80,7 +89,7 @@
 			if("Pod")
 				var/obj/structure/closet/supplypod/empty_pod = new()
 
-				empty_pod.style = STYLE_BLUESPACE
+				empty_pod.style = /datum/pod_style/advanced
 				empty_pod.bluespace = TRUE
 				empty_pod.explosionSize = list(0,0,0,0)
 				empty_pod.desc = "A sleek, and slightly worn bluespace pod - its probably seen many deliveries..."
@@ -95,8 +104,9 @@
 	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job) - typesof(/datum/outfit/plasmaman)
 
 	for(var/path in paths)
-		var/datum/outfit/O = path //not much to initalize here but whatever
-		outfits[initial(O.name)] = path
+		// Get the datum from the path so we can grab its name.
+		var/datum/outfit/path_as_outfit = path
+		outfits[initial(path_as_outfit.name)] = path
 
 	var/dresscode = tgui_input_list(src, "Select outfit", "Robust quick dress shop", baseoutfits + sort_list(outfits))
 
@@ -110,12 +120,8 @@
 		var/list/job_paths = subtypesof(/datum/outfit/job)
 		var/list/job_outfits = list()
 		for(var/path in job_paths)
-			var/datum/outfit/job/O = new path()
-			if(O)
-				if(O.jobtype)
-					var/datum/job/J = O.jobtype
-					if(J)
-						job_outfits[initial(O.name)] = path
+			var/datum/outfit/O = path
+			job_outfits[initial(O.name)] = path
 
 		dresscode = input("Select job equipment", "Robust quick dress shop") as null|anything in sort_list(job_outfits)
 		dresscode = job_outfits[dresscode]
@@ -136,8 +142,8 @@
 
 	if (dresscode == "Custom")
 		var/list/custom_names = list()
-		for(var/datum/outfit/D in GLOB.custom_outfits)
-			custom_names[D.name] = D
+		for(var/datum/outfit/req_outfit in GLOB.custom_outfits)
+			custom_names[req_outfit.name] = req_outfit
 		var/selected_name = input("Select outfit", "Robust quick dress shop") as null|anything in sort_list(custom_names)
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))

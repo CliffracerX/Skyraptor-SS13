@@ -21,12 +21,6 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	controller_vars["vars"] = null
 	gvars_datum_in_built_vars = controller_vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
 
-<<<<<<< HEAD
-#if DM_VERSION >= 515 && DM_BUILD > 1620
-	#warn datum.vars hanging a ref should now be fixed, there should be no reason to remove the vars list from our controller's vars list anymore
-#endif
-=======
->>>>>>> a09cca83fd1 (Removes overly optimistic warn on byond version (#81185))
 	QDEL_IN(exclude_these, 0) //signal logging isn't ready
 
 	Initialize()

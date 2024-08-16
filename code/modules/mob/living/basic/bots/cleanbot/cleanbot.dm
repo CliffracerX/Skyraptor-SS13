@@ -5,9 +5,6 @@
 	desc = "A little cleaning robot, he looks so excited!"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "cleanbot0"
-	pass_flags = PASSMOB | PASSFLAPS
-	density = FALSE
-	anchored = FALSE
 	health = 25
 	maxHealth = 25
 	light_color = "#99ccff"
@@ -351,10 +348,5 @@
 
 /mob/living/basic/bot/cleanbot/medbay
 	name = "Scrubs, MD"
-<<<<<<< HEAD
-	maints_access_required = list(ACCESS_ROBOTICS, ACCESS_JANITOR, ACCESS_MEDICAL)
-	bot_mode_flags = ~(BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED)
-=======
 	req_one_access = list(ACCESS_ROBOTICS, ACCESS_JANITOR, ACCESS_MEDICAL)
 	bot_mode_flags = ~(BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED)
->>>>>>> 9ac81e1a648 (New station trait job: Human AI (#81681))

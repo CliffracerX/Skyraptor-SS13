@@ -40,6 +40,9 @@
 	var/mask_state = "lava-lightmask"
 	/// The type for the preset fishing spot of this type of turf.
 	var/fish_source_type = /datum/fish_source/lavaland
+	/// The color we use for our immersion overlay
+	var/immerse_overlay_color = "#a15e1b"
+	rust_resistance = RUST_RESISTANCE_ABSOLUTE
 
 /turf/open/lava/Initialize(mapload)
 	. = ..()
@@ -48,7 +51,7 @@
 	refresh_light()
 	if(!smoothing_flags)
 		update_appearance()
-
+	AddElement(/datum/element/immerse, icon, icon_state, "immerse", immerse_overlay_color)
 
 /turf/open/lava/Destroy()
 	for(var/mob/living/leaving_mob in contents)
@@ -167,9 +170,6 @@
 		return TRUE
 	return FALSE
 
-/turf/open/lava/rust_heretic_act()
-	return FALSE
-
 /turf/open/lava/singularity_act()
 	return
 
@@ -205,8 +205,8 @@
 			to_chat(user, span_warning("You need one rod to build a heatproof lattice."))
 		return
 	// Light a cigarette in the lava
-	if(istype(C, /obj/item/clothing/mask/cigarette))
-		var/obj/item/clothing/mask/cigarette/ciggie = C
+	if(istype(C, /obj/item/cigarette))
+		var/obj/item/cigarette/ciggie = C
 		if(ciggie.lit)
 			to_chat(user, span_warning("The [ciggie.name] is already lit!"))
 			return TRUE
@@ -337,6 +337,7 @@
 	smoothing_groups = SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_FLOOR_LAVA
 	canSmoothWith = SMOOTH_GROUP_FLOOR_LAVA
 	underfloor_accessibility = 2 //This avoids strangeness when routing pipes / wires along catwalks over lava
+	immerse_overlay_color = "#F98511"
 
 /turf/open/lava/smooth/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -360,6 +361,7 @@
 	immunity_trait = TRAIT_SNOWSTORM_IMMUNE
 	immunity_resistance_flags = FREEZE_PROOF
 	lava_temperature = 100
+	immerse_overlay_color = "#CD4C9F"
 
 /turf/open/lava/plasma/examine(mob/user)
 	. = ..()
@@ -400,12 +402,12 @@
 	var/list/transform_parts = list() // Parts we want to transform
 
 	for(var/obj/item/bodypart/burn_limb as anything in burn_human.bodyparts)
-		if(!IS_ORGANIC_LIMB(burn_limb) || !burn_limb.can_dismember() && burn_limb.bodytype | BODYTYPE_HUMANOID) /// SKYRAPTOR EDIT: only transform humanoid limbs
+		if(!IS_ORGANIC_LIMB(burn_limb) || !burn_limb.can_dismember())
 			immune_parts += burn_limb
 			continue
 		if(burn_limb.limb_id == SPECIES_PLASMAMAN)
 			continue
-		transform_parts += burn_limb
+		//transform_parts += burn_limb /// SKYRAPTOR REMOVAL: the limb transform on plasma is kind of lame and it creates snowflakey characters that're human plasmemes & therefor buggy as hell
 
 	if(length(transform_parts))
 		var/obj/item/bodypart/burn_limb = pick_n_take(transform_parts)

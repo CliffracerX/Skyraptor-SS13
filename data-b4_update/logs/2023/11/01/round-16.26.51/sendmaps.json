@@ -1,0 +1,1 @@
+[{"name":"SendMaps","unit":"s","value":0.0141049,"calls":377},{"name":"SendMaps: Initial housekeeping","unit":"s","value":0.0120135,"calls":377},{"name":"SendMaps: Client loop","unit":"s","value":7.79e-005,"calls":377},{"name":"SendMaps: Cleanup","unit":"s","value":0.0019612,"calls":377}]

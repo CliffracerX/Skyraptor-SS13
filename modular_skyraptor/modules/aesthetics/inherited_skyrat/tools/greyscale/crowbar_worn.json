@@ -11,5 +11,18 @@
 			"icon_state": "crowbargs_body",
 			"blend_mode": "overlay"
 		}
+	],
+	"wrench": [
+		{
+			"type": "icon_state",
+			"icon_state": "wrench",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "wrench_body",
+			"blend_mode": "overlay"
+		}
 	]
 }
