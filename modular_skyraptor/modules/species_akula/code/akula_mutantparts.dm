@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_akula)
 	default = "Full Snout"
 
 /datum/mutant_spritecat/akula_snout/init_jank()
-		GLOB.snouts_list_akula = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/akula)
+		GLOB.snouts_list_akula += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/akula)
 		world.log << "CELEBRATE: FOR THE AKULA HAVE SNOOTS"
 		return ..()
 
@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(bodymarks_list_akula)
 	default = "Light belly"
 
 /datum/mutant_spritecat/akula_bodymarks/init_jank()
-		GLOB.bodymarks_list_akula = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/akula)
+		GLOB.bodymarks_list_akula += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/akula)
 		world.log << "CELEBRATE: FOR THE AKULA HAVE BODY MARKINGS"
 		return ..()
 
@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(horns_list_akula)
 	default = "Standard"
 
 /datum/mutant_spritecat/akula_horns/init_jank()
-		GLOB.horns_list_akula = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/akula)
+		GLOB.horns_list_akula += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/akula)
 		world.log << "CELEBRATE: FOR THE AKULA HAVE HORN-EARS"
 		return ..()
 
@@ -183,7 +183,7 @@ GLOBAL_LIST_EMPTY(tails_list_akula)
 	default = "Standard"
 
 /datum/mutant_spritecat/akula_tails/init_jank()
-		GLOB.tails_list_akula = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/akula)
+		GLOB.tails_list_akula += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/akula)
 		world.log << "CELEBRATE: FOR THE AKULA HAVE TAILS"
 		return ..()
 

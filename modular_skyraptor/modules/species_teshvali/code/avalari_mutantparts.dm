@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_avalari)
 	default = "Standard"
 
 /datum/mutant_spritecat/avalari_snout/init_jank()
-		GLOB.snouts_list_avalari = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/avalari)
+		GLOB.snouts_list_avalari += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/avalari)
 		world.log << "CELEBRATE: FOR THE AVALI HAVE SNOOTS"
 		return ..()
 
@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(bodymarks_list_avalari)
 	default = "None"
 
 /datum/mutant_spritecat/avalari_bodymarks/init_jank()
-		GLOB.bodymarks_list_avalari = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/avalari)
+		GLOB.bodymarks_list_avalari += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/avalari)
 		world.log << "CELEBRATE: FOR THE AVALI HAVE BODY MARKINGS"
 		return ..()
 
@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(horns_list_avalari)
 	default = "Fluffy"
 
 /datum/mutant_spritecat/avalari_horns/init_jank()
-		GLOB.horns_list_avalari = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/avalari)
+		GLOB.horns_list_avalari += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/avalari)
 		world.log << "CELEBRATE: FOR THE AVALI HAVE HORN-EARS"
 		return ..()
 
@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(tails_list_avalari)
 	default = "Standard"
 
 /datum/mutant_spritecat/avalari_tails/init_jank()
-		GLOB.tails_list_avalari = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/avalari)
+		GLOB.tails_list_avalari += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/avalari)
 		world.log << "CELEBRATE: FOR THE AVALI HAVE TAILS"
 		return ..()
 

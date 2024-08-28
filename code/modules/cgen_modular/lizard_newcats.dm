@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_lizard)
 	default = "Sharp + Light"
 
 /datum/mutant_spritecat/lizard_snout/init_jank()
-		GLOB.snouts_list_lizard = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/lizard)
+		GLOB.snouts_list_lizard += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/lizard)
 		world.log << "CELEBRATE: FOR THE LIZERBS HAVE SNOOTS"
 		return ..()
 
@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(bodymarks_list_lizard)
 	default = "Light Belly"
 
 /datum/mutant_spritecat/lizard_bodymarks/init_jank()
-		GLOB.bodymarks_list_lizard = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/lizard)
+		GLOB.bodymarks_list_lizard += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/lizard)
 		world.log << "CELEBRATE: FOR THE LIZERBS HAVE BODY MARKINGS"
 		return ..()
 
@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(horns_list_lizard)
 	default = "Ram"
 
 /datum/mutant_spritecat/lizard_horns/init_jank()
-		GLOB.horns_list_lizard = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/lizard)
+		GLOB.horns_list_lizard += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/lizard)
 		world.log << "CELEBRATE: FOR THE LIZERBS HAVE HORNS"
 		return ..()
 
@@ -188,7 +188,7 @@ GLOBAL_LIST_EMPTY(frills_list_lizard)
 	default = "Aquatic"
 
 /datum/mutant_spritecat/lizard_frills/init_jank()
-		GLOB.frills_list_lizard = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/frills/lizard)
+		GLOB.frills_list_lizard += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/frills/lizard)
 		world.log << "CELEBRATE: FOR THE LIZERBS HAVE FRILLS"
 		return ..()
 

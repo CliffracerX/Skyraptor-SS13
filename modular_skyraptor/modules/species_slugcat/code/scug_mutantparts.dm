@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_slugcat)
 	default = "Standard"
 
 /datum/mutant_spritecat/slugcat_snout/init_jank()
-		GLOB.snouts_list_slugcat = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/slugcat)
+		GLOB.snouts_list_slugcat += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/slugcat)
 		world.log << "CELEBRATE: FOR THE SCUGS HAVE SNOOTS"
 		return ..()
 
@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(bodymarks_list_slugcat)
 	default = "None"
 
 /datum/mutant_spritecat/slugcat_bodymarks/init_jank()
-		GLOB.bodymarks_list_slugcat = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/slugcat)
+		GLOB.bodymarks_list_slugcat += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/slugcat)
 		world.log << "CELEBRATE: FOR THE SCUGS HAVE BODY MARKINGS"
 		return ..()
 
@@ -134,7 +134,7 @@ GLOBAL_LIST_EMPTY(horns_list_slugcat)
 	default = "Standard"
 
 /datum/mutant_spritecat/slugcat_horns/init_jank()
-		GLOB.horns_list_slugcat = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/slugcat)
+		GLOB.horns_list_slugcat += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/slugcat)
 		world.log << "CELEBRATE: FOR THE SCUGS HAVE HORN-EARS"
 		return ..()
 
@@ -196,7 +196,7 @@ GLOBAL_LIST_EMPTY(tails_list_slugcat)
 	default = "Standard"
 
 /datum/mutant_spritecat/slugcat_tails/init_jank()
-		GLOB.tails_list_slugcat = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/slugcat)
+		GLOB.tails_list_slugcat += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/slugcat)
 		world.log << "CELEBRATE: FOR THE SCUGS HAVE TAILS"
 		return ..()
 
@@ -242,7 +242,7 @@ GLOBAL_LIST_EMPTY(frills_list_slugcat)
 	default = "None"
 
 /datum/mutant_spritecat/slugcat_frills/init_jank()
-		GLOB.frills_list_slugcat = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/frills/slugcat)
+		GLOB.frills_list_slugcat += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/frills/slugcat)
 		world.log << "CELEBRATE: FOR THE SCUGS HAVE SNOOTS"
 		return ..()
 

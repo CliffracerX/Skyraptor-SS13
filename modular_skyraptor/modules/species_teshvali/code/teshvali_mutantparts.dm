@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_teshvali)
 	default = "Standard"
 
 /datum/mutant_spritecat/teshvali_snout/init_jank()
-		GLOB.snouts_list_teshvali = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/teshvali)
+		GLOB.snouts_list_teshvali += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/teshvali)
 		world.log << "CELEBRATE: FOR THE TESHIS HAVE SNOOTS"
 		return ..()
 
@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(bodymarks_list_teshvali)
 	default = "None"
 
 /datum/mutant_spritecat/teshvali_bodymarks/init_jank()
-		GLOB.bodymarks_list_teshvali = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/teshvali)
+		GLOB.bodymarks_list_teshvali += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/teshvali)
 		world.log << "CELEBRATE: FOR THE TESHIS HAVE BODY MARKINGS"
 		return ..()
 
@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(horns_list_teshvali)
 	default = "Fluffy"
 
 /datum/mutant_spritecat/teshvali_horns/init_jank()
-		GLOB.horns_list_teshvali = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/teshvali)
+		GLOB.horns_list_teshvali += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/horns/teshvali)
 		world.log << "CELEBRATE: FOR THE TESHIS HAVE HORN-EARS"
 		return ..()
 
@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(tails_list_teshvali)
 	default = "Standard"
 
 /datum/mutant_spritecat/teshvali_tails/init_jank()
-		GLOB.tails_list_teshvali = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/teshvali)
+		GLOB.tails_list_teshvali += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/teshvali)
 		world.log << "CELEBRATE: FOR THE TESHIS HAVE TAILS"
 		return ..()
 

@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(tails_list_monkey)
 	default = "Monkey"
 
 /datum/mutant_spritecat/monkey_tail/init_jank()
-		GLOB.tails_list_monkey = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/monkey)
+		GLOB.tails_list_monkey += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/monkey)
 		world.log << "CELEBRATE: FOR THE MONKES HAVE TAILS"
 		return ..()
 

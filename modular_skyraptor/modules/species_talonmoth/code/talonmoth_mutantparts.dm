@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(snouts_list_talonmoth)
 	default = "Long"
 
 /datum/mutant_spritecat/talonmoth_snout/init_jank()
-		GLOB.snouts_list_talonmoth = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/talonmoth)
+		GLOB.snouts_list_talonmoth += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts/talonmoth)
 		world.log << "CELEBRATE: FOR THE MOFFS HAVE SNOOTS"
 		return ..()
 
@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(bodymarks_list_talonmoth)
 	default = "None"
 
 /datum/mutant_spritecat/talonmoth_bodymarks/init_jank()
-		GLOB.bodymarks_list_talonmoth = SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/talonmoth)
+		GLOB.bodymarks_list_talonmoth += SSaccessories.init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings/talonmoth)
 		world.log << "CELEBRATE: FOR THE MOFFS HAVE BODY MARKINGS"
 		return ..()
 
